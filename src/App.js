@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { Component } from 'react';
 import './App.css';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
@@ -7,6 +8,15 @@ import Register from './container/Register/Register'
 import Home from './container/Home/Home';
 import LandingPage from './container/LandingPage/LandingPage';
 
+=======
+import React, { Component } from "react";
+import Register from "./container/Register/Register";
+import logo from "./logo.svg";
+import Properties from "./components/Properties/Properties";
+import PropertiesCard from "./components/PropertiesCard/PropertiesCard";
+import PropertieDetail from "./components/PropertyDetail/PropertyDetail";
+import "./App.css";
+>>>>>>> 68e0e03129d6e33fc2a34d090c229b16fc4e7e31
 
 class App extends Component {
   constructor(props){
@@ -134,6 +144,7 @@ class App extends Component {
     }
 
     return (
+<<<<<<< HEAD
       
       <BrowserRouter>
       <Container>
@@ -146,6 +157,10 @@ class App extends Component {
       <Route exact path="/userDashboard" render={(props) => <UserDashBoard {...props} getData={this.getData} />} />
       <Route exact path="/ownerDashboard" render={(props) => <OwnerDashboard {...props}  getData={this.getData}/>} />
       <Route exact path="/createRestaurants" render={(props) => <CreateRestaurants {...props}  getData={this.getData}/>} /> */}
+=======
+      <div className="App">
+        <PropertieDetail />
+>>>>>>> 68e0e03129d6e33fc2a34d090c229b16fc4e7e31
       </div>
       </Container>
     </BrowserRouter>

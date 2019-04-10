@@ -20,7 +20,7 @@ class Register extends Component{
             startDate: date
         })
     }
-    
+
      registerUser = (e) =>{
         const user = {
             username: this.state.username,
@@ -30,8 +30,7 @@ class Register extends Component{
 
     print = (e) =>{
         e.preventDefault();
-        console.log('hallå');
-        console.log(user)   
+        console.log('hallå'); 
     };
 
 
@@ -63,7 +62,7 @@ class Register extends Component{
                 </Form>    
             </React.Fragment> 
         )}    
-};
+}
 
 
 export default Register;

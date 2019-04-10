@@ -64,6 +64,7 @@ class Login extends Component{
                       <Button color='teal' fluid size='large' onClick = {this.checkLoginInformation()}>
                         Login
                       </Button>
+                      
                     </Segment>
                   </Form>
                 </Grid.Column>

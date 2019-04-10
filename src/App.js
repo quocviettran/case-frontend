@@ -6,6 +6,7 @@ import Login from "./container/Login/Login";
 import Register from "./container/Register/Register";
 import Home from "./container/Home/Home";
 import LandingPage from "./container/LandingPage/LandingPage";
+import PropertyDetail from "./container/PropertyDetail/PropertyDetail";
 
 class App extends Component {
   constructor(props) {
@@ -152,6 +153,15 @@ class App extends Component {
                 <LandingPage {...props} handleChanged={this.handleChanged} />
               )}
             />
+
+            <Route
+              exact
+              path="/propertydetail"
+              render={props => (
+                <PropertyDetail {...props} handleChanged={this.handleChanged} />
+              )}
+            />
+
             {/* <Route exact path="/signIn" render={(props) => <Login {...props} handleChanged={this.handleChanged} />} />
       <Route exact path="/register" render={(props) => <Register {...props}  />} /> }
       { <Route exact path="/restaurants" render={(props) => <Restaurants {...props} handleChanged={this.handleChanged} />} />

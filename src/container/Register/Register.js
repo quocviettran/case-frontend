@@ -1,15 +1,24 @@
 import React, {Component} from 'react';
 import {Form} from 'semantic-ui-react'
 import {Input} from 'semantic-ui-react'
+import axios from 'axios';
 
 class Register extends Component{
     state = {
         username: "",
         password: ""
     }
-     print = (e) =>{
+     registerUser = (e) =>{
+        const user = {
+            username: this.state.username,
+            password: this.state.password
+        };
+
         e.preventDefault();
-        console.log("Button clicked");
+        console.log('hallå');
+        console.log(user)
+        
+        
     }
 
     handleOnChange = (e) =>{
@@ -31,7 +40,7 @@ class Register extends Component{
                     <label>Enter Password</label>
                     <Input name = "password" onChange ={this.handleOnChange} value={this.state.password}/>
                 </Form.Field>
-                <button type="submit" className="ui button" onClick={this.print}>Submit</button>
+                <button type="submit" className="ui button" onClick={this.registerUser}>Register</button>
             </React.Fragment>
             
         )

@@ -15,7 +15,7 @@ class Register extends Component{
                 email:undefined,
                 phone:undefined,
                 birth: undefined,
-                role:undefined,
+                role:null,
                 terms:false
         }
         this.handleChange = this.handleChange.bind(this);
@@ -31,26 +31,38 @@ class Register extends Component{
         });
     }
 
-    handleChangeRole= () =>{
+    handleChangeRole = (e, { value })=>{
+        console.log(value);
+        this.setState({
+            role: value
+        })
         
     }
 
+    handleCheckTerms=()=>{
+        this.setState(prevState => ({
+            terms: !prevState.terms
+        }))
+    }
+
     handleChangeDate(date){
+        console.log(date);
         this.setState({
-            startDate: date
+            birth: "1995-03-23"
         })
+        
     }
 
      registerUser = (e) =>{
          if(this.state.terms === true){
             const user = {
-                firstname: this.state.firstname,
+                name: this.state.firstname,
                 surname: this.state.surname,
                 password: this.state.password,
                 email: this.state.email,
                 phone: this.state.phone,
-                birth: this.state.birth,
-                role: this.state.role
+                dateOfBirth: this.state.birth,
+                accountTypeId: this.state.role
             };
             console.log(user);
             axios.post(
@@ -59,6 +71,7 @@ class Register extends Component{
             ).then(console.log("User added"));
                 
          }else{
+            console.log("FALSE FALSE FALSE");
 
          }
         
@@ -71,12 +84,12 @@ class Register extends Component{
             {
                 key: "Agent",
                 text:"Agent",
-                value:"agent",
+                value:1,
             },
             {
                 key: "Buyer",
                 text:"Buyer",
-                value:"buyer",
+                value:2,
             }
         ]
         return(
@@ -85,15 +98,15 @@ class Register extends Component{
                     <Form.Field>
                         <Form.Input fluid label="Firstname" placeholder="Firstname" name="firstname" onChange={this.handleChange} />
                         <Form.Input fluid label="Surname" placeholder="Surname" name="surname" onChange={this.handleChange} />
+                        <Form.Input fluid label="Password" placeholder="Password" name="password" onChange={this.handleChange} />
                         <Form.Input fluid label="E-mail" placeholder="E-mail" name="email" onChange={this.handleChange} />
                         <Form.Input fluid label="Phone" placeholder="Phone number" name="phone" onChange={this.handleChange} maxLength='8' />
-                        
-                        <Form.Dropdown fluid label="Role" placeholder="Select your role" selection options={roleOptions}/>
+                        <Form.Select fluid label="Role" placeholder="Select your role" onChange={this.handleChangeRole} options={roleOptions}/>
                         <label>Date of birth</label>
-                        <DatePicker  selected={this.state.birth} onChange={this.handleChangeDate} />
+                        <DatePicker  selected={this.state.birth} dateFormat="yyyy-mm-dd" onChange={this.handleChangeDate} />
                     </Form.Field>                   
-                    <Form.Checkbox label= 'I agree to the Terms and Conditions'/>
-                    <Form.Button>Create account</Form.Button>
+                    <Form.Checkbox label= 'I agree to the Terms and Conditions' onChange={this.handleCheckTerms}/>
+                    <Form.Button onClick={this.registerUser}>Create account</Form.Button>
                 </Form>    
             </React.Fragment> 
         )}    

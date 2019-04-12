@@ -143,7 +143,6 @@ class App extends Component {
 
     return (
       <BrowserRouter>
-        <Container>
           <ul className="header">{nav}</ul>
           <div className="content">
             <Route
@@ -169,7 +168,6 @@ class App extends Component {
       <Route exact path="/ownerDashboard" render={(props) => <OwnerDashboard {...props}  getData={this.getData}/>} />
       <Route exact path="/createRestaurants" render={(props) => <CreateRestaurants {...props}  getData={this.getData}/>} /> */}
           </div>
-        </Container>
       </BrowserRouter>
     );
   }

@@ -6,9 +6,7 @@ class PropertyDetailContainer extends Component {
   render() {
     return (
       <React.Fragment>
-        <Container>
           <PropertyDetail />
-        </Container>
       </React.Fragment>
     );
   }

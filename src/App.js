@@ -34,7 +34,7 @@ class App extends Component {
   };
 
   render() {
-    const { activeItem } = this.state;
+    //const { activeItem } = this.state;
     return (
       <BrowserRouter>
         <Container>

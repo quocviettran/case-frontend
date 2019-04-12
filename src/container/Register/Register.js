@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Form} from 'semantic-ui-react';
-import DatePicker from 'react-datepicker';
+import {Form,Select} from 'semantic-ui-react';
 import axios from 'axios';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -14,7 +13,9 @@ class Register extends Component{
                 password: undefined,
                 email:undefined,
                 phone:undefined,
-                birth: undefined,
+                day: undefined,
+                month: undefined,
+                year: undefined,
                 role:null,
                 terms:false
         }
@@ -25,14 +26,12 @@ class Register extends Component{
         const target = e.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-
         this.setState({
             [name] : value
         });
     }
 
     handleChangeRole = (e, { value })=>{
-        console.log(value);
         this.setState({
             role: value
         })
@@ -45,38 +44,86 @@ class Register extends Component{
         }))
     }
 
-    handleChangeDate(date){
-        console.log(date);
+    handleChangeDay = (event, {value}) =>{
         this.setState({
-            birth: "1995-03-23"
+            day: value
+        })
+        
+    }
+    handleChangeMonth = (event, {value}) =>{
+        this.setState({
+            month: value
+        })
+        
+    }
+    handleChangeYear = (event, {value}) =>{
+        this.setState({
+            year: value
         })
         
     }
 
      registerUser = (e) =>{
+         
+         
          if(this.state.terms === true){
-            const user = {
+            const user = JSON.stringify({
                 name: this.state.firstname,
                 surname: this.state.surname,
-                password: this.state.password,
+                phone : this.state.phone,
                 email: this.state.email,
-                phone: this.state.phone,
-                dateOfBirth: this.state.birth,
+                dateOfBirth: this.state.year+'-'+this.state.month+'-'+this.state.day,
+                password: this.state.password,
                 accountTypeId: this.state.role
-            };
+            })
             console.log(user);
             axios.post(
                 "https://properties-db.herokuapp.com/api/account/create",
-                {user}
-            ).then(console.log("User added"));
+                user,
+                {
+                    headers:{
+                        'Content-Type':'application/json'
+                    }
+                }
+            );
                 
          }else{
-            console.log("FALSE FALSE FALSE");
+            alert("Terms and Conditions is not checked");
 
          }
         
     }
 
+    createYears(years){
+        for(let i=1890; i<2019; i++){
+            years[i-1890] ={key:i,text:i,value:i} ;
+        }
+    }
+    createMonths(months){
+        for(let i=1; i<=12; i++){
+            months[i-1]={key:i,text:i,value:i};
+        }
+    }
+    createDays(days,chosenMonth,chosenYear){
+        //February
+        if(chosenMonth === 2){
+            //Years with leap day
+            if(chosenYear%4===0)
+                for(let i=1; i<=29; i++)
+                    days[i-1] = {key:i,text:i,value:i};
+            else//Normal february
+                for(let i=1; i<=28; i++)
+                    days[i-1] = {key:i,text:i,value:i};
+        }
+        //All months that ends with 30 days
+        else if(chosenMonth%2 === 0)
+            for(let i=1; i<=30; i++)
+                days[i-1] = {key:i,text:i,value:i};
+        //All months that ends with 31 days
+        else
+            for(let i = 1; i<=31;i++)
+                days[i-1] = {key:i,text:i,value:i};
+    }
 
     
     render(){
@@ -92,6 +139,11 @@ class Register extends Component{
                 value:2,
             }
         ]
+
+        let years=[],months=[],days=[];
+        
+        
+
         return(
             <React.Fragment>
                 <Form>
@@ -103,7 +155,9 @@ class Register extends Component{
                         <Form.Input fluid label="Phone" placeholder="Phone number" name="phone" onChange={this.handleChange} maxLength='8' />
                         <Form.Select fluid label="Role" placeholder="Select your role" onChange={this.handleChangeRole} options={roleOptions}/>
                         <label>Date of birth</label>
-                        <DatePicker  selected={this.state.birth} dateFormat="yyyy-mm-dd" onChange={this.handleChangeDate} />
+                        <Select fluid label="Year" placeholder ="Year" onClick={this.createYears(years)} onChange = {this.handleChangeYear}  options={years}/>
+                        <Select fluid label="Month" placeholder ="Month" onClick={this.createMonths(months)} onChange = {this.handleChangeMonth}  options={months}/>
+                        <Select fluid label="Day" placeholder ="Day" onClick={this.createDays(days,this.state.month,this.state.year)} onChange = {this.handleChangeDay}  options={days}/>
                     </Form.Field>                   
                     <Form.Checkbox label= 'I agree to the Terms and Conditions' onChange={this.handleCheckTerms}/>
                     <Form.Button onClick={this.registerUser}>Create account</Form.Button>

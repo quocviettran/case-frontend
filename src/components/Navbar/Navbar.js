@@ -1,6 +1,7 @@
 
 import React, {Component} from 'react';
 import {Menu} from 'semantic-ui-react';
+import "./Navbar.css";
 
 
 class Navbar extends Component{
@@ -12,7 +13,7 @@ class Navbar extends Component{
       const { activeItem } = this.state
   
       return (
-        <Menu>
+        <Menu fixed="top" inverted id="menu">
           <Menu.Item
             name='Home'
             active={activeItem === 'Home'}

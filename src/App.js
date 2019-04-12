@@ -40,7 +40,7 @@ class App extends Component {
     const { activeItem } = this.state;
 
     let nav = (
-      <Menu>
+      <Menu fixed="top" color="blue" inverted>
         <Menu.Item
           as={Link}
           to="/"
@@ -49,7 +49,7 @@ class App extends Component {
           onClick={this.handleItemClick}
         />
 
-        <Menu.Item
+        <Menu.Item position="right"
           as={Link}
           to="/signIn"
           name="Sign In"

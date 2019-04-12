@@ -1,7 +1,6 @@
 import React , {Component} from 'react';
-import {Container, Form, Message} from 'semantic-ui-react';
+import {Container, Form} from 'semantic-ui-react';
 import Login from '../Login/Login';
-import Register from '../Register/Register';
 
 class LandingPage extends Component{
 
@@ -12,12 +11,6 @@ class LandingPage extends Component{
                 <Form>
                     
                     <Login/>
-                    <Message>
-                        HALLO
-                    </Message>
-                    
-                    <Register/>
-                    
                     
                 </Form>
                 

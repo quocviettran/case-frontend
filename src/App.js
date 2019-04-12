@@ -1,3 +1,4 @@
+
 import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter, Route, Link } from "react-router-dom";
@@ -8,33 +9,8 @@ import Home from "./container/Home/Home";
 import LandingPage from "./container/LandingPage/LandingPage";
 import PropertyDetail from "./container/PropertyDetail/PropertyDetail";
 
+
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeItem: "Home",
-      id: 0,
-      role: 0,
-      token: "",
-      data: []
-    };
-  }
-
-  componentDidMount() {}
-
-  handleChanged = (id, role, token, data) => {
-    this.setState(() => ({ id, role, token, data }));
-  };
-
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-
-  handleLogOut = () => {
-    this.setState({ role: 0, activeItem: "Sign In" });
-  };
-
-  getData = () => {
-    return this.state.id;
-  };
 
   render() {
     const { activeItem } = this.state;

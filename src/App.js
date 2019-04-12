@@ -42,7 +42,7 @@ class App extends Component {
     const { activeItem } = this.state;
 
     let nav = (
-      <Menu>
+      <Menu fixed="top" color="teal" inverted id="menu">
         <Menu.Item
           as={Link}
           to="/"
@@ -51,7 +51,7 @@ class App extends Component {
           onClick={this.handleItemClick}
         />
 
-        <Menu.Item
+        <Menu.Item position="right"
           as={Link}
           to="/signIn"
           name="Sign In"
@@ -145,8 +145,7 @@ class App extends Component {
 
     return (
       <BrowserRouter>
-        <Container>
-          <ul className="header">{nav}</ul>
+          <ul id="menuHeader">{nav}</ul>
           <div className="content">
             <Route
               exact
@@ -180,7 +179,6 @@ class App extends Component {
       <Route exact path="/ownerDashboard" render={(props) => <OwnerDashboard {...props}  getData={this.getData}/>} />
       <Route exact path="/createRestaurants" render={(props) => <CreateRestaurants {...props}  getData={this.getData}/>} /> */}
           </div>
-        </Container>
       </BrowserRouter>
     );
   }

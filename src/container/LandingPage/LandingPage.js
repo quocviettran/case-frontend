@@ -1,7 +1,6 @@
 import React , {Component} from 'react';
 import {Container,Grid} from 'semantic-ui-react';
 import Login from '../Login/Login';
-import Register from '../Register/Register';
 
 class LandingPage extends Component{
 

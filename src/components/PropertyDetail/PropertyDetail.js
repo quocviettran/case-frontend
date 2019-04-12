@@ -1,9 +1,14 @@
 import React, { Component } from "react";
+import L from 'leaflet';
 import "./PropertyDetail.css";
-import { Grid, Header, Image, Button, Transition } from "semantic-ui-react";
+import { Grid, Header, Image, Button, Transition, Divider } from "semantic-ui-react";
 
 export default class propertyDetail extends Component {
   state = { visible: true };
+
+  componentDidMount() {
+    this.initialMap();
+  }
 
   toggleVisibility = () => this.setState({ visible: !this.state.visible });
 
@@ -50,10 +55,11 @@ export default class propertyDetail extends Component {
               </Grid.Column>
               <Grid.Column id="visningColumn">
                 <header>
-                  <h2 id="visningdetail">VISNING</h2>
-                  <h2>torsdag, 11 april 17:30-18:30</h2>
-                  <div id="map" />
+                  <h1 id="visningdetail">VISNING</h1>
+                  <h2>Torsdag, 11 april 17:30-18:30</h2>
                 </header>
+                <Divider />
+                <div id="mapid"></div>
               </Grid.Column>
             </Grid.Row>
             <h2 id="infoomeiendomText">Informasjon om eiendom</h2>
@@ -103,5 +109,16 @@ export default class propertyDetail extends Component {
         </div>
       </React.Fragment>
     );
+  }
+
+  initialMap(){
+    var mymap = L.map('mapid').setView([60.056560, 10.865150], 15);
+    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+      maxZoom: 18,
+      id: 'mapbox.streets',
+      accessToken: 'pk.eyJ1Ijoid29raW5nIiwiYSI6ImNqdHByejVjcjA3Nm80ZHIwZTgydDA0aWYifQ.A7Nu-j7baTtMJnjPzrTlNA'
+    }).addTo(mymap);
+    var marker = L.marker([60.056560, 10.865150]).addTo(mymap);
   }
 }

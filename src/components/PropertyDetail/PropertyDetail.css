@@ -40,17 +40,18 @@
   color: #ffffff;
 }
 
-#visningColumn {
-  background: #ffffff;
-}
-
 #visningdetail {
   padding-top: 20px;
   padding-bottom: 20px;
 }
 
-#map {
-  height: 180px;
+#visningColumn {
+  background: #ffffff;
+  padding-top: 50px;
+}
+
+#mapid {
+  height: 350px;
 }
 
 #secoundRow {

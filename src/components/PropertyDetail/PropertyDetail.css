@@ -2,7 +2,7 @@
   position: relative;
   height: 100%;
   width: 100% importent;
-  background: #023640;
+  background: #003434;
 }
 
 #headerImg {
@@ -28,11 +28,11 @@
   margin: 0;
   padding-top: 10px;
   padding-bottom: 10px;
-  color: #06c2db;
+  color: #00e7e7;
 }
 
 #detailColumn {
-  background: #088ea0;
+  background: teal;
 }
 
 #maindetail {
@@ -64,7 +64,7 @@
 }
 
 #infoomeiendomText {
-  color: #06c2db;
+  color: #00e7e7;
 }
 
 #fullInfoText {

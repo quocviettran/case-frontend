@@ -40,7 +40,7 @@ class App extends Component {
     const { activeItem } = this.state;
 
     let nav = (
-      <Menu fixed="top" color="blue" inverted>
+      <Menu fixed="top" color="teal" inverted id="menu">
         <Menu.Item
           as={Link}
           to="/"

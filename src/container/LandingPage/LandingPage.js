@@ -10,20 +10,12 @@ class LandingPage extends Component{
             <React.Fragment>
             <Container>
                 <Form>
-                    
                     <Login/>
                     <Message>
                         HALLO
                     </Message>
-                    
                     <Register/>
-                    
-                    
-                </Form>
-                
-                
-                
-                
+                </Form>             
             </Container>
             </React.Fragment>
         );

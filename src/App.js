@@ -11,7 +11,8 @@ import PropertyDetail from "./container/PropertyDetail/PropertyDetail";
 
 
 class App extends Component {
-
+  state = {}
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
   render() {
     const { activeItem } = this.state;
 

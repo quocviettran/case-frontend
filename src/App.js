@@ -143,7 +143,7 @@ class App extends Component {
 
     return (
       <BrowserRouter>
-          <ul className="header">{nav}</ul>
+          <ul id="menuHeader">{nav}</ul>
           <div className="content">
             <Route
               exact

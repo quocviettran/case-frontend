@@ -32,6 +32,10 @@
   }
 }
 
-#menu{
+.menu .item{
   height: 70px;
+}
+
+#menuHeader{
+  height: 42px;
 }

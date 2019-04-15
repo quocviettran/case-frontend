@@ -11,7 +11,7 @@ class PropertyList extends React.Component {
     };
 
     componentDidMount() {
-        fetch('http://localhost:8080/properties').then(res => res.json())
+        fetch('https://properties-db.herokuapp.com/properties').then(res => res.json())
         .then(data => {
             this.setState({
                 allProperties: data,      

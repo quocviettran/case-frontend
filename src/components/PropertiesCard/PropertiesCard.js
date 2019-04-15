@@ -1,16 +1,17 @@
 import React from "react";
 import { Card, Button, Image } from "semantic-ui-react";
+import {Link} from 'react-router-dom';
 
 const PropertiesCard = (props) => {
   return (
   <Card color="teal">
     <Card.Content>
-    <Image></Image>
+    <Image src="https://dnb-nextgen-cdn.azureedge.net/property-images/a0664e3f-26d0-4967-574c-08d6b28cc8ef/a0664e3f-26d0-4967-574c-08d6b28cc8ef-1.jpg?ts=636905681035052472"></Image>
       <Card.Header>{props.property_name}</Card.Header>
       <Card.Description>
         {props.city}
       </Card.Description>
-      <Button>Details</Button>
+      <Button as={Link} to="/propertydetail">Details</Button>
     </Card.Content>
   </Card>
   )

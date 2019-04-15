@@ -1,3 +1,4 @@
+
 import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter, Route, Link } from "react-router-dom";
@@ -10,34 +11,10 @@ import PropertyDetail from "./container/PropertyDetail/PropertyDetail";
 import PropertyList from '../src/container/PropertyList/PropertyList';
 import ExampleCard from '../src/components/ExampleCard/ExampleCard';
 
+
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      activeItem: "Home",
-      id: 0,
-      role: 0,
-      token: "",
-      data: []
-    };
-  }
-
-  componentDidMount() {}
-
-  handleChanged = (id, role, token, data) => {
-    this.setState(() => ({ id, role, token, data }));
-  };
-
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
-
-  handleLogOut = () => {
-    this.setState({ role: 0, activeItem: "Sign In" });
-  };
-
-  getData = () => {
-    return this.state.id;
-  };
-
+  state = {}
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
   render() {
     const { activeItem } = this.state;
 

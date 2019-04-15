@@ -8,15 +8,7 @@ class LandingPage extends Component{
         return(
             <React.Fragment>
             <Container>
-                <Form>
-                    
                     <Login/>
-                    
-                </Form>
-                
-                
-                
-                
             </Container>
             </React.Fragment>
         );

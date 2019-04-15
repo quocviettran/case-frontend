@@ -1,18 +1,20 @@
 import React from "react";
-import { Card, Image } from "semantic-ui-react";
+import { Card, Button, Image } from "semantic-ui-react";
+import {Link} from 'react-router-dom';
 
-const CardExampleCard = () => (
+const PropertiesCard = (props) => {
+  return (
   <Card color="teal">
-    <Image src="https://dnb-nextgen-cdn.azureedge.net/property-images/0bc4d3e6-f0a5-45c3-f2cb-08d6b2851657/scaled/0bc4d3e6-f0a5-45c3-f2cb-08d6b2851657_600_600.jpg?ts=636900880857535879" />
     <Card.Content>
+    <Image src="https://dnb-nextgen-cdn.azureedge.net/property-images/a0664e3f-26d0-4967-574c-08d6b28cc8ef/a0664e3f-26d0-4967-574c-08d6b28cc8ef-1.jpg?ts=636905681035052472"></Image>
+      <Card.Header>{props.property_name}</Card.Header>
       <Card.Description>
-        <h3>Myrveien 16B, Nittedal</h3>
-        <h5>P-rom/Bra: 191/196 m2</h5>
-        <h5>Prisantydning: 9 490 000kr</h5>
-        <h5>Visning : Torsdag 11/04 17:30 - 18:30</h5>
+        {props.city}
       </Card.Description>
+      <Button as={Link} to="/propertydetail">Details</Button>
     </Card.Content>
   </Card>
-);
+  )
+  };
 
-export default CardExampleCard;
+export default PropertiesCard;

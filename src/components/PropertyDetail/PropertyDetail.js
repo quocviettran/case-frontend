@@ -48,8 +48,6 @@ export default class propertyDetail extends Component {
                   <h1 id="visningdetail">VISNING</h1>
                   <h2>Torsdag, 11 april 17:30-18:30</h2>
                 </header>
-                <Divider />
-                <div id="mapid"></div>
               </Grid.Column>
             </Grid.Row>
             <h2 id="infoomeiendomText">Informasjon om eiendom</h2>
@@ -66,7 +64,10 @@ export default class propertyDetail extends Component {
                 color="blue"
               />
             </Grid.Row>
+            <Divider />
           </Grid>
+          <div id="mapid"></div>
+          <Divider />
         </div>
       </React.Fragment>
     );

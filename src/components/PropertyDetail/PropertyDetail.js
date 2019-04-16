@@ -34,7 +34,7 @@ export default class propertyDetail extends Component {
             </Grid.Row>
           </Grid>
           <Grid id="detailGrid" stackable textAlign="center">
-            <Grid.Row columns={2}>
+            <Grid.Row columns={1}>
               <Grid.Column id="detailColumn">
                 <Header id="maindetail">
                   <h4>ADRESSE: {this.props.property_name}</h4>
@@ -42,12 +42,6 @@ export default class propertyDetail extends Component {
                   <h4>BOLIGTYPE: {this.props.property_type_name}</h4>
                   <h4>STATUS: {this.props.property_status_name}</h4>
                 </Header>
-              </Grid.Column>
-              <Grid.Column id="visningColumn">
-                <header>
-                  <h1 id="visningdetail">VISNING</h1>
-                  <h2>Torsdag, 11 april 17:30-18:30</h2>
-                </header>
               </Grid.Column>
             </Grid.Row>
             <h2 id="infoomeiendomText">Informasjon om eiendom</h2>

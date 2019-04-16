@@ -68,3 +68,14 @@
 #showdetails {
   background: 06c2db;
 }
+
+#detailsImages {
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 15px;
+  width: 50%
+}
+
+h1{
+  color: white;
+}

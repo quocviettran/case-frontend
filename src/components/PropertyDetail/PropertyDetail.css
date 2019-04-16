@@ -42,17 +42,15 @@
 }
 
 #visningdetail {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 40px;
 }
 
 #visningColumn {
   background: #ffffff;
-  padding-top: 50px;
 }
 
 #mapid {
-  height: 350px;
+  height: 300px;
 }
 
 #secoundRow {

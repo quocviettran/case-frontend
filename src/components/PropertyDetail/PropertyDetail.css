@@ -42,7 +42,8 @@
 }
 
 #visningdetail {
-  padding-top: 40px;
+  padding-top: center;
+  align-content: center;
 }
 
 #visningColumn {

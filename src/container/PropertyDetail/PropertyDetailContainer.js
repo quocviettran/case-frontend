@@ -2,14 +2,28 @@ import React, { Component } from "react";
 import { Container } from "semantic-ui-react";
 import PropertyDetail from "../../components/PropertyDetail/PropertyDetail";
 
+
 class PropertyDetailContainer extends Component {
 
   state = {
-    allProperties: {}
+    allProperties: {},
+    propertyId: ""
 };
 
+
+fetchPropertyId = () => {
+  fetch('https://properties-db.herokuapp.com/properties/'+ this.state.propertyId)
+  .then(res => {
+    this.setState({propertyId: res.data[0].property_id})
+  })
+  console.log(this.state.propertyId);
+}
+
+
+
 componentDidMount() {
-    fetch('https://properties-db.herokuapp.com/properties/2').then(res => res.json())
+    const id = this.props.match.params.property_id;
+    fetch(`https://properties-db.herokuapp.com/properties/${id}`).then(res => res.json())
     .then(data => {
         this.setState({
             allProperties: data
@@ -17,8 +31,9 @@ componentDidMount() {
     }).catch(err => {
         throw err;
     })
-    console.log(this.state.allProperties.propertyType)
+   
 }
+
 
   render() {
     return (

@@ -26,8 +26,7 @@ class PropertyList extends React.Component {
         const cards = this.state.allProperties.map(property => (
             <PropertiesCard
                 key={property.property_id}
-                property_name={property.property_name}
-                city={property.city}
+                property = {property}
             />     
         ));
         

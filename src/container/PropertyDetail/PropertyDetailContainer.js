@@ -6,8 +6,7 @@ import PropertyDetail from "../../components/PropertyDetail/PropertyDetail";
 class PropertyDetailContainer extends Component {
 
   state = {
-    allProperties: {},
-    propertyId: ""
+    allProperties: {}
 };
 
 

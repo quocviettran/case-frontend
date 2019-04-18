@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
-import {Form} from 'semantic-ui-react';
-import { Button, Grid, Header, Segment } from 'semantic-ui-react'
+
+import {Input, Form} from 'semantic-ui-react';
+import { Button, Grid, Header, Image, Message, Segment, Label } from 'semantic-ui-react';
+import './Login.css';
 
 class Login extends Component{
 
@@ -44,9 +46,32 @@ class Login extends Component{
               `}
               </style>
               <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
-                <Grid.Column style={{ maxWidth: 450 }}>
-                  <Header as='h2' color='teal' textAlign='center'>
-                    Log-in to your account
+              <Grid.Row columns={2}>
+              
+              
+
+              <Grid.Column id="left-container" style={{ maxWidth: 350}}>
+
+                <div id ="left-div">
+
+                  <Header id="checkoutText" as='h2' color='teal'>CONTINUE AS GUEST</Header>
+                      <Button color='teal' fluid size='medium' onClick = {this.checkLoginInformation()}
+                      style={{ maxWidth: 200}}>
+                        Checkout
+                      </Button>
+                      <br></br>
+
+                      <p id="checkoutText">Continue as a guest for easy checkout.
+                        You can create an account at the end of the transaction
+                        to save your information for future purchases.
+                      </p>
+                  </div>
+                  
+                </Grid.Column>
+
+                <Grid.Column style={{ maxWidth: 350}} id="right-container">
+                  <Header as='h2' color='teal' textAlign='left'>
+                    SIGN IN
                   </Header>
                   <Form size='large'>
                     <Segment stacked>
@@ -68,6 +93,7 @@ class Login extends Component{
                     </Segment>
                   </Form>
                 </Grid.Column>
+                </Grid.Row>
               </Grid>
             </div>
           )

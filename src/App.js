@@ -5,7 +5,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import { Container} from "semantic-ui-react";
 import Navbar from "./components/Navbar/Navbar"
 import LandingPage from "./container/LandingPage/LandingPage";
-import PropertyDetail from "./container/PropertyDetail/PropertyDetail";
+import PropertyDetailContainer from "./container/PropertyDetail/PropertyDetailContainer";
 import PropertyList from '../src/container/PropertyList/PropertyList';
 import ExampleCard from '../src/components/ExampleCard/ExampleCard';
 
@@ -32,9 +32,16 @@ class App extends Component {
 
             <Route
               exact
-              path="/propertydetail"
+              path="/propertydetail/"
               render={props => (
-                <PropertyDetail {...props} handleChanged={this.handleChanged} />
+                <PropertyDetailContainer {...props} handleChanged={this.handleChanged} />
+              )}
+            />
+            <Route
+              exact
+              path="/propertydetail/:property_id"
+              render={props => (
+                <PropertyDetailContainer {...props} handleChanged={this.handleChanged} />
               )}
             />
 

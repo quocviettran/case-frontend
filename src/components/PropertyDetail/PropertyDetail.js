@@ -37,14 +37,21 @@ export default class propertyDetail extends Component {
             <Grid.Row columns={1}>
               <Grid.Column id="detailColumn">
                 <Header id="maindetail">
-                  <h4>ADRESSE: {this.props.property_name}</h4>
+                  <h4>Address: {this.props.property_name}</h4>
                   <h4>Value: {this.props.value} kr</h4>
-                  <h4>BOLIGTYPE: {this.props.property_type_name}</h4>
-                  <h4>STATUS: {this.props.property_status_name}</h4>
+                  <h4>Property type: {this.props.property_type_name}</h4>
+                  <h4>Status: {this.props.property_status_name}</h4>
                 </Header>
               </Grid.Column>
+              <Grid.Column id="visningColumn">
+                <header>
+                  <h1 id="visningdetail">Location</h1>
+                </header>
+                <Divider />
+                <div id="mapid"></div>
+              </Grid.Column>
             </Grid.Row>
-            <h2 id="infoomeiendomText">Informasjon om eiendom</h2>
+            <h2 id="infoomeiendomText">Information about this property</h2>
             <Grid.Row>
               <Transition visible={!visible} animation="scale" duration={200}>
                 <div id="fullInfoText">

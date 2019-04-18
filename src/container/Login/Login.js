@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+
 import {Input, Form} from 'semantic-ui-react';
 import { Button, Grid, Header, Image, Message, Segment, Label } from 'semantic-ui-react';
 import './Login.css';
@@ -88,6 +89,7 @@ class Login extends Component{
                       <Button color='teal' fluid size='large' onClick = {this.checkLoginInformation()}>
                         Login
                       </Button>
+                      
                     </Segment>
                   </Form>
                 </Grid.Column>

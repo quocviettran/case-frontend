@@ -26,7 +26,7 @@ export default class propertyDetail extends Component {
             <Grid.Row>
               <Header className="item centered" id="headerInfo">
                 <h1>{this.props.property_name}</h1>
-                <h4>{this.props.city}, {this.props.municipality}</h4>
+                <h3>{this.props.city}, {this.props.municipality}</h3>
                 <h5>
                   På denne siden finner du informasjon om eiendommen
                 </h5>
@@ -34,7 +34,7 @@ export default class propertyDetail extends Component {
             </Grid.Row>
           </Grid>
           <Grid id="detailGrid" stackable textAlign="center">
-            <Grid.Row columns={2}>
+            <Grid.Row columns={1}>
               <Grid.Column id="detailColumn">
                 <Header id="maindetail">
                   <h4>Address: {this.props.property_name}</h4>
@@ -65,7 +65,18 @@ export default class propertyDetail extends Component {
                 color="blue"
               />
             </Grid.Row>
+            <Divider />
           </Grid>
+          <div id="mapid"></div>
+          <Divider />
+          <Image
+          id="detailsImages"
+            src="https://dnb-nextgen-cdn.azureedge.net/property-images/34667987-dac1-4c1b-a7b3-08d6b283bc50/scaled/34667987-dac1-4c1b-a7b3-08d6b283bc50-3_1880_1450.jpg?ts=636909364091189734"
+          />
+          <Image
+          id="detailsImages"
+            src="https://dnb-nextgen-cdn.azureedge.net/property-images/34667987-dac1-4c1b-a7b3-08d6b283bc50/scaled/34667987-dac1-4c1b-a7b3-08d6b283bc50-5_1880_1450.jpg?ts=636909364109482205"
+          />
         </div>
       </React.Fragment>
     );

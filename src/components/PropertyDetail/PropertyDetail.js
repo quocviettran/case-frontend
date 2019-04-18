@@ -4,6 +4,7 @@ import "./PropertyDetail.css";
 import { Grid, Header, Image, Button, Transition, Divider } from "semantic-ui-react";
 
 export default class propertyDetail extends Component {
+  
   state = { visible: true };
 
   componentDidMount() {
@@ -24,78 +25,30 @@ export default class propertyDetail extends Component {
           <Grid id="headerGrid" stackable textAlign="center">
             <Grid.Row>
               <Header className="item centered" id="headerInfo">
-                <h1>Myrveien 16B</h1>
-                <h4>ROTNES, NITTEDAL</h4>
+                <h1>{this.props.property_name}</h1>
+                <h3>{this.props.city}, {this.props.municipality}</h3>
                 <h5>
-                  På denne siden finner du komplett informasjon om eiendommen
+                  På denne siden finner du informasjon om eiendommen
                 </h5>
               </Header>
             </Grid.Row>
           </Grid>
           <Grid id="detailGrid" stackable textAlign="center">
-            <Grid.Row columns={2}>
+            <Grid.Row columns={1}>
               <Grid.Column id="detailColumn">
                 <Header id="maindetail">
-                  <h4>ADRESSE: Myrveien 16B</h4>
-                  <h4>PRISANTYDNING: 9 490 000 kr</h4>
-                  <h4>OMKOSTNINGER: 63 722 kr</h4>
-                  <h4>TOTALPRIS: *9 553 722 kr</h4>
-                  <h4>BOLIGTYPE: Enebolig</h4>
-                  <h4>EIEFORM: Eiet</h4>
-                  <h4>PRIMÆRROM: 191 m²</h4>
-                  <h4>BRUKSAREAL: 196 m²</h4>
-                  <h4>SEKUNDÆRROM: 5 m²</h4>
-                  <h4>SOVEROM: 4</h4>
-                  <h4>ROM: 6</h4>
-                  <h4>BRUTTOAREAL: 216 m²</h4>
-                  <h4>TOMTEAREAL: 545.2 m² (eiet)</h4>
-                  <h4>BYGGEÅR: 2019</h4>
-                  <h4>ETASJE: 2</h4>
+                  <h4>ADRESSE: {this.props.property_name}</h4>
+                  <h4>Value: {this.props.value} kr</h4>
+                  <h4>BOLIGTYPE: {this.props.property_type_name}</h4>
+                  <h4>STATUS: {this.props.property_status_name}</h4>
                 </Header>
-              </Grid.Column>
-              <Grid.Column id="visningColumn">
-                <header>
-                  <h1 id="visningdetail">VISNING</h1>
-                  <h2>Torsdag, 11 april 17:30-18:30</h2>
-                </header>
-                <Divider />
-                <div id="mapid"></div>
               </Grid.Column>
             </Grid.Row>
             <h2 id="infoomeiendomText">Informasjon om eiendom</h2>
             <Grid.Row>
               <Transition visible={!visible} animation="scale" duration={200}>
                 <div id="fullInfoText">
-                  Splitter ny, lekker enebolig på to plan med terrasse og
-                  dobbelgarasje. Høy kvalitet i alle ledd. Perfekt beliggenhet.
-                  Myrveien 16 B er en splitter ny enebolig over to plan med
-                  gjennomgående høy kvalitet. Her kan du flytte rett inn i en
-                  moderne bolig med fokus på komfort og det lille ekstra.
-                  Beliggenheten er perfekt med få min gange til både busstopp og
-                  togstasjon. Området er meget barnevennlig med kort vei til
-                  nydelig turterreng. Ved stuen er det terrasse og tomten er
-                  klargjort for videre opparbeiding. Det er parkering i
-                  dobbelgarasje. Stue og kjøkken er et herlig, sosialt rom med
-                  mye lys, peisovn og flere soner. Kjøkkenet er topp moderne med
-                  integrerte hvitevarer og kjøkkenøy. I tillegg er det luftig
-                  loftstue. Boligen har to delikate bad, vaskerom med egen
-                  inngang og gjestetoalett. Det er fire soverom, der
-                  hovedsoverommet har privat bad og garderoberom. Garderoberom
-                  finnes også ved den romslige entreen Standard Entré: Entreen
-                  er av god størrelse og har gulvfliser i grått med varme.
-                  Rommet er tilknyttet et smart garderoberom, som igjen har
-                  adkomst til vaskerommet hvor det også er egen inngang.
-                  Gjestetoalett ligger også ved entreen. Det er bod under
-                  trappen og dobbel glassdør inn til stuen. Veggene er slette,
-                  med listfri overgang til himling, og malt i tidsriktig, mørk
-                  farge, noe som harmonerer med øvrige rom i boligen. Kjøkken:
-                  Kjøkkenet er levert fra Epoq og er topp moderne. Det er
-                  designet med tanke på å skape luft og god plass. Endeveggen
-                  består av høyskap med hvite, slette fronter med freste
-                  håndtak. Her er det kjøleskap, fryser, stekovn og kombi ovn
-                  (micro og komfyr) med varmeskuff under. Kjøkkenøy og rekke med
-                  bekeskap i sort skaper spenning i rommet. Kjøkkenøyen har
-                  spiseplass og benkeplaten er lys.
+                 {this.props.valuation_comments}
                 </div>
               </Transition>
               <Button
@@ -105,7 +58,18 @@ export default class propertyDetail extends Component {
                 color="blue"
               />
             </Grid.Row>
+            <Divider />
           </Grid>
+          <div id="mapid"></div>
+          <Divider />
+          <Image
+          id="detailsImages"
+            src="https://dnb-nextgen-cdn.azureedge.net/property-images/34667987-dac1-4c1b-a7b3-08d6b283bc50/scaled/34667987-dac1-4c1b-a7b3-08d6b283bc50-3_1880_1450.jpg?ts=636909364091189734"
+          />
+          <Image
+          id="detailsImages"
+            src="https://dnb-nextgen-cdn.azureedge.net/property-images/34667987-dac1-4c1b-a7b3-08d6b283bc50/scaled/34667987-dac1-4c1b-a7b3-08d6b283bc50-5_1880_1450.jpg?ts=636909364109482205"
+          />
         </div>
       </React.Fragment>
     );

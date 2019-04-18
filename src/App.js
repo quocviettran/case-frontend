@@ -6,6 +6,8 @@ import { Container} from "semantic-ui-react";
 import Navbar from "./components/Navbar/Navbar"
 import LandingPage from "./container/LandingPage/LandingPage";
 import PropertyDetail from "./container/PropertyDetail/PropertyDetail";
+import PropertyList from '../src/container/PropertyList/PropertyList';
+import ExampleCard from '../src/components/ExampleCard/ExampleCard';
 
 
 class App extends Component {
@@ -35,6 +37,15 @@ class App extends Component {
                 <PropertyDetail {...props} handleChanged={this.handleChanged} />
               )}
             />
+
+            <Route 
+              exact
+              path="/propertylist"
+              render={props => (
+                <PropertyList {...props} handleChanged={this.handleChanged} />
+              )}
+            />
+
 
             {/* <Route exact path="/signIn" render={(props) => <Login {...props} handleChanged={this.handleChanged} />} />
       <Route exact path="/register" render={(props) => <Register {...props}  />} /> }

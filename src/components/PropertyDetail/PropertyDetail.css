@@ -41,18 +41,8 @@
   color: #ffffff;
 }
 
-#visningdetail {
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-#visningColumn {
-  background: #ffffff;
-  padding-top: 50px;
-}
-
 #mapid {
-  height: 350px;
+  height: 300px;
 }
 
 #secoundRow {
@@ -77,4 +67,15 @@
 
 #showdetails {
   background: 06c2db;
+}
+
+#detailsImages {
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 15px;
+  width: 50%
+}
+
+h1{
+  color: white;
 }

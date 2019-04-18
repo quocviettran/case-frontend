@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Input, Form} from 'semantic-ui-react';
-import { Button, Grid, Header, Image, Message, Segment } from 'semantic-ui-react'
+import {Form} from 'semantic-ui-react';
+import { Button, Grid, Header, Segment } from 'semantic-ui-react'
 
 class Login extends Component{
 
@@ -64,6 +64,7 @@ class Login extends Component{
                       <Button color='teal' fluid size='large' onClick = {this.checkLoginInformation()}>
                         Login
                       </Button>
+                      
                     </Segment>
                   </Form>
                 </Grid.Column>

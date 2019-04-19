@@ -1,13 +1,12 @@
 
 import React, { Component } from "react";
 import "./App.css";
-import { BrowserRouter, Route } from "react-router-dom";
-import { Container} from "semantic-ui-react";
-import Navbar from "./components/Navbar/Navbar"
+import { BrowserRouter, Route, Link } from "react-router-dom";
+import { Menu } from "semantic-ui-react";
+
 import LandingPage from "./container/LandingPage/LandingPage";
 import PropertyDetailContainer from "./container/PropertyDetail/PropertyDetailContainer";
 import PropertyList from '../src/container/PropertyList/PropertyList';
-import ExampleCard from '../src/components/ExampleCard/ExampleCard';
 
 
 class App extends Component {

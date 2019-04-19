@@ -17,7 +17,7 @@ export default class propertyDetailBuyer extends Component {
     return (
       <React.Fragment>
         <div id="bodyDiv">
-        <Grid id="headerImg" className="section-response" mobile>
+        <Grid id="headerImg" className="section-response" >
         </Grid>
           <Grid id="headerGrid" stackable textAlign="center">
             <Grid.Row>

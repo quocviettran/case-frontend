@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import { Button, Grid, Header, Segment, Form } from 'semantic-ui-react'
+import { Button, Grid, Header, Segment, Form, Message } from 'semantic-ui-react'
 
 class Login extends Component{
 
@@ -64,8 +64,10 @@ class Login extends Component{
                       <Button color='teal' fluid size='large' onClick = {this.checkLoginInformation()}>
                         Login
                       </Button>
-                      <Link>Forgot your password?</Link>
                     </Segment>
+                    <Message>
+                      New to us? <a href='#'>Sign Up</a>
+                    </Message>
                   </Form>
                 </Grid.Column>  
                 <Grid.Column>

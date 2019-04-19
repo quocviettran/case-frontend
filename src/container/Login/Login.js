@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import { Button, Grid, Header, Segment, Form } from 'semantic-ui-react'
 
+
 class Login extends Component{
 
     constructor(props){
@@ -43,11 +44,13 @@ class Login extends Component{
                 }
               `}
               </style>
+
               <Grid>
               <Grid.Row columns={2} textAlign='left' style={{ height: '100%' }} verticalAlign='middle'>
                 <Grid.Column style={{ maxWidth: 450 }}>
                   <Header as='h2' color='teal' textAlign='center'>
                     Log-in to your account
+
                   </Header>
                   <Form size='large'>
                     <Segment stacked>
@@ -64,7 +67,9 @@ class Login extends Component{
                       <Button color='teal' fluid size='large' onClick = {this.checkLoginInformation()}>
                         Login
                       </Button>
+
                       <Link>Forgot your password?</Link>
+
                     </Segment>
                   </Form>
                 </Grid.Column>  
@@ -74,7 +79,9 @@ class Login extends Component{
                   </Header>
                 <Button fluid size='large'as={Link} to="/propertylist" >Continue as a guest</Button>
                 </Grid.Column>
+
               </Grid.Row>
+
               </Grid>
             </div>
           )

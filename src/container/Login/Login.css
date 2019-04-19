@@ -1,0 +1,23 @@
+#left-container{
+    justify-content: space-around;
+    margin: 30px 0 0;
+    border-right: 1px solid #ccc;
+}
+
+#left-div{
+    display: flex; /* or inline-flex */
+    flex-direction: column;
+    padding-top: 10px;
+    font-size: 86.5%;
+
+}
+
+#checkoutText{
+    font-family: sans-serif;
+    text-align: justify;
+}
+
+#right-container{
+    justify-content: space-around;
+    margin: 30px 0 0;
+}

@@ -56,7 +56,7 @@ class Login extends Component{
                         fluid
                         icon='lock'
                         iconPosition='left'
-                        placeholder='Password'
+                        placeholder='password'
                         type='password'
                         name='password'
                         onChange={this.handleOnChange}

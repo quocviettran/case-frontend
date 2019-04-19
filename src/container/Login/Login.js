@@ -2,6 +2,10 @@ import React, {Component} from 'react';
 import {Input, Form} from 'semantic-ui-react';
 import { Button, Grid, Header, Image, Message, Segment, Label } from 'semantic-ui-react';
 import './Login.css';
+import validate from './LoginRules';
+import EmailInput from './EmailInput';
+import PasswordInput from './PasswordInput';
+
 
 
 const agent = { username: "Mike", password: "123", role:1 }
@@ -12,12 +16,85 @@ class Login extends Component{
 
     constructor(props){
         super(props);
+
         this.state = {
-                username: "",
-                password: "",
-                role: 0
-        }
-        this.checkCredentials = this.checkCredentials.bind(this);
+
+          formIsValid: false,
+
+          formControls: {
+
+
+              email: {
+                value: '',
+                valid: false,
+                touched: false,
+                validationRules: {
+                  minLength: 5,
+                  isRequired: true 
+                }
+              },
+              password: {
+                value: '',
+                valid: false,
+                touched: false,
+                validationRules: {
+                  minLength: 5,
+                  isRequired: true 
+                }
+              }
+          },
+          role: 0
+      }
+    }
+
+    submitFormHandler  = event => {
+      const name = event.target.name;
+      const value = event.target.value;
+
+      const updatedControls = {
+        ...this.state.formControls
+      };
+
+      const updatedFormElement = {
+        ...updatedControls[name]
+      };
+
+      updatedFormElement.value = value;
+      updatedFormElement.touched = true;
+      updatedFormElement.valid = validate(value, updatedFormElement.validationRules);
+
+
+      updatedControls[name] = updatedFormElement;
+
+      let formIsValid = true;
+      for (let inputIdentifier in updatedControls) {
+        formIsValid = updatedControls[inputIdentifier].valid && formIsValid;
+      }
+
+      this.setState({
+        formControls: updatedControls,
+        formIsValid: formIsValid
+        
+      });
+    }
+
+    formSubmitHandler = () => {
+      if (this.state.formControls.email === agent.username) {
+        this.setState({
+          role: 1
+        });
+        console.log(this.state.role)
+
+      }
+
+      else if (this.state.formControls.email === user.username) {
+        this.setState({
+          role: 2
+        });
+        console.log(this.state.role)
+
+      }
+      console.dir(this.state.formControls);
     }
 
     onSubmitSignIn = e => {
@@ -45,12 +122,6 @@ class Login extends Component{
           console.log(err);
       });
   }
-
-
-    checkLoginInformation(event){
-              
-    }
-
     handleOnChange = (e) =>{
         const target = e.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -60,29 +131,6 @@ class Login extends Component{
             [name] : value
         });
     }
-
-    checkCredentials = (event) =>{
-        this.setState({username: event.target.value,
-                       password: event.target.value})
-        if (this.username === agent.username){
-          this.setState({role: agent.role})
-          console.log(this.state.role)
-
-        }
-
-        else if (this.username === user.username){
-          this.setState({role: user.role})
-          console.log(this.state.role)
-        }
-
-        else{
-          console.log(this.state.role)
-
-        }
-
-      
-    }
-
     render(){
         const login = (
             <div className='login-form'>
@@ -127,22 +175,32 @@ class Login extends Component{
                   <Header as='h2' color='teal' textAlign='left'>
                     SIGN IN
                   </Header>
-                  <Form size='large'>
+                    <Form size='large'>
                     <Segment stacked>
-                      <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' name='username'
-                      username={this.state.username} onChange={this.checkCredentials} />
-                      <Form.Input
-                        fluid
-                        icon='lock'
-                        iconPosition='left'
-                        placeholder='Password'
-                        type='password'
-                        name='password'
-                        password={this.state.password}
-                        onChange={this.checkCredentials}
-                      />
-          
-                      <Button color='teal' fluid size='large' onClick = {this.checkLoginInformation()}>
+
+                        <EmailInput 
+                           name = "email"
+                           value={this.state.formControls.email.value} 
+                           onChange={this.submitFormHandler}
+                           touched={this.state.formControls.email.touched}
+                           valid={this.state.formControls.email.valid}
+                        />
+
+                        <PasswordInput 
+                           name = "password"
+                           value={this.state.formControls.password.value} 
+                           onChange={this.submitFormHandler}
+                           touched={this.state.formControls.password.touched}
+                           valid={this.state.formControls.password.valid}
+                        />
+
+
+                      <Button 
+                        color='teal' 
+                        fluid size='large' 
+                        onClick = {this.formSubmitHandler}
+                        disabled={!this.state.formIsValid}
+                        >
                         Login
                       </Button>
                     </Segment>

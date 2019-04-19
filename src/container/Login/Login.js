@@ -3,19 +3,52 @@ import {Input, Form} from 'semantic-ui-react';
 import { Button, Grid, Header, Image, Message, Segment, Label } from 'semantic-ui-react';
 import './Login.css';
 
+
+const agent = { username: "Mike", password: "123", role:1 }
+const user = { username: "Miki", password: "456", role:2 }
+
 class Login extends Component{
+ 
 
     constructor(props){
         super(props);
         this.state = {
                 username: "",
-                password: ""
+                password: "",
+                role: 0
         }
+        this.checkCredentials = this.checkCredentials.bind(this);
     }
 
-    checkLoginInformation = (username,password) =>{
-        if(this.state.username === username && this.state.password === password)
-            console.log('Login success');
+    onSubmitSignIn = e => {
+      e.preventDefault();
+      fetch('https://properties-db.herokuapp.com/owner/', {
+          method: 'POST',
+          body: JSON.stringify({
+            "username" : this.state.username,
+            "password" : this.state.password
+          }),
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+          }
+      })
+      .then((res)=> {
+          if(res.status === 200){
+            this.setState({message: "Login successful "});
+            return res.json();
+          }else{
+            this.setState({message: "Wrong username or password"});
+            return;
+          }
+      }).catch(err => {
+          console.log(err);
+      });
+  }
+
+
+    checkLoginInformation(event){
+              
     }
 
     handleOnChange = (e) =>{
@@ -26,6 +59,28 @@ class Login extends Component{
         this.setState({
             [name] : value
         });
+    }
+
+    checkCredentials = (event) =>{
+        this.setState({username: event.target.value,
+                       password: event.target.value})
+        if (this.username == agent.username){
+          this.setState({role: agent.role})
+          console.log(this.state.role)
+
+        }
+
+        else if (this.username == user.username){
+          this.setState({role: user.role})
+          console.log(this.state.role)
+        }
+
+        else{
+          console.log(this.state.role)
+
+        }
+
+      
     }
 
     render(){
@@ -54,7 +109,7 @@ class Login extends Component{
                 <div id ="left-div">
 
                   <Header id="checkoutText" as='h2' color='teal'>CONTINUE AS GUEST</Header>
-                      <Button color='teal' fluid size='medium' onClick = {this.checkLoginInformation()}
+                      <Button color='teal' fluid size='medium' onClick = {console.log(" ")}
                       style={{ maxWidth: 200}}>
                         Checkout
                       </Button>
@@ -74,7 +129,8 @@ class Login extends Component{
                   </Header>
                   <Form size='large'>
                     <Segment stacked>
-                      <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' name='username' onChange={this.handleOnChange} />
+                      <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' name='username'
+                      username={this.state.username} onChange={this.checkCredentials} />
                       <Form.Input
                         fluid
                         icon='lock'
@@ -82,7 +138,8 @@ class Login extends Component{
                         placeholder='Password'
                         type='password'
                         name='password'
-                        onChange={this.handleOnChange}
+                        password={this.state.password}
+                        onChange={this.checkCredentials}
                       />
           
                       <Button color='teal' fluid size='large' onClick = {this.checkLoginInformation()}>

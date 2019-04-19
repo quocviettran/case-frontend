@@ -12,9 +12,21 @@ import PropertyList from '../src/container/PropertyList/PropertyList';
 import ExampleCard from '../src/components/ExampleCard/ExampleCard';
 
 
+/*const User = Authorization(['user', 'guest', '1'])
+const Agent = Authorization(['user', 'agent', 'guest', '2'])*/
+
 class App extends Component {
-  state = {}
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+ 
+  state = {
+    username: "",
+    password: "",
+    role: ""
+  }
+
+
+  handleItemClick = (e, { name }) => this.setState({ role: 1 })
+
+
   render() {
     const { activeItem } = this.state;
 
@@ -25,14 +37,6 @@ class App extends Component {
           to="/"
           name="Home"
           active={activeItem === "Home"}
-          onClick={this.handleItemClick}
-        />
-
-        <Menu.Item position="right"
-          as={Link}
-          to="/signIn"
-          name="Sign In"
-          active={activeItem === "Sign In"}
           onClick={this.handleItemClick}
         />
 
@@ -48,7 +52,7 @@ class App extends Component {
 
     if (parseInt(this.state.role) === 1) {
       nav = (
-        <Menu>
+        <Menu fixed="top" color="teal" inverted id="menu">
           <Menu.Item
             as={Link}
             to="/"
@@ -57,21 +61,14 @@ class App extends Component {
             onClick={this.handleItemClick}
           />
 
-          <Menu.Item
-            name="Userdashboard"
-            as={Link}
-            to="/userDashboard"
-            active={activeItem === "Userdashboard"}
-            onClick={this.handleItemClick}
-          />
-
-          <Menu.Item
-            as={Link}
-            to="/restaurants"
-            name="Restaurants"
-            active={activeItem === "Restaurants"}
-            onClick={this.handleItemClick}
-          />
+        <Menu.Item 
+          position="right"
+          as={Link}
+          to="/signIn"
+          name="Sign In"
+          active={activeItem === "Sign In"}
+          onClick={this.handleItemClick}
+        />
 
           <Menu.Item
             as={Link}
@@ -81,31 +78,16 @@ class App extends Component {
             onClick={this.handleLogOut}
           />
         </Menu>
-      );
-    } else if (parseInt(this.state.role) === 2) {
+      );}
+      
+      else if (parseInt(this.state.role) === 2) {
       nav = (
-        <Menu>
+        <Menu fixed="top" color="teal" inverted id="menu">
           <Menu.Item
             name="Home"
             as={Link}
             to="/"
             active={activeItem === "Home"}
-            onClick={this.handleItemClick}
-          />
-
-          <Menu.Item
-            name="OwnerDashboard"
-            as={Link}
-            to="/OwnerDashboard"
-            active={activeItem === "OwnerDashboard"}
-            onClick={this.handleItemClick}
-          />
-
-          <Menu.Item
-            as={Link}
-            to="/restaurants"
-            name="Restaurants"
-            active={activeItem === "Restaurants"}
             onClick={this.handleItemClick}
           />
 

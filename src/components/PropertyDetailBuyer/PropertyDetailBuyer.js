@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import { Grid, Header, Image, Button, Transition, Divider, Segment } from "semantic-ui-react";
+import { Grid, Header, Image, Button, Transition, Divider, Segment, Responsive } from "semantic-ui-react";
 import Map from '../Map/Map'
+import './PropertyDetailBuyer.css'
 
 export default class propertyDetailBuyer extends Component {
   
@@ -10,14 +11,14 @@ export default class propertyDetailBuyer extends Component {
   
   render() {
     const { visible } = this.state;
-    
+
+
+
     return (
       <React.Fragment>
         <div id="bodyDiv">
-          <Image
-            id="headerImg"
-            src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260g"
-          />
+        <Grid id="headerImg" className="section-response" mobile>
+        </Grid>
           <Grid id="headerGrid" stackable textAlign="center">
             <Grid.Row>
               <Header className="item centered" id="headerInfo">

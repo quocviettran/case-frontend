@@ -1,9 +1,6 @@
 import React,{Component} from 'react';
 import leaflet from 'leaflet'; 
 import './Map.css'
-import {Segment, Container} from 'semantic-ui-react'
-
-
 class Map extends Component {
 
     componentDidMount() {
@@ -16,7 +13,7 @@ class Map extends Component {
         if(this.props.longitude !== undefined){
             this.map = leaflet.map('map', {
                 center: [lat, lon],
-                zoom: 12,
+                zoom: 10,
                 layers: [
                     leaflet.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
                         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
@@ -33,7 +30,7 @@ class Map extends Component {
             //Create dummy
             this.map = leaflet.map('map', {
                 center: [22, 22],
-                zoom: 12,
+                zoom: 10,
                 layers: [
                     leaflet.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
                         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',

@@ -64,13 +64,13 @@ class Login extends Component{
     checkCredentials = (event) =>{
         this.setState({username: event.target.value,
                        password: event.target.value})
-        if (this.username == agent.username){
+        if (this.username === agent.username){
           this.setState({role: agent.role})
           console.log(this.state.role)
 
         }
 
-        else if (this.username == user.username){
+        else if (this.username === user.username){
           this.setState({role: user.role})
           console.log(this.state.role)
         }

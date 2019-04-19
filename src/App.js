@@ -2,14 +2,10 @@
 import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter, Route, Link } from "react-router-dom";
-import { Container, Menu } from "semantic-ui-react";
-import Login from "./container/Login/Login";
-import Register from "./container/Register/Register";
-import Home from "./container/Home/Home";
+import { Menu } from "semantic-ui-react";
 import LandingPage from "./container/LandingPage/LandingPage";
 import PropertyDetailContainer from "./container/PropertyDetail/PropertyDetailContainer";
 import PropertyList from '../src/container/PropertyList/PropertyList';
-import ExampleCard from '../src/components/ExampleCard/ExampleCard';
 
 
 class App extends Component {

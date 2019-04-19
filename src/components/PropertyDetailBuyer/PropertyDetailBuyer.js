@@ -1,16 +1,16 @@
 import React, { Component } from "react";
-import "./PropertyDetail.css";
 import { Grid, Header, Image, Button, Transition, Divider } from "semantic-ui-react";
-import Map from '../Map/Map';
+import Map from '../Map/Map'
 
-export default class propertyDetail extends Component {
+export default class propertyDetailBuyer extends Component {
   
   state = { visible: true };
 
   toggleVisibility = () => this.setState({ visible: !this.state.visible });
-
+  
   render() {
     const { visible } = this.state;
+    
     return (
       <React.Fragment>
         <div id="bodyDiv">
@@ -22,6 +22,7 @@ export default class propertyDetail extends Component {
             <Grid.Row>
               <Header className="item centered" id="headerInfo">
                 <h1>{this.props.property_name}</h1>
+                <h4>{this.props.city}, {this.props.municipality}</h4>
                 <h5>
                   På denne siden finner du informasjon om eiendommen
                 </h5>
@@ -33,10 +34,16 @@ export default class propertyDetail extends Component {
               <Grid.Column id="detailColumn">
                 <Header id="maindetail">
                   <h4>ADRESSE: {this.props.property_name}</h4>
+                  <h4>By: {this.props.city}</h4>
+                  <h4>Value: {this.props.value} kr</h4>
                   <h4>BOLIGTYPE: {this.props.property_type_name}</h4>
                   <h4>AREAL: {this.props.area}</h4>
                   <h4>ETASJE: {this.props.floor}</h4>
                   <h4>ROM: {this.props.rooms}</h4>
+                  <h4>STATUS: {this.props.property_status_name}</h4>
+
+                  <h4>BYGGEDATO: {this.props.built_at}</h4>
+                  <h4>SIST RENOVERT: {this.props.renovation_date_from}</h4>
                 </Header>
               </Grid.Column>
               <Grid.Column id="visningColumn">

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Header, Image, Button, Transition, Divider } from "semantic-ui-react";
+import { Grid, Header, Image, Button, Transition, Divider, Segment } from "semantic-ui-react";
 import Map from '../Map/Map'
 
 export default class propertyDetailBuyer extends Component {
@@ -51,8 +51,11 @@ export default class propertyDetailBuyer extends Component {
                   <h1 id="visningdetail">VISNING</h1>
                   <h2>Torsdag, 11 april 17:30-18:30</h2>
                 </header>
-                <Divider />
+                <Divider/>
+                {/* <Map latitude={this.props.latitude} longitude={this.props.longitude}/> */}
+          
                 <Map latitude={this.props.latitude} longitude={this.props.longitude}/>
+
               </Grid.Column>
             </Grid.Row>
             <h2 id="infoomeiendomText">Informasjon om eiendom</h2>

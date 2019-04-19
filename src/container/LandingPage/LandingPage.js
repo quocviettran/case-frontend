@@ -13,7 +13,6 @@ class LandingPage extends Component{
                         <Login/>            
                     </Grid.Column>
                     <Grid.Column width={8}>
-                        <Register/>
                     </Grid.Column>
                 </Grid>
             </Container>

@@ -1,15 +1,22 @@
 import React, {Component} from 'react';
 import {Input, Form} from 'semantic-ui-react';
+import { BrowserRouter, Route, Link } from "react-router-dom";
 import { Button, Grid, Header, Image, Message, Segment, Label } from 'semantic-ui-react';
 import './Login.css';
 import validate from './LoginRules';
 import EmailInput from './EmailInput';
 import PasswordInput from './PasswordInput';
+import PropertyList from '../../container/PropertyList/PropertyList';
 
 
 
-const agent = { username: "Mike", password: "123", role:1 }
-const user = { username: "Miki", password: "456", role:2 }
+const agent = { username: "Mike",
+                password: "123",
+                role:1 }
+
+const user = { username: "Miki",
+               password: "456",
+               role:2 }
 
 class Login extends Component{
  
@@ -20,6 +27,7 @@ class Login extends Component{
         this.state = {
 
           formIsValid: false,
+          role: 1,
 
           formControls: {
 
@@ -29,7 +37,7 @@ class Login extends Component{
                 valid: false,
                 touched: false,
                 validationRules: {
-                  minLength: 5,
+                  minLength: 3,
                   isRequired: true 
                 }
               },
@@ -38,12 +46,11 @@ class Login extends Component{
                 valid: false,
                 touched: false,
                 validationRules: {
-                  minLength: 5,
+                  minLength: 3,
                   isRequired: true 
                 }
               }
-          },
-          role: 0
+          }
       }
     }
 
@@ -76,69 +83,36 @@ class Login extends Component{
         formIsValid: formIsValid
         
       });
+
+      if (name === "email"){
+       localStorage.setItem('email', value);
+      }
+
+      else if (name === "password"){
+        localStorage.setItem('password', value);
+      }
     }
 
     formSubmitHandler = () => {
-      if (this.state.formControls.email === agent.username) {
+      if (localStorage.getItem('email') === agent.username && localStorage.getItem('password') === agent.password) {
         this.setState({
           role: 1
-        });
-        console.log(this.state.role)
-
+        },console.log(this.state.role));
       }
 
-      else if (this.state.formControls.email === user.username) {
+      else if (localStorage.getItem('email') === user.username && localStorage.getItem('password') === user.password) {
         this.setState({
           role: 2
-        });
-        console.log(this.state.role)
-
+        },console.log(this.state.role));
       }
-      console.dir(this.state.formControls);
-    }
 
-    onSubmitSignIn = e => {
-      e.preventDefault();
-      fetch('https://properties-db.herokuapp.com/owner/', {
-          method: 'POST',
-          body: JSON.stringify({
-            "username" : this.state.username,
-            "password" : this.state.password
-          }),
-          headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-          }
-      })
-      .then((res)=> {
-          if(res.status === 200){
-            this.setState({message: "Login successful "});
-            return res.json();
-          }else{
-            this.setState({message: "Wrong username or password"});
-            return;
-          }
-      }).catch(err => {
-          console.log(err);
-      });
-  }
-    handleOnChange = (e) =>{
-        const target = e.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-
-        this.setState({
-            [name] : value
-        });
+      else {
+        console.dir(this.state.role)
+      }
     }
     render(){
         const login = (
             <div className='login-form'>
-              {/*
-                Heads up! The styles below are necessary for the correct render of this example.
-                You can do same with CSS, the main idea is that all the elements up to the `Grid`
-                below must have a height of 100%.
-              */}
               <style>{`
                 body > div,
                 body > div > div,
@@ -146,6 +120,7 @@ class Login extends Component{
                   height: 100%;
                 }
               `}
+
               </style>
               <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
               <Grid.Row columns={2}>
@@ -157,13 +132,23 @@ class Login extends Component{
                 <div id ="left-div">
 
                   <Header id="checkoutText" as='h2' color='teal'>CONTINUE AS GUEST</Header>
-                      <Button color='teal' fluid size='medium' onClick = {console.log(" ")}
-                      style={{ maxWidth: 200}}>
+
+                      <Button 
+                        color='teal' 
+                        fluid size='medium' 
+                        as={Link}
+                        to="/propertylist"
+                        name="Proplist"
+                        role = {this.state.role}
+                        style={{ maxWidth: 200}}>
                         Checkout
                       </Button>
+                      
+
                       <br></br>
 
-                      <p id="checkoutText">Continue as a guest for easy checkout.
+                      <p id="checkoutText">
+                        Continue as a guest for easy checkout.
                         You can create an account at the end of the transaction
                         to save your information for future purchases.
                       </p>
@@ -193,7 +178,7 @@ class Login extends Component{
                            touched={this.state.formControls.password.touched}
                            valid={this.state.formControls.password.valid}
                         />
-
+                        
 
                       <Button 
                         color='teal' 
@@ -213,9 +198,17 @@ class Login extends Component{
     
 
         return(
+          
             <React.Fragment>
-                {login}
+
+          
+            
+                {login} 
+
             </React.Fragment>
+
+           
+
         )}
     
 }

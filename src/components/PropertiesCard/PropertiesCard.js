@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 
 
 
+
 const PropertiesCard = (props) => {
   return (
   <Card color="teal">

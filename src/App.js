@@ -3,40 +3,35 @@ import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import { Container, Menu } from "semantic-ui-react";
-import Login from "./container/Login/Login";
-import Register from "./container/Register/Register";
-import Home from "./container/Home/Home";
 import LandingPage from "./container/LandingPage/LandingPage";
 import PropertyDetailContainer from "./container/PropertyDetail/PropertyDetailContainer";
 import PropertyList from '../src/container/PropertyList/PropertyList';
-import ExampleCard from '../src/components/ExampleCard/ExampleCard';
-
-
-/*const User = Authorization(['user', 'guest', '1'])
-const Agent = Authorization(['user', 'agent', 'guest', '2'])*/
 
 class App extends Component {
  
-  state = {
-    username: "",
-    password: "",
-    role: ""
+  constructor(props){
+    super(props);
+    this.state = {
+      username: "",
+      password: "",
+      role: 0
+    }
   }
 
 
-  handleItemClick = (e, { name }) => this.setState({ role: 1 })
+  handleItemClick = (e, { name }) => this.setState({ role: 0 })
 
 
   render() {
     const { activeItem } = this.state;
 
     let nav = (
+
       <Menu fixed="top" color="teal" inverted id="menu">
         <Menu.Item
           as={Link}
           to="/"
           name="Home"
-          active={activeItem === "Home"}
           onClick={this.handleItemClick}
         />
 
@@ -110,7 +105,8 @@ class App extends Component {
               exact
               path="/"
               render={props => (
-                <LandingPage {...props} handleChanged={this.handleChanged} />
+                <LandingPage {...props}
+                  role={this.state.role} />
               )}
             />
 
@@ -133,7 +129,7 @@ class App extends Component {
               exact
               path="/propertylist"
               render={props => (
-                <PropertyList {...props} handleChanged={this.handleChanged} />
+                <PropertyList {...props} />
               )}
             />
 

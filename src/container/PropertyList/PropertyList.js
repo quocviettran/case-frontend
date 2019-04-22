@@ -2,13 +2,12 @@ import React from 'react'
 import { List, Image, Card, Container  } from 'semantic-ui-react'
 
 import PropertiesCard from '../../components/PropertiesCard/PropertiesCard'
-import ExampleCard from '../../components/ExampleCard/ExampleCard';
 
 class PropertyList extends React.Component {
-
-    state = {
-        allProperties: []
-    };
+        state = {
+            allProperties: []
+        };
+       
 
     componentDidMount() {
         fetch('https://properties-db.herokuapp.com/properties').then(res => res.json())
@@ -16,26 +15,33 @@ class PropertyList extends React.Component {
             this.setState({
                 allProperties: data,      
             })
-            console.log("Mounted")
         }).catch(err => {
             throw err;
         })
+
     }
 
     render() {  
+        console.log(this.props)
+
+       
         const cards = this.state.allProperties.map(property => (
             <PropertiesCard
                 key={property.property_id}
                 property = {property}
-            />     
+            />   
+          
         ));
-        
+
         return (
           <React.Fragment>
+          
           <Card.Group>
             {cards}
+            
            </Card.Group>
           </React.Fragment>
+          
         );
       }
     }

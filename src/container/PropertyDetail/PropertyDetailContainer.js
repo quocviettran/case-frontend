@@ -15,7 +15,6 @@ fetchPropertyId = () => {
   .then(res => {
     this.setState({propertyId: res.data[0].property_id})
   })
-  console.log(this.state.propertyId);
 }
 
 

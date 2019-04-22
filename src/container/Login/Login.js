@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Input, Form} from 'semantic-ui-react';
+import {Input, Form, Menu} from 'semantic-ui-react';
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import { Button, Grid, Header, Image, Message, Segment, Label } from 'semantic-ui-react';
 import './Login.css';
@@ -7,6 +7,8 @@ import validate from './LoginRules';
 import EmailInput from './EmailInput';
 import PasswordInput from './PasswordInput';
 import PropertyList from '../../container/PropertyList/PropertyList';
+import LandingPage from '../LandingPage/LandingPage';
+import PropertyDetailContainer from '../PropertyDetail/PropertyDetailContainer'
 
 
 
@@ -19,15 +21,13 @@ const user = { username: "Miki",
                role:2 }
 
 class Login extends Component{
- 
-
     constructor(props){
         super(props);
 
         this.state = {
 
           formIsValid: false,
-          role: 1,
+          role: 0,
 
           formControls: {
 
@@ -101,6 +101,8 @@ class Login extends Component{
         this.setState({
           role: 1
         },console.log(this.state.role));
+
+        
       }
 
 
@@ -117,6 +119,77 @@ class Login extends Component{
 
     }
     render(){
+      const { activeItem } = this.state;
+
+    let nav = (
+
+      <Menu fixed="top" color="teal" inverted id="menu">
+        <Menu.Item
+          as={Link}
+          to="/"
+          name="Home"
+        
+        />
+
+        <Menu.Item
+          as={Link}
+          to="/register"
+          name="Register"
+          active={activeItem === "Register"}
+  
+        />
+      </Menu>
+    );
+
+    if (parseInt(this.state.role) === 1) {
+      nav = (
+        <Menu fixed="top" color="teal" inverted id="menu">
+          <Menu.Item
+            as={Link}
+            to="/"
+            name="Home"
+
+          />
+
+        <Menu.Item 
+          position="right"
+          as={Link}
+          to="/signIn"
+          name="Sign In"
+
+        />
+
+          <Menu.Item
+            as={Link}
+            to="/signIn"
+            name="Log Out"
+
+          />
+        </Menu>
+      );}
+      
+      else if (parseInt(this.state.role) === 2) {
+      nav = (
+        <Menu fixed="top" color="teal" inverted id="menu">
+          <Menu.Item
+            name="Home"
+            as={Link}
+            to="/"
+            active={activeItem === "Home"}
+
+          />
+
+          <Menu.Item
+            as={Link}
+            to="/signIn"
+            name="Log Out"
+            active={activeItem === "Log out"}
+
+          />
+        </Menu>
+      );
+    }
+
         const login = (
             <div className='login-form'>
               <style>{`
@@ -134,7 +207,9 @@ class Login extends Component{
               <Grid.Column id="left-container" style={{ maxWidth: 350}}>
                 <div id ="left-div">
 
-                  <Header id="checkoutText" as='h2' color='teal'>CONTINUE AS GUEST</Header>
+                  <Header id="checkoutText" as='h2' color='teal'>
+                    CONTINUE AS GUEST
+                  </Header>
 
                       <Button 
                         color='teal' 
@@ -142,7 +217,6 @@ class Login extends Component{
                         as={Link}
                         to="/propertylist"
                         name="Proplist"
-                        role = {this.state.role}
                         style={{ maxWidth: 200}}>
                         Checkout
                       </Button>
@@ -189,6 +263,7 @@ class Login extends Component{
                          fluid size='large' 
                          onClick = {this.formSubmitHandler}
                          disabled={!this.state.formIsValid}
+                         
                         >
                          Login
                        </Button>
@@ -202,9 +277,37 @@ class Login extends Component{
     
 
         return(
-          
-            <React.Fragment>      
-                {login} 
+          <React.Fragment>     
+             <BrowserRouter>
+              <ul id="menuHeader">{nav}</ul>
+              <div className="content">
+            
+
+            <Route
+              exact
+              path="/propertydetail/"
+              render={props => (
+                <PropertyDetailContainer {...props} handleChanged={this.handleChanged} />
+              )}
+            />
+            <Route
+              exact
+              path="/propertydetail/:property_id"
+              render={props => (
+                <PropertyDetailContainer {...props} handleChanged={this.handleChanged} />
+              )}
+            />
+
+            <Route 
+              exact
+              path="/propertylist"
+              render={props => (
+                <PropertyList {...props} role = {this.state.role} />
+              )}
+            />
+            {login}
+          </div>
+      </BrowserRouter>
             </React.Fragment>
 
            

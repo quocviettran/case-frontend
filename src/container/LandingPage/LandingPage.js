@@ -7,11 +7,10 @@ class LandingPage extends Component{
     render(){
         console.log(this.props)
         return(
-            <React.Fragment>
             <Container>
                     <Login/>
             </Container>
-            </React.Fragment>
+            
         );
     }
 }

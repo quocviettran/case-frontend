@@ -22,7 +22,7 @@ class PropertyList extends React.Component {
     }
 
     render() {  
-        console.log(this.props)
+            console.log(this.props)
 
        
         const cards = this.state.allProperties.map(property => (

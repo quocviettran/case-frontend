@@ -94,13 +94,18 @@ class Login extends Component{
     }
 
     formSubmitHandler = () => {
-      if (localStorage.getItem('email') === agent.username && localStorage.getItem('password') === agent.password) {
+
+      if (localStorage.getItem('email') === agent.username && 
+          localStorage.getItem('password') === agent.password) {
+            
         this.setState({
           role: 1
         },console.log(this.state.role));
       }
 
-      else if (localStorage.getItem('email') === user.username && localStorage.getItem('password') === user.password) {
+
+      else if (localStorage.getItem('email') === user.username && 
+               localStorage.getItem('password') === user.password) {
         this.setState({
           role: 2
         },console.log(this.state.role));
@@ -109,6 +114,7 @@ class Login extends Component{
       else {
         console.dir(this.state.role)
       }
+
     }
     render(){
         const login = (
@@ -122,13 +128,10 @@ class Login extends Component{
               `}
 
               </style>
+
               <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
               <Grid.Row columns={2}>
-              
-              
-
               <Grid.Column id="left-container" style={{ maxWidth: 350}}>
-
                 <div id ="left-div">
 
                   <Header id="checkoutText" as='h2' color='teal'>CONTINUE AS GUEST</Header>
@@ -143,8 +146,7 @@ class Login extends Component{
                         style={{ maxWidth: 200}}>
                         Checkout
                       </Button>
-                      
-
+                    
                       <br></br>
 
                       <p id="checkoutText">
@@ -152,14 +154,16 @@ class Login extends Component{
                         You can create an account at the end of the transaction
                         to save your information for future purchases.
                       </p>
+
                   </div>
                   
                 </Grid.Column>
-
                 <Grid.Column style={{ maxWidth: 350}} id="right-container">
+
                   <Header as='h2' color='teal' textAlign='left'>
                     SIGN IN
                   </Header>
+
                     <Form size='large'>
                     <Segment stacked>
 
@@ -180,14 +184,14 @@ class Login extends Component{
                         />
                         
 
-                      <Button 
-                        color='teal' 
-                        fluid size='large' 
-                        onClick = {this.formSubmitHandler}
-                        disabled={!this.state.formIsValid}
+                       <Button 
+                         color='teal' 
+                         fluid size='large' 
+                         onClick = {this.formSubmitHandler}
+                         disabled={!this.state.formIsValid}
                         >
-                        Login
-                      </Button>
+                         Login
+                       </Button>
                     </Segment>
                   </Form>
                 </Grid.Column>
@@ -199,12 +203,8 @@ class Login extends Component{
 
         return(
           
-            <React.Fragment>
-
-          
-            
+            <React.Fragment>      
                 {login} 
-
             </React.Fragment>
 
            

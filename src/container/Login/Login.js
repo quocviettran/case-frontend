@@ -1,23 +1,128 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import { Button, Grid, Header, Segment, Form } from 'semantic-ui-react'
+import {Input, Form} from 'semantic-ui-react';
+import { Button, Grid, Header, Image, Message, Segment, Label } from 'semantic-ui-react';
 import './Login.css';
+import { Link } from "react-router-dom";
+import validate from './LoginRules';
+import EmailInput from './EmailInput';
+import PasswordInput from './PasswordInput';
+
+
+
+const agent = { username: "Mike", password: "123", role:1 }
+const user = { username: "Miki", password: "456", role:2 }
 
 class Login extends Component{
+ 
 
     constructor(props){
         super(props);
+
         this.state = {
-                username: "",
-                password: ""
-        }
+
+          formIsValid: false,
+
+          formControls: {
+
+
+              email: {
+                value: '',
+                valid: false,
+                touched: false,
+                validationRules: {
+                  minLength: 5,
+                  isRequired: true 
+                }
+              },
+              password: {
+                value: '',
+                valid: false,
+                touched: false,
+                validationRules: {
+                  minLength: 5,
+                  isRequired: true 
+                }
+              }
+          },
+          role: 0
+      }
     }
 
-    checkLoginInformation = (username,password) =>{
-        if(this.state.username === username && this.state.password === password)
-            console.log('Login success');
+    submitFormHandler  = event => {
+      const name = event.target.name;
+      const value = event.target.value;
+
+      const updatedControls = {
+        ...this.state.formControls
+      };
+
+      const updatedFormElement = {
+        ...updatedControls[name]
+      };
+
+      updatedFormElement.value = value;
+      updatedFormElement.touched = true;
+      updatedFormElement.valid = validate(value, updatedFormElement.validationRules);
+
+
+      updatedControls[name] = updatedFormElement;
+
+      let formIsValid = true;
+      for (let inputIdentifier in updatedControls) {
+        formIsValid = updatedControls[inputIdentifier].valid && formIsValid;
+      }
+
+      this.setState({
+        formControls: updatedControls,
+        formIsValid: formIsValid
+        
+      });
     }
 
+    formSubmitHandler = () => {
+      if (this.state.formControls.email === agent.username) {
+        this.setState({
+          role: 1
+        });
+        console.log(this.state.role)
+
+      }
+
+      else if (this.state.formControls.email === user.username) {
+        this.setState({
+          role: 2
+        });
+        console.log(this.state.role)
+
+      }
+      console.dir(this.state.formControls);
+    }
+
+    onSubmitSignIn = e => {
+      e.preventDefault();
+      fetch('https://properties-db.herokuapp.com/owner/', {
+          method: 'POST',
+          body: JSON.stringify({
+            "username" : this.state.username,
+            "password" : this.state.password
+          }),
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+          }
+      })
+      .then((res)=> {
+          if(res.status === 200){
+            this.setState({message: "Login successful "});
+            return res.json();
+          }else{
+            this.setState({message: "Wrong username or password"});
+            return;
+          }
+      }).catch(err => {
+          console.log(err);
+      });
+  }
     handleOnChange = (e) =>{
         const target = e.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
@@ -27,15 +132,10 @@ class Login extends Component{
             [name] : value
         });
     }
-
     render(){
         const login = (
             <div className='login-form'>
-              {/*
-                Heads up! The styles below are necessary for the correct render of this example.
-                You can do same with CSS, the main idea is that all the elements up to the `Grid`
-                below must have a height of 100%.
-              */}
+              
               <style>{`
                 body > div,
                 body > div > div,
@@ -44,53 +144,83 @@ class Login extends Component{
                 }
               `}
               </style>
+              <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
+              <Grid.Row columns={2}>
+              
+              
 
-              <Grid>
-              <Grid.Row columns={2} textAlign='left' style={{ height: '100%' }} verticalAlign='middle'>
-                <Grid.Column style={{ maxWidth: 450 }}>
-                  <Header as='h2' color='teal' textAlign='center'>
-                    Log-in to your account
+              <Grid.Column id="left-container" style={{ maxWidth: 350}}>
 
-                  </Header>
-                  <Form size='large'>
-                    <Segment stacked>
-                      <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' name='username' onChange={this.handleOnChange} />
-                      <Form.Input
-                        fluid
-                        icon='lock'
-                        iconPosition='left'
-                        placeholder='Password'
-                        type='password'
-                        name='password'
-                        onChange={this.handleOnChange}
-                      />
-                      <Button color='teal' fluid size='large' onClick = {this.checkLoginInformation()}>
-                        Login
+                <div id ="left-div">
+
+                  <Header id="checkoutText" as='h2' color='teal'>CONTINUE AS GUEST</Header>
+                      <Button 
+                        color='teal' 
+                        fluid size='medium'
+                        as={Link}
+                        to="/propertylist"
+                        name="Proplist" 
+                        onClick = {this.props.handler}
+                        style={{ maxWidth: 200}}>
+                        Checkout
                       </Button>
+                      <br></br>
 
-                      <Link>Forgot your password?</Link>
-
-                    </Segment>
-                  </Form>
-                </Grid.Column>  
-                <Grid.Column>
-                <Header as='h2' color='teal' textAlign='center'>
-                    Continue without signing in
-                  </Header>
-                <Button fluid size='large'as={Link} to="/propertylist" >Continue as a guest</Button>
+                      <p id="checkoutText">Continue as a guest for easy checkout.
+                        You can create an account at the end of the transaction
+                        to save your information for future purchases.
+                      </p>
+                  </div>
+                  
                 </Grid.Column>
 
-              </Grid.Row>
+                <Grid.Column style={{ maxWidth: 350}} id="right-container">
+                  <Header as='h2' color='teal' textAlign='left'>
+                    SIGN IN
+                  </Header>
+                    <Form size='large'>
+                    <Segment stacked>
 
+                        <EmailInput 
+                           name = "email"
+                           value={this.state.formControls.email.value} 
+                           onChange={this.submitFormHandler}
+                           touched={this.state.formControls.email.touched}
+                           valid={this.state.formControls.email.valid}
+                        />
+
+                        <PasswordInput 
+                           name = "password"
+                           value={this.state.formControls.password.value} 
+                           onChange={this.submitFormHandler}
+                           touched={this.state.formControls.password.touched}
+                           valid={this.state.formControls.password.valid}
+                        />
+
+
+                      <Button 
+                        color='teal' 
+                        fluid size='large' 
+                        onClick = {this.formSubmitHandler}
+                        disabled={!this.state.formIsValid}
+                        >
+                        Login
+                      </Button>
+                    </Segment>
+                  </Form>
+                </Grid.Column>
+                </Grid.Row>
               </Grid>
             </div>
           )
     
+
         return(
             <React.Fragment>
-                {login}            
+                {login}
             </React.Fragment>
-        )}  
+        )}
+    
 }
 
 export default Login;

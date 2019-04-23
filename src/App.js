@@ -1,14 +1,14 @@
 
 import React, { Component } from "react";
 import "./App.css";
-import { BrowserRouter, Route } from "react-router-dom";
-import { Container} from "semantic-ui-react";
-import Navbar from "./components/Navbar/Navbar"
+import { BrowserRouter, Route, Link } from "react-router-dom";
+import { Menu } from "semantic-ui-react";
 import LandingPage from "./container/LandingPage/LandingPage";
 import Register from "./container/Register/Register";
 import Login from "./container/Login/Login";
-import PropertyList from "./container/PropertyList/PropertyList";
 import UserPage from "./container/UserPage/UserPage";
+import PropertyDetailContainer from "./container/PropertyDetail/PropertyDetailContainer";
+import PropertyList from '../src/container/PropertyList/PropertyList';
 
 
 class App extends Component {

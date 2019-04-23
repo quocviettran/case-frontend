@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-
-import {Form} from 'semantic-ui-react';
-import { Button, Grid, Header, Segment } from 'semantic-ui-react';
+import {Link} from 'react-router-dom';
+import { Button, Grid, Header, Segment, Form } from 'semantic-ui-react'
 import './Login.css';
 
 class Login extends Component{
@@ -45,33 +44,13 @@ class Login extends Component{
                 }
               `}
               </style>
-              <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
-              <Grid.Row columns={2}>
-              
-              
 
-              <Grid.Column id="left-container" style={{ maxWidth: 350}}>
+              <Grid>
+              <Grid.Row columns={2} textAlign='left' style={{ height: '100%' }} verticalAlign='middle'>
+                <Grid.Column style={{ maxWidth: 450 }}>
+                  <Header as='h2' color='teal' textAlign='center'>
+                    Log-in to your account
 
-                <div id ="left-div">
-
-                  <Header id="checkoutText" as='h2' color='teal'>CONTINUE AS GUEST</Header>
-                      <Button color='teal' fluid size='medium' onClick = {this.checkLoginInformation()}
-                      style={{ maxWidth: 200}}>
-                        Checkout
-                      </Button>
-                      <br></br>
-
-                      <p id="checkoutText">Continue as a guest for easy checkout.
-                        You can create an account at the end of the transaction
-                        to save your information for future purchases.
-                      </p>
-                  </div>
-                  
-                </Grid.Column>
-
-                <Grid.Column style={{ maxWidth: 350}} id="right-container">
-                  <Header as='h2' color='teal' textAlign='left'>
-                    SIGN IN
                   </Header>
                   <Form size='large'>
                     <Segment stacked>
@@ -85,26 +64,33 @@ class Login extends Component{
                         name='password'
                         onChange={this.handleOnChange}
                       />
-          
                       <Button color='teal' fluid size='large' onClick = {this.checkLoginInformation()}>
                         Login
                       </Button>
-                      
+
+                      <Link>Forgot your password?</Link>
+
                     </Segment>
                   </Form>
+                </Grid.Column>  
+                <Grid.Column>
+                <Header as='h2' color='teal' textAlign='center'>
+                    Continue without signing in
+                  </Header>
+                <Button fluid size='large'as={Link} to="/propertylist" >Continue as a guest</Button>
                 </Grid.Column>
-                </Grid.Row>
+
+              </Grid.Row>
+
               </Grid>
             </div>
           )
     
-
         return(
             <React.Fragment>
-                {login}
+                {login}            
             </React.Fragment>
-        )}
-    
+        )}  
 }
 
 export default Login;

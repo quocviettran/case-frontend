@@ -20,6 +20,7 @@ class PropertyList extends React.Component {
         }).catch(err => {
             throw err;
         })
+        console.log(this.state.allProperties.longitude);
     }
 
     render() {  
@@ -27,6 +28,7 @@ class PropertyList extends React.Component {
             <PropertiesCard
                 key={property.property_id}
                 property = {property}
+
             />     
         ));
         

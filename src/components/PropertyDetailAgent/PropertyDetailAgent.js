@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import "./PropertyDetail.css";
+import L from 'leaflet';
 import { Grid, Header, Image, Button, Transition, Divider } from "semantic-ui-react";
 import Map from '../Map/Map';
 
-export default class propertyDetail extends Component {
+export default class propertyDetailAgent extends Component {
   
   state = { visible: true };
 
@@ -22,6 +22,7 @@ export default class propertyDetail extends Component {
             <Grid.Row>
               <Header className="item centered" id="headerInfo">
                 <h1>{this.props.property_name}</h1>
+                <h4>{this.props.city}, {this.props.municipality}</h4>
                 <h5>
                   På denne siden finner du informasjon om eiendommen
                 </h5>
@@ -29,27 +30,34 @@ export default class propertyDetail extends Component {
             </Grid.Row>
           </Grid>
           <Grid id="detailGrid" stackable textAlign="center">
-            <Grid.Row columns={1}>
+            <Grid.Row columns={2}>
               <Grid.Column id="detailColumn">
                 <Header id="maindetail">
-
                   <h4>ADRESSE: {this.props.property_name}</h4>
                   <h4>BOLIGTYPE: {this.props.property_type_name}</h4>
                   <h4>AREAL: {this.props.area}</h4>
                   <h4>ETASJE: {this.props.floor}</h4>
                   <h4>ROM: {this.props.rooms}</h4>
+                  <h4>Value: {this.props.value} kr</h4>
+                  <h4>STATUS: {this.props.property_status_name}</h4>
 
+                  <h4>BYGGEDATO: {this.props.built_at}</h4>
+                  <h4>SIST RENOVERT: {this.props.renovation_date_from}</h4>
+
+                  <h4>HISTORIKK: </h4>
+                  <h4>EIER:</h4>
                 </Header>
               </Grid.Column>
               <Grid.Column id="visningColumn">
                 <header>
-                  <h1 id="visningdetail">Location</h1>
+                  <h1 id="visningdetail">VISNING</h1>
+                  <h2>Torsdag, 11 april 17:30-18:30</h2>
                 </header>
                 <Divider />
                 <Map latitude={this.props.latitude} longitude={this.props.longitude}/>
               </Grid.Column>
             </Grid.Row>
-            <h2 id="infoomeiendomText">Information about this property</h2>
+            <h2 id="infoomeiendomText">Informasjon om eiendom</h2>
             <Grid.Row>
               <Transition visible={!visible} animation="scale" duration={200}>
                 <div id="fullInfoText">
@@ -63,18 +71,7 @@ export default class propertyDetail extends Component {
                 color="blue"
               />
             </Grid.Row>
-            <Divider />
           </Grid>
-          <div id="mapid"></div>
-          <Divider />
-          <Image
-          id="detailsImages"
-            src="https://dnb-nextgen-cdn.azureedge.net/property-images/34667987-dac1-4c1b-a7b3-08d6b283bc50/scaled/34667987-dac1-4c1b-a7b3-08d6b283bc50-3_1880_1450.jpg?ts=636909364091189734"
-          />
-          <Image
-          id="detailsImages"
-            src="https://dnb-nextgen-cdn.azureedge.net/property-images/34667987-dac1-4c1b-a7b3-08d6b283bc50/scaled/34667987-dac1-4c1b-a7b3-08d6b283bc50-5_1880_1450.jpg?ts=636909364109482205"
-          />
         </div>
       </React.Fragment>
     );

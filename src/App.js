@@ -7,6 +7,7 @@ import LandingPage from "./container/LandingPage/LandingPage";
 import PropertyDetailContainer from "./container/PropertyDetail/PropertyDetailContainer";
 import PropertyList from '../src/container/PropertyList/PropertyList';
 import Login from './container/Login/Login'
+import Navbar from './components/Navbar/Navbar'
 
 class App extends Component {
   constructor(props){
@@ -22,8 +23,16 @@ class App extends Component {
   render() {
     return (      
        <BrowserRouter>
-          <div>          
-            <Login/>
+      
+          <div>    
+          <Navbar/>
+          
+          <br></br>   
+          <br></br>   
+          <br></br>   
+          <br></br>   
+
+            <LandingPage/>
           </div>
         </BrowserRouter>
              

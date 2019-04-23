@@ -119,89 +119,9 @@ class Login extends Component{
 
     }
     render(){
-      const { activeItem } = this.state;
-
-    let nav = (
-
-      <Menu fixed="top" color="teal" inverted id="menu">
-        <Menu.Item
-          as={Link}
-          to="/"
-          name="Home"
-        
-        />
-
-        <Menu.Item
-          as={Link}
-          to="/register"
-          name="Register"
-          active={activeItem === "Register"}
-  
-        />
-      </Menu>
-    );
-
-    if (parseInt(this.state.role) === 1) {
-      nav = (
-        <Menu fixed="top" color="teal" inverted id="menu">
-          <Menu.Item
-            as={Link}
-            to="/"
-            name="Home"
-
-          />
-
-        <Menu.Item 
-          position="right"
-          as={Link}
-          to="/signIn"
-          name="Sign In"
-
-        />
-
-          <Menu.Item
-            as={Link}
-            to="/signIn"
-            name="Log Out"
-
-          />
-        </Menu>
-      );}
-      
-      else if (parseInt(this.state.role) === 2) {
-      nav = (
-        <Menu fixed="top" color="teal" inverted id="menu">
-          <Menu.Item
-            name="Home"
-            as={Link}
-            to="/"
-            active={activeItem === "Home"}
-
-          />
-
-          <Menu.Item
-            as={Link}
-            to="/signIn"
-            name="Log Out"
-            active={activeItem === "Log out"}
-
-          />
-        </Menu>
-      );
-    }
-
+     
         const login = (
             <div className='login-form'>
-              <style>{`
-                body > div,
-                body > div > div,
-                body > div > div > div.login-form {
-                  height: 100%;
-                }
-              `}
-
-              </style>
-
               <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
               <Grid.Row columns={2}>
               <Grid.Column id="left-container" style={{ maxWidth: 350}}>
@@ -279,10 +199,8 @@ class Login extends Component{
         return(
           <React.Fragment>     
              <BrowserRouter>
-              <ul id="menuHeader">{nav}</ul>
-              <div className="content">
-            
-
+             
+             <div className="content">
             <Route
               exact
               path="/propertydetail/"
@@ -305,7 +223,7 @@ class Login extends Component{
                 <PropertyList {...props} role = {this.state.role} />
               )}
             />
-            {login}
+
           </div>
       </BrowserRouter>
             </React.Fragment>

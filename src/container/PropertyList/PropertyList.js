@@ -21,10 +21,7 @@ class PropertyList extends React.Component {
 
     }
 
-    render() {  
-            console.log(this.props)
-
-       
+    render() {         
         const cards = this.state.allProperties.map(property => (
             <PropertiesCard
                 key={property.property_id}
@@ -35,11 +32,9 @@ class PropertyList extends React.Component {
 
         return (
           <React.Fragment>
-          
-          <Card.Group>
-            {cards}
-            
-           </Card.Group>
+            <Card.Group>
+                {cards}
+            </Card.Group>
           </React.Fragment>
           
         );

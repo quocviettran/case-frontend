@@ -1,6 +1,7 @@
 
 import React, {Component} from 'react';
 import {Menu} from 'semantic-ui-react';
+import { BrowserRouter, Route, Link } from "react-router-dom";
 import "./Navbar.css";
 
 
@@ -12,7 +13,7 @@ class Navbar extends Component{
     render() {
       const { activeItem } = this.state;
 
-     
+      let nav = (
   
         <Menu fixed="top" color="teal" inverted id="menu">
           <Menu.Item
@@ -30,7 +31,7 @@ class Navbar extends Component{
     
           />
         </Menu>
-      
+      );
   
       if (parseInt(this.state.role) === 1) {
         nav = (
@@ -79,31 +80,15 @@ class Navbar extends Component{
             />
           </Menu>
         );
-      }  
+      }
+     
       return (
-        <Menu fixed="top" inverted id="menu">
-          <Menu.Item
-            name='Home'
-            active={activeItem === 'Home'}
-            onClick={this.handleItemClick}
-          >
-            Editorials
-          </Menu.Item>
-  
-          <Menu.Item name='Sign up' active={activeItem === 'Sign up'} onClick={this.handleItemClick}>
-            Reviews
-          </Menu.Item>
-  
-          <Menu.Item
-            name='Sign in'
-            active={activeItem === 'Sign in'}
-            onClick={this.handleItemClick}
-          >
-            Upcoming Events
-          </Menu.Item>
-        </Menu>
+        <ul>
+          {nav}
+        </ul>
+        
       )
-}
+    }
 }
 
 export default Navbar;

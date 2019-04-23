@@ -17,18 +17,28 @@ const Agent = Authorization(['user', 'agent', 'guest', '2'])*/
 
 class App extends Component {
 
-    state = {
+  constructor(props){
+    super(props)
+    this.state = {
       username: "",
       password: "",
       role: 0
     }
-
-
-  handler = () => {
-    this.setState({
-      role: 1
-    })
   }
+
+
+  handler = (e) => {
+    this.setState({
+      role: e.target.value,
+      state: this.state
+    })
+
+    this.forceUpdate();
+
+    
+  }
+
+ 
 
 
   render() {
@@ -46,7 +56,7 @@ class App extends Component {
               exact
               path="/"
               render={props => (
-                <LandingPage {...props} handler = {this.handler} />
+                <LandingPage {...props} role= {this.state.role} handler = {this.handler} />
               )}
             />
             <Route

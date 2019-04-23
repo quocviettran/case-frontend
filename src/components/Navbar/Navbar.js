@@ -4,16 +4,16 @@ import {Link} from 'react-router-dom';
 import {Menu} from 'semantic-ui-react';
 import "./Navbar.css";
 
-
-
 class Navbar extends Component{
   constructor(props){
     super(props)
     this.state={
-      role:props.role
+      role: props.role
     }
   }  
-  
+  componentDidUpdate(){
+    console.log(this.state.role)
+  }
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
   

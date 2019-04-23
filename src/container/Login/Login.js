@@ -17,13 +17,12 @@ class Login extends Component{
 
     constructor(props){
         super(props);
-
         this.state = {
 
           formIsValid: false,
-
+          role: 1,
+          
           formControls: {
-
 
               email: {
                 value: '',
@@ -34,6 +33,7 @@ class Login extends Component{
                   isRequired: true 
                 }
               },
+
               password: {
                 value: '',
                 valid: false,
@@ -43,38 +43,11 @@ class Login extends Component{
                   isRequired: true 
                 }
               }
-          },
-          role: 0
+          }
       }
     }
 
-    formSubmitHandler = () => {
-
-      if (localStorage.getItem('email') === agent.username && 
-          localStorage.getItem('password') === agent.password) {
-            
-        this.setState({
-          role: 1
-        },console.log(this.state.role));
-
-        
-      }
-
-
-      else if (localStorage.getItem('email') === user.username && 
-               localStorage.getItem('password') === user.password) {
-        this.setState({
-          role: 2
-        },console.log(this.state.role));
-      }
-
-      else {
-        console.dir(this.state.role)
-      }
-
-    }
     
-
     submitFormHandler  = event => {
       const name = event.target.name;
       const value = event.target.value;
@@ -104,27 +77,42 @@ class Login extends Component{
         formIsValid: formIsValid
         
       });
+
+      if (name === "email"){
+       localStorage.setItem('email', value);
+      }
+
+      else if (name === "password"){
+        localStorage.setItem('password', value);
+      }
     }
 
     formSubmitHandler = () => {
-      if (this.state.formControls.email === agent.username) {
+
+      if (localStorage.getItem('email') === agent.username && 
+          localStorage.getItem('password') === agent.password) {
+            
         this.setState({
           role: 1
-        });
-        console.log(this.state.role)
+        },console.log(this.state.role));
 
+        
       }
 
-      else if (this.state.formControls.email === user.username) {
+
+      else if (localStorage.getItem('email') === user.username && 
+               localStorage.getItem('password') === user.password) {
         this.setState({
           role: 2
-        });
-        console.log(this.state.role)
-
+        },console.log(this.state.role));
       }
-      console.dir(this.state.formControls);
-    }
 
+      else {
+        console.dir(this.state.role)
+      }
+
+    }
+    
     onSubmitSignIn = e => {
       e.preventDefault();
       fetch('https://properties-db.herokuapp.com/owner/', {
@@ -150,8 +138,13 @@ class Login extends Component{
           console.log(err);
       });
   }
+
+    changeRole = () =>{
+      this.setProps(this.props.role=1)
+    }
     
     render(){
+      console.log(this.props.role)
         const login = (
             <div className='login-form'>
               <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
@@ -176,7 +169,14 @@ class Login extends Component{
                       </Button>
                       <br></br>
 
-                      <p id="checkoutText">Continue as a guest for easy checkout.
+                      <Button 
+                        value = {this.state.role}
+                        onClick = {this.props.handler }>
+                        Press me!
+                      </Button>
+
+                      <p id="checkoutText">
+                        Continue as a guest for easy checkout.
                         You can create an account at the end of the transaction
                         to save your information for future purchases.
                       </p>
@@ -227,7 +227,7 @@ class Login extends Component{
 
         return(
             <React.Fragment>
-                {login}
+                { login }
             </React.Fragment>
         )}
     

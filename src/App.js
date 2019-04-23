@@ -23,7 +23,7 @@ class App extends Component {
       role: 0
     }
 
-    
+
   handler = () => {
     this.setState({
       role: 1
@@ -76,7 +76,23 @@ class App extends Component {
               render={props => (
                 <UserPage {...props} handleChanged={this.handleChanged} />
               )}
-            />        
+            /> 
+
+            <Route
+              exact
+              path="/propertydetail/"
+              render={props => (
+                <PropertyDetailContainer {...props} handleChanged={this.handleChanged} />
+              )}
+            />
+            <Route
+              exact
+              path="/propertydetail/:property_id"
+              render={props => (
+                <PropertyDetailContainer {...props} handleChanged={this.handleChanged} />
+              )}
+            />
+                   
           </div>
           </Container>
       </BrowserRouter>

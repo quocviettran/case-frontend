@@ -10,7 +10,7 @@ import PasswordInput from './PasswordInput';
 
 
 const agent = { username: "Mike", password: "123", role:1 }
-const user = { username: "Miki", password: "456", role:2 }
+const user = { username: "Quoc", password: "123", role:2 }
 
 class Login extends Component{
  
@@ -30,7 +30,7 @@ class Login extends Component{
                 valid: false,
                 touched: false,
                 validationRules: {
-                  minLength: 5,
+                  minLength: 3,
                   isRequired: true 
                 }
               },
@@ -39,7 +39,7 @@ class Login extends Component{
                 valid: false,
                 touched: false,
                 validationRules: {
-                  minLength: 5,
+                  minLength: 3,
                   isRequired: true 
                 }
               }
@@ -123,27 +123,10 @@ class Login extends Component{
           console.log(err);
       });
   }
-    handleOnChange = (e) =>{
-        const target = e.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
-
-        this.setState({
-            [name] : value
-        });
-    }
+    
     render(){
         const login = (
             <div className='login-form'>
-              
-              <style>{`
-                body > div,
-                body > div > div,
-                body > div > div > div.login-form {
-                  height: 100%;
-                }
-              `}
-              </style>
               <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
               <Grid.Row columns={2}>
               

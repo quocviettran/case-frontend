@@ -34,7 +34,7 @@ class PropertyList extends React.Component {
         
         return (
           <React.Fragment>
-          <Card.Group>
+          <Card.Group centered itemsPerRow="2"> 
             {cards}
            </Card.Group>
           </React.Fragment>

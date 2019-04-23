@@ -1,8 +1,8 @@
 import React from 'react'
-import { List, Image, Card, Container  } from 'semantic-ui-react'
+import {Card } from 'semantic-ui-react'
 
 import PropertiesCard from '../../components/PropertiesCard/PropertiesCard'
-import ExampleCard from '../../components/ExampleCard/ExampleCard';
+
 
 class PropertyList extends React.Component {
 
@@ -20,6 +20,7 @@ class PropertyList extends React.Component {
         }).catch(err => {
             throw err;
         })
+        console.log(this.state.allProperties.longitude);
     }
 
     render() {  
@@ -27,6 +28,7 @@ class PropertyList extends React.Component {
             <PropertiesCard
                 key={property.property_id}
                 property = {property}
+
             />     
         ));
         

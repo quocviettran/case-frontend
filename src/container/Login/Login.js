@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 
-import {Input, Form} from 'semantic-ui-react';
-import { Button, Grid, Header, Image, Message, Segment, Label } from 'semantic-ui-react';
+import {Form} from 'semantic-ui-react';
+import { Button, Grid, Header, Segment } from 'semantic-ui-react';
 import './Login.css';
 
 class Login extends Component{

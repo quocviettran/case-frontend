@@ -1,8 +1,8 @@
 import React from 'react'
-import { List, Image, Card, Container  } from 'semantic-ui-react'
+import {Card } from 'semantic-ui-react'
 
 import PropertiesCard from '../../components/PropertiesCard/PropertiesCard'
-import ExampleCard from '../../components/ExampleCard/ExampleCard';
+
 
 class PropertyList extends React.Component {
 

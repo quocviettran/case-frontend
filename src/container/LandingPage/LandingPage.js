@@ -1,5 +1,4 @@
 import React , {Component} from 'react';
-import {Container,Grid} from 'semantic-ui-react';
 import Login from '../Login/Login';
 
 class LandingPage extends Component{
@@ -7,16 +6,7 @@ class LandingPage extends Component{
     render(){
         return(
             <React.Fragment>
-            <Container>
-                <Grid>
-                    <Grid.Column width={8}>
-                        <Login/>            
-                    </Grid.Column>
-                    <Grid.Column width={8}>
-                        <Register/>
-                    </Grid.Column>
-                </Grid>
-            </Container>
+                <Login/>
             </React.Fragment>
         );
     }

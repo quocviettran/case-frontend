@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Form,Select} from 'semantic-ui-react';
+import {Form,Select, Header} from 'semantic-ui-react';
 import axios from 'axios';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -72,7 +72,7 @@ class Register extends Component{
                 surname: this.state.surname,
                 phone : this.state.phone,
                 email: this.state.email,
-                dateOfBirth: this.state.year+'-'+this.state.month+'-'+this.state.day,
+                date_of_birth: this.state.year+'-'+this.state.month+'-'+this.state.day,
                 password: this.state.password,
                 accountTypeId: this.state.role
             })
@@ -147,6 +147,7 @@ class Register extends Component{
         return(
             <React.Fragment>
                 <Form>
+                    <Header id="checkoutText" as='h2' color='teal'>Register your account</Header>
                     <Form.Field>
                         <Form.Input fluid label="Firstname" placeholder="Firstname" name="firstname" onChange={this.handleChange} />
                         <Form.Input fluid label="Surname" placeholder="Surname" name="surname" onChange={this.handleChange} />

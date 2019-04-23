@@ -3,8 +3,10 @@ import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter, Route, Link } from "react-router-dom";
 import { Menu } from "semantic-ui-react";
-
 import LandingPage from "./container/LandingPage/LandingPage";
+import Register from "./container/Register/Register";
+import Login from "./container/Login/Login";
+import UserPage from "./container/UserPage/UserPage";
 import PropertyDetailContainer from "./container/PropertyDetail/PropertyDetailContainer";
 import PropertyList from '../src/container/PropertyList/PropertyList';
 
@@ -15,9 +17,12 @@ class App extends Component {
   render() {
     //const { activeItem } = this.state;
     return (
+      <React.Fragment>
+      
       <BrowserRouter>
+        
         <Container>
-          <Navbar/>
+          <Navbar/> 
           <div className="content">
             <Route
               exact
@@ -26,6 +31,35 @@ class App extends Component {
                 <LandingPage {...props} handleChanged={this.handleChanged} />
               )}
             />
+            <Route
+              exact
+              path="/register"
+              render={props => (
+                <Register {...props} handleChanged={this.handleChanged} />
+              )}
+            />
+            <Route
+              exact
+              path="/signIn"
+              render={props => (
+                <Login {...props} handleChanged={this.handleChanged} />
+              )}
+            />
+            <Route
+              exact
+              path="/props"
+              render={props => (
+                <PropertyList {...props} handleChanged={this.handleChanged} />
+              )}
+            />
+             <Route
+              exact
+              path="/user"
+              render={props => (
+                <UserPage {...props} handleChanged={this.handleChanged} />
+              )}
+            />
+
         {/*      <Route exact path="/signIn" render={(props) => <Login {...props} handleChanged={this.handleChanged} />} />
       {<Route exact path="/register" render={(props) => <Register {...props}  />} /> }
 
@@ -62,6 +96,7 @@ class App extends Component {
           </div>
           </Container>
       </BrowserRouter>
+      </React.Fragment>
     );
   }
 }

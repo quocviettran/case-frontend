@@ -7,14 +7,16 @@ import "./Navbar.css";
 
 
 class Navbar extends Component{
-    state = {}
+    state = {
+      role:1
+    }
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
   
     render() {
       const { activeItem } = this.state;
 
-    let nav = (<Menu>
+    let nav = (<Menu color="teal" inverted id="menu">
 
     <Menu.Item
       as={Link} to='/' 
@@ -49,14 +51,14 @@ class Navbar extends Component{
       onClick={this.handleItemClick}>
       </Menu.Item>
 
-      <Menu.Item name='Userdashboard'
-      as={Link} to='/userDashboard' 
-      active={activeItem === 'Userdashboard'} 
+      <Menu.Item
+      as={Link} to='/user' 
+      active={activeItem === 'User'} 
       onClick={this.handleItemClick}>
       </Menu.Item>
 
       <Menu.Item
-      as={Link} to='/restaurants' 
+      as={Link} to='/properties' 
       name='Restaurants'
       active={activeItem === 'Restaurants'}
       onClick={this.handleItemClick}
@@ -87,14 +89,6 @@ class Navbar extends Component{
       onClick={this.handleItemClick}>
       </Menu.Item>
 
-      <Menu.Item
-      as={Link} to='/restaurants' 
-      name='Restaurants'
-      active={activeItem === 'Restaurants'}
-      onClick={this.handleItemClick}
-     >
-     </Menu.Item>
-
      <Menu.Item
       as={Link} to='/signIn'
       name='Log Out'
@@ -106,9 +100,9 @@ class Navbar extends Component{
     }
   
       return (
-        <Menu>
+        <React.Fragment>
           {nav}
-        </Menu>
+        </React.Fragment>
       )
 }
 }

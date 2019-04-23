@@ -48,6 +48,33 @@ class Login extends Component{
       }
     }
 
+    formSubmitHandler = () => {
+
+      if (localStorage.getItem('email') === agent.username && 
+          localStorage.getItem('password') === agent.password) {
+            
+        this.setState({
+          role: 1
+        },console.log(this.state.role));
+
+        
+      }
+
+
+      else if (localStorage.getItem('email') === user.username && 
+               localStorage.getItem('password') === user.password) {
+        this.setState({
+          role: 2
+        },console.log(this.state.role));
+      }
+
+      else {
+        console.dir(this.state.role)
+      }
+
+    }
+    
+
     submitFormHandler  = event => {
       const name = event.target.name;
       const value = event.target.value;

@@ -7,9 +7,13 @@ import "./Navbar.css";
 
 
 class Navbar extends Component{
-    state = {
-      role:1
+  constructor(props){
+    super(props)
+    this.state={
+      role:props.role
     }
+  }  
+  
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
   
@@ -43,7 +47,7 @@ class Navbar extends Component{
 
     if(parseInt(this.state.role) === 1) {
       nav = (
-        <Menu>
+        <Menu color="teal" inverted id="menu">
       <Menu.Item
       as={Link} to='/' 
       name='Home' 
@@ -77,7 +81,7 @@ class Navbar extends Component{
     }
     else if(parseInt(this.state.role) === 2){
       nav = (
-        <Menu>
+        <Menu  color="teal" inverted id="menu">
         <Menu.Item name='Home'
         as={Link} to='/'  
         active={activeItem === 'Home'} 
@@ -104,7 +108,7 @@ class Navbar extends Component{
           {nav}
         </React.Fragment>
       )
-}
+  }
 }
 
 export default Navbar;

@@ -2,7 +2,8 @@
 import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter, Route, Link } from "react-router-dom";
-import { Menu } from "semantic-ui-react";
+import { Menu , Container} from "semantic-ui-react";
+import Navbar from "./components/Navbar/Navbar";
 import LandingPage from "./container/LandingPage/LandingPage";
 import Register from "./container/Register/Register";
 import Login from "./container/Login/Login";
@@ -12,7 +13,9 @@ import PropertyList from '../src/container/PropertyList/PropertyList';
 
 
 class App extends Component {
-  state = {}
+  state = {
+    role:0
+  }
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
   render() {
     //const { activeItem } = this.state;
@@ -22,7 +25,7 @@ class App extends Component {
       <BrowserRouter>
         
         <Container>
-          <Navbar/> 
+          <Navbar role = {this.state.role}/> 
           <div className="content">
             <Route
               exact

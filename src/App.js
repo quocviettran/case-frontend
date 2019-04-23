@@ -16,15 +16,23 @@ import ExampleCard from '../src/components/ExampleCard/ExampleCard';
 const Agent = Authorization(['user', 'agent', 'guest', '2'])*/
 
 class App extends Component {
+
+
  
-  state = {
-    username: "",
-    password: "",
-    role: ""
+    state = {
+      username: "",
+      password: "",
+      role: 0
+    }
+
+  
+
+
+  handler = () => {
+    this.setState({
+      role: 1
+    })
   }
-
-
-  handleItemClick = (e, { name }) => this.setState({ role: 1 })
 
 
   render() {
@@ -37,7 +45,7 @@ class App extends Component {
           to="/"
           name="Home"
           active={activeItem === "Home"}
-          onClick={this.handleItemClick}
+        
         />
 
         <Menu.Item
@@ -45,7 +53,6 @@ class App extends Component {
           to="/register"
           name="Register"
           active={activeItem === "Register"}
-          onClick={this.handleItemClick}
         />
       </Menu>
     );
@@ -58,7 +65,6 @@ class App extends Component {
             to="/"
             name="Home"
             active={activeItem === "Home"}
-            onClick={this.handleItemClick}
           />
 
         <Menu.Item 
@@ -67,7 +73,6 @@ class App extends Component {
           to="/signIn"
           name="Sign In"
           active={activeItem === "Sign In"}
-          onClick={this.handleItemClick}
         />
 
           <Menu.Item
@@ -88,7 +93,6 @@ class App extends Component {
             as={Link}
             to="/"
             active={activeItem === "Home"}
-            onClick={this.handleItemClick}
           />
 
           <Menu.Item
@@ -96,7 +100,6 @@ class App extends Component {
             to="/signIn"
             name="Log Out"
             active={activeItem === "Log out"}
-            onClick={this.handleLogOut}
           />
         </Menu>
       );
@@ -110,7 +113,7 @@ class App extends Component {
               exact
               path="/"
               render={props => (
-                <LandingPage {...props} handleChanged={this.handleChanged} />
+                <LandingPage {...props} handler = {this.handler} />
               )}
             />
 
@@ -133,17 +136,9 @@ class App extends Component {
               exact
               path="/propertylist"
               render={props => (
-                <PropertyList {...props} handleChanged={this.handleChanged} />
+                <PropertyList {...props} role = {this.state.role} />
               )}
             />
-
-
-            {/* <Route exact path="/signIn" render={(props) => <Login {...props} handleChanged={this.handleChanged} />} />
-      <Route exact path="/register" render={(props) => <Register {...props}  />} /> }
-      { <Route exact path="/restaurants" render={(props) => <Restaurants {...props} handleChanged={this.handleChanged} />} />
-      <Route exact path="/userDashboard" render={(props) => <UserDashBoard {...props} getData={this.getData} />} />
-      <Route exact path="/ownerDashboard" render={(props) => <OwnerDashboard {...props}  getData={this.getData}/>} />
-      <Route exact path="/createRestaurants" render={(props) => <CreateRestaurants {...props}  getData={this.getData}/>} /> */}
           </div>
       </BrowserRouter>
     );

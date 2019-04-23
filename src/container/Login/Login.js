@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Input, Form} from 'semantic-ui-react';
 import { Button, Grid, Header, Image, Message, Segment, Label } from 'semantic-ui-react';
 import './Login.css';
+import { Link } from "react-router-dom";
 import validate from './LoginRules';
 import EmailInput from './EmailInput';
 import PasswordInput from './PasswordInput';
@@ -157,8 +158,14 @@ class Login extends Component{
                 <div id ="left-div">
 
                   <Header id="checkoutText" as='h2' color='teal'>CONTINUE AS GUEST</Header>
-                      <Button color='teal' fluid size='medium' onClick = {console.log(" ")}
-                      style={{ maxWidth: 200}}>
+                      <Button 
+                        color='teal' 
+                        fluid size='medium'
+                        as={Link}
+                        to="/propertylist"
+                        name="Proplist" 
+                        onClick = {this.props.handler}
+                        style={{ maxWidth: 200}}>
                         Checkout
                       </Button>
                       <br></br>

@@ -4,11 +4,13 @@ import Login from '../Login/Login';
 
 class LandingPage extends Component{
 
+
     render(){
+        console.log(this.props)
         return(
             <React.Fragment>
             <Container>
-                    <Login/>
+                    <Login handler = {this.props.handler}/>
             </Container>
             </React.Fragment>
         );

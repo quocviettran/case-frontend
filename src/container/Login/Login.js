@@ -1,9 +1,4 @@
 import React, {Component} from 'react';
-<<<<<<< HEAD
-import {Link} from 'react-router-dom';
-import { Button, Grid, Header, Segment, Form, Message } from 'semantic-ui-react';
-import axios from 'axios';
-=======
 import {Form} from 'semantic-ui-react';
 import { Button, Grid, Header, Segment} from 'semantic-ui-react';
 import './Login.css';
@@ -16,7 +11,6 @@ import PasswordInput from './PasswordInput';
 
 const agent = { username: "Mike", password: "123", role:1 }
 const user = { username: "Quoc", password: "123", role:2 }
->>>>>>> c839b3c6fecb65c3c073e4426b036484936ac9d2
 
 class Login extends Component{
  
@@ -24,41 +18,37 @@ class Login extends Component{
     constructor(props){
         super(props);
         this.state = {
-<<<<<<< HEAD
-                username: "",
-                password: "",
-                data: []
-        }
-=======
-
+      
+          data: [],
+      
           formIsValid: false,
           role: 0,
           
           formControls: {
 
-              email: {
-                value: '',
-                valid: false,
-                touched: false,
-                validationRules: {
-                  minLength: 3,
-                  isRequired: true 
-                }
-              },
+            email: {
+              value: '',
+              valid: false,
+              touched: false,
+              validationRules: {
+                minLength: 3,
+                isRequired: true 
+              }
+            },
 
-              password: {
-                value: '',
-                valid: false,
-                touched: false,
-                validationRules: {
-                  minLength: 3,
-                  isRequired: true 
-                }
+            password: {
+              value: '',
+              valid: false,
+              touched: false,
+              validationRules: {
+                minLength: 3,
+                isRequired: true 
               }
           }
+        }
       }
->>>>>>> c839b3c6fecb65c3c073e4426b036484936ac9d2
     }
+    
   
     submitFormHandler  = event => {
       const name = event.target.name;
@@ -124,6 +114,15 @@ class Login extends Component{
       }
 
     }
+
+    handleOnChange = (e) => {
+      const name = e.target.name
+      const value = e.target.value
+
+      this.setState({
+        [name]:value
+      })
+    }
     
     onSubmitSignIn = e => {
       e.preventDefault();
@@ -151,18 +150,24 @@ class Login extends Component{
       });
   }
 
-<<<<<<< HEAD
 
   login(){
-    fetch("https://properties-db.herokuapp.com/api/auth/signin", )
+    fetch("https://properties-db.herokuapp.com/api/auth/signin",
+      {
+        method:'post',
+        headers: {'Content-Type': 'application/json'},
+        body:{
+          "usernameOrEmail:":this.state.formControls.email.value,
+          "password" : this.state.formControls.password.value
+      }
+    })
+    .then(response => console.log(response))
   }
 
-=======
     changeRole = () =>{
       this.setProps(this.props.role=1)
     }
     
->>>>>>> c839b3c6fecb65c3c073e4426b036484936ac9d2
     render(){
       
         const login = (
@@ -226,7 +231,7 @@ class Login extends Component{
                       <Button 
                         color='teal' 
                         fluid size='large' 
-                        onClick = {this.formSubmitHandler}
+                        onClick = {this.login}
                         disabled={!this.state.formIsValid}
                         >
                         Login

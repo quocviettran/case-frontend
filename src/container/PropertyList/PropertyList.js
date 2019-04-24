@@ -34,13 +34,11 @@ class PropertyList extends React.Component {
         
         return (
           <React.Fragment>
-            <Container>
                 <List>
                     <Card.Group centered>
                         {cards}
                     </Card.Group>
                 </List>
-            </Container>
           </React.Fragment>
         );
       }

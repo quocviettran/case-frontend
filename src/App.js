@@ -35,6 +35,11 @@ class App extends Component {
     })
   }
 
+  handleLogOut = () => {
+    this.setState({role: undefined})
+    
+  }
+
   componentDidUpdate(){
     console.log(this.state.role)
   }
@@ -49,7 +54,7 @@ class App extends Component {
       <BrowserRouter>
         
         <Container>
-          <Navbar role = {this.state.role}/> 
+          <Navbar role = {this.state.role} logout = {this.handleLogOut}/> 
           <div className="content">
             <Route
               exact

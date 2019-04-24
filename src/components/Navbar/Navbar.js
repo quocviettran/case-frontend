@@ -11,8 +11,11 @@ class Navbar extends Component{
       role: props.role
     }
   }  
-  componentDidUpdate(){
-    console.log(this.state.role)
+  
+  componentWillReceiveProps(props) {
+    this.setState({
+      role: props.role
+    })
   }
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
@@ -23,21 +26,16 @@ class Navbar extends Component{
     let nav = (<Menu color="teal" inverted id="menu">
 
     <Menu.Item
-      as={Link} to='/' 
+      as={Link}
+      to='/' 
       name='Home' 
       active={activeItem === 'Home'} 
       onClick={this.handleItemClick}
     />
 
     <Menu.Item
-      as={Link} to= '/signIn'
-      name='Sign In'
-      active={activeItem === 'Sign In'}
-      onClick={this.handleItemClick}
-    />
-
-    <Menu.Item
-      as={Link} to='/register' 
+      as={Link} 
+      to='/register' 
       name='Register'
       active={activeItem === 'Register'}
       onClick={this.handleItemClick}
@@ -45,62 +43,69 @@ class Navbar extends Component{
     
     </Menu>);
 
-    if(parseInt(this.state.role) === 1) {
+    if(parseInt(this.state.role) === 1 ) {
       nav = (
-        <Menu color="teal" inverted id="menu">
-      <Menu.Item
-      as={Link} to='/' 
-      name='Home' 
-      active={activeItem === 'Home'} 
-      onClick={this.handleItemClick}>
-      </Menu.Item>
 
-      <Menu.Item
-      as={Link} to='/user' 
-      active={activeItem === 'User'} 
-      onClick={this.handleItemClick}>
-      </Menu.Item>
+      <Menu color="teal" inverted id="menu">
+        <Menu.Item
+          as={Link}
+          to='/' 
+          name='Home' 
+          active={activeItem === 'Home'} 
+          onClick={this.handleItemClick}>
+        </Menu.Item>
 
-      <Menu.Item
-      as={Link} to='/properties' 
-      name='Restaurants'
-      active={activeItem === 'Restaurants'}
-      onClick={this.handleItemClick}
-     >
-     </Menu.Item>
-      
-      <Menu.Item
-      as={Link} to='/signIn'
-      name='Log Out'
-      active={activeItem === 'Log out'}
-      onClick={this.handleLogOut}
-    >
-    </Menu.Item>
+        <Menu.Item
+          as={Link} 
+          to='/user' 
+          name='Edit user'
+          active={activeItem === 'User'} 
+          onClick={this.handleItemClick}>
+        </Menu.Item>
+
+        <Menu.Item
+          as={Link}
+          to='/signIn'
+          name='Log Out'
+          position = 'right'
+          active={activeItem === 'Log out'}
+          onClick={this.handleLogOut}>
+        </Menu.Item>
+
     </Menu>
       );
     }
     else if(parseInt(this.state.role) === 2){
       nav = (
-        <Menu  color="teal" inverted id="menu">
+
+
+      <Menu  color="teal" inverted id="menu">
+
         <Menu.Item name='Home'
-        as={Link} to='/'  
-        active={activeItem === 'Home'} 
-        onClick={this.handleItemClick} />
+          as={Link} 
+          to='/'  
+          active={activeItem === 'Home'} 
+          onClick={this.handleItemClick}>
+        </Menu.Item>
 
-      <Menu.Item name='OwnerDashboard'
-      as={Link} to='/OwnerDashboard' 
-      active={activeItem === 'OwnerDashboard'} 
-      onClick={this.handleItemClick}>
-      </Menu.Item>
 
-     <Menu.Item
-      as={Link} to='/signIn'
-      name='Log Out'
-      active={activeItem === 'Log out'}
-      onClick={this.handleLogOut}
-     >
-    </Menu.Item>
-        </Menu>);
+        <Menu.Item name='OwnerDashboard'
+          as={Link} 
+          to='/OwnerDashboard' 
+          active={activeItem === 'OwnerDashboard'} 
+          onClick={this.handleItemClick}>
+        </Menu.Item>
+
+        <Menu.Item
+          as={Link} 
+          to='/signIn'
+          name='Log Out'
+          active={activeItem === 'Log out'}
+          onClick={this.handleLogOut}>
+        </Menu.Item>
+        
+      </Menu>
+        );
     }
   
       return (

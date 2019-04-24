@@ -20,7 +20,7 @@ class Login extends Component{
         this.state = {
 
           formIsValid: false,
-          role: 1,
+          role: 0,
           
           formControls: {
 
@@ -46,8 +46,7 @@ class Login extends Component{
           }
       }
     }
-
-    
+  
     submitFormHandler  = event => {
       const name = event.target.name;
       const value = event.target.value;
@@ -94,9 +93,8 @@ class Login extends Component{
             
         this.setState({
           role: 1
-        },console.log(this.state.role));
-
-        
+        });  
+        this.props.handler(agent.role);
       }
 
 
@@ -104,7 +102,8 @@ class Login extends Component{
                localStorage.getItem('password') === user.password) {
         this.setState({
           role: 2
-        },console.log(this.state.role));
+        });
+        this.props.handler(user.role);
       }
 
       else {
@@ -144,7 +143,7 @@ class Login extends Component{
     }
     
     render(){
-      console.log(this.props.role)
+      
         const login = (
             <div className='login-form'>
               <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
@@ -157,6 +156,7 @@ class Login extends Component{
                 <div id ="left-div">
 
                   <Header id="checkoutText" as='h2' color='teal'>CONTINUE AS GUEST</Header>
+
                       <Button 
                         color='teal' 
                         fluid size='medium'
@@ -168,12 +168,6 @@ class Login extends Component{
                         Checkout
                       </Button>
                       <br></br>
-
-                      <Button 
-                        value = {this.state.role}
-                        onClick = {this.props.handler }>
-                        Press me!
-                      </Button>
 
                       <p id="checkoutText">
                         Continue as a guest for easy checkout.

@@ -27,18 +27,16 @@ class App extends Component {
   }
 
 
-  handler = (e) => {
+  handler = (role) => {
     this.setState({
-      role: e.target.value,
+      role: 1,
       state: this.state
     })
-
-    this.forceUpdate();
-
-    
   }
 
- 
+  componentDidUpdate(){
+    console.log(this.state.role)
+  }
 
 
   render() {

@@ -1,8 +1,7 @@
 import React from 'react'
-import {Card, Container } from 'semantic-ui-react'
+import {Card, List, Container} from 'semantic-ui-react'
 
 import PropertiesCard from '../../components/PropertiesCard/PropertiesCard'
-
 
 class PropertyList extends React.Component {
 
@@ -16,7 +15,7 @@ class PropertyList extends React.Component {
             this.setState({
                 allProperties: data,      
             })
-            console.log(this.props)
+            console.log("Mounted")
         }).catch(err => {
             throw err;
         })
@@ -34,9 +33,13 @@ class PropertyList extends React.Component {
         
         return (
           <React.Fragment>
-          <Card.Group centered itemsPerRow="2"> 
-            {cards}
-           </Card.Group>
+            <Container>
+                <List>
+                    <Card.Group>
+                        {cards}
+                    </Card.Group>
+                </List>
+            </Container>
           </React.Fragment>
         );
       }

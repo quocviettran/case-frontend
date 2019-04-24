@@ -1,3 +1,15 @@
 #menu{
     width: 100%;
 }
+
+  
+  #menuHeader{
+    height: 42px;
+  }
+
+  .ui.menu.fixed {
+    position: fixed;
+    z-index: 2010;
+    margin: 0;
+    width: 100%;
+}

@@ -8,6 +8,7 @@ class Register extends Component{
     constructor(props){
         super(props);
         this.state = {
+                username:undefined,
                 firstname: undefined,
                 surname:undefined,
                 password: undefined,
@@ -149,9 +150,11 @@ class Register extends Component{
                 <Form>
                     <Header id="checkoutText" as='h2' color='teal'>Register your account</Header>
                     <Form.Field>
+
+                        <Form.Input fluid label="Username" placeholder="Username" name="username" onChange={this.handleChange} />
+                        <Form.Input fluid label="Password" placeholder="Password" name="password" onChange={this.handleChange} />
                         <Form.Input fluid label="Firstname" placeholder="Firstname" name="firstname" onChange={this.handleChange} />
                         <Form.Input fluid label="Surname" placeholder="Surname" name="surname" onChange={this.handleChange} />
-                        <Form.Input fluid label="Password" placeholder="Password" name="password" onChange={this.handleChange} />
                         <Form.Input fluid label="E-mail" placeholder="E-mail" name="email" onChange={this.handleChange} />
                         <Form.Input fluid label="Phone" placeholder="Phone number" name="phone" onChange={this.handleChange} maxLength='8' />
                         <Form.Select fluid label="Role" placeholder="Select your role" onChange={this.handleChangeRole} options={roleOptions}/>

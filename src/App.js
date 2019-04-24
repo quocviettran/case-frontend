@@ -1,8 +1,8 @@
 
 import React, { Component } from "react";
 import "./App.css";
-import { BrowserRouter, Route, Link } from "react-router-dom";
-import { Menu , Container} from "semantic-ui-react";
+import { BrowserRouter, Route } from "react-router-dom";
+import { Container} from "semantic-ui-react";
 import Navbar from "./components/Navbar/Navbar";
 import LandingPage from "./container/LandingPage/LandingPage";
 import Register from "./container/Register/Register";
@@ -17,17 +17,25 @@ const Agent = Authorization(['user', 'agent', 'guest', '2'])*/
 
 class App extends Component {
 
-    state = {
+  constructor(props){
+    super(props)
+    this.state = {
       username: "",
       password: "",
       role: 0
     }
+  }
 
-    
-  handler = () => {
+
+  handler = (role) => {
     this.setState({
-      role: 1
+      role: 1,
+      state: this.state
     })
+  }
+
+  componentDidUpdate(){
+    console.log(this.state.role)
   }
 
 
@@ -46,7 +54,7 @@ class App extends Component {
               exact
               path="/"
               render={props => (
-                <LandingPage {...props} handler = {this.handler} />
+                <LandingPage {...props} role= {this.state.role} handler = {this.handler} />
               )}
             />
             <Route
@@ -76,7 +84,23 @@ class App extends Component {
               render={props => (
                 <UserPage {...props} handleChanged={this.handleChanged} />
               )}
-            />        
+            /> 
+
+            <Route
+              exact
+              path="/propertydetail/"
+              render={props => (
+                <PropertyDetailContainer {...props} handleChanged={this.handleChanged} />
+              )}
+            />
+            <Route
+              exact
+              path="/propertydetail/:property_id"
+              render={props => (
+                <PropertyDetailContainer role = {this.state.role} {...props} handleChanged={this.handleChanged} />
+              )}
+            />
+                   
           </div>
           </Container>
       </BrowserRouter>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Input, Form} from 'semantic-ui-react';
-import { Button, Grid, Header, Image, Message, Segment, Label } from 'semantic-ui-react';
+import {Form} from 'semantic-ui-react';
+import { Button, Grid, Header, Segment} from 'semantic-ui-react';
 import './Login.css';
 import { Link } from "react-router-dom";
 import validate from './LoginRules';
@@ -10,44 +10,43 @@ import PasswordInput from './PasswordInput';
 
 
 const agent = { username: "Mike", password: "123", role:1 }
-const user = { username: "Miki", password: "456", role:2 }
+const user = { username: "Quoc", password: "123", role:2 }
 
 class Login extends Component{
  
 
     constructor(props){
         super(props);
-
         this.state = {
 
           formIsValid: false,
-
+          role: 0,
+          
           formControls: {
-
 
               email: {
                 value: '',
                 valid: false,
                 touched: false,
                 validationRules: {
-                  minLength: 5,
+                  minLength: 3,
                   isRequired: true 
                 }
               },
+
               password: {
                 value: '',
                 valid: false,
                 touched: false,
                 validationRules: {
-                  minLength: 5,
+                  minLength: 3,
                   isRequired: true 
                 }
               }
-          },
-          role: 0
+          }
       }
     }
-
+  
     submitFormHandler  = event => {
       const name = event.target.name;
       const value = event.target.value;
@@ -77,27 +76,42 @@ class Login extends Component{
         formIsValid: formIsValid
         
       });
+
+      if (name === "email"){
+       localStorage.setItem('email', value);
+      }
+
+      else if (name === "password"){
+        localStorage.setItem('password', value);
+      }
     }
 
     formSubmitHandler = () => {
-      if (this.state.formControls.email === agent.username) {
+
+      if (localStorage.getItem('email') === agent.username && 
+          localStorage.getItem('password') === agent.password) {
+            
         this.setState({
           role: 1
-        });
-        console.log(this.state.role)
-
+        });  
+        this.props.handler(agent.role);
       }
 
-      else if (this.state.formControls.email === user.username) {
+
+      else if (localStorage.getItem('email') === user.username && 
+               localStorage.getItem('password') === user.password) {
         this.setState({
           role: 2
         });
-        console.log(this.state.role)
-
+        this.props.handler(user.role);
       }
-      console.dir(this.state.formControls);
-    }
 
+      else {
+        console.dir(this.state.role)
+      }
+
+    }
+    
     onSubmitSignIn = e => {
       e.preventDefault();
       fetch('https://properties-db.herokuapp.com/owner/', {
@@ -123,27 +137,15 @@ class Login extends Component{
           console.log(err);
       });
   }
-    handleOnChange = (e) =>{
-        const target = e.target;
-        const value = target.type === 'checkbox' ? target.checked : target.value;
-        const name = target.name;
 
-        this.setState({
-            [name] : value
-        });
+    changeRole = () =>{
+      this.setProps(this.props.role=1)
     }
+    
     render(){
+      
         const login = (
             <div className='login-form'>
-              
-              <style>{`
-                body > div,
-                body > div > div,
-                body > div > div > div.login-form {
-                  height: 100%;
-                }
-              `}
-              </style>
               <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
               <Grid.Row columns={2}>
               
@@ -154,6 +156,7 @@ class Login extends Component{
                 <div id ="left-div">
 
                   <Header id="checkoutText" as='h2' color='teal'>CONTINUE AS GUEST</Header>
+
                       <Button 
                         color='teal' 
                         fluid size='medium'
@@ -166,7 +169,8 @@ class Login extends Component{
                       </Button>
                       <br></br>
 
-                      <p id="checkoutText">Continue as a guest for easy checkout.
+                      <p id="checkoutText">
+                        Continue as a guest for easy checkout.
                         You can create an account at the end of the transaction
                         to save your information for future purchases.
                       </p>
@@ -217,7 +221,7 @@ class Login extends Component{
 
         return(
             <React.Fragment>
-                {login}
+                { login }
             </React.Fragment>
         )}
     

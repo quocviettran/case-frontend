@@ -1,5 +1,5 @@
 import React from 'react'
-import {Card, Container } from 'semantic-ui-react'
+import {Card} from 'semantic-ui-react'
 
 import PropertiesCard from '../../components/PropertiesCard/PropertiesCard'
 
@@ -34,11 +34,9 @@ class PropertyList extends React.Component {
         
         return (
           <React.Fragment>
-              
-                <Card.Group centered itemsPerRow="2">
-                    {cards}
-                </Card.Group>
-           
+          <Card.Group centered itemsPerRow="2"> 
+            {cards}
+           </Card.Group>
           </React.Fragment>
         );
       }

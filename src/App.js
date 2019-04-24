@@ -50,7 +50,7 @@ class App extends Component {
             />
             <Route
               exact
-              path="/props"
+              path="/propertylist"
               render={props => (
                 <PropertyList {...props} handleChanged={this.handleChanged} />
               )}

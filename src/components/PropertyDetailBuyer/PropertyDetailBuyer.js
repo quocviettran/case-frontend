@@ -48,13 +48,7 @@ export default class propertyDetailBuyer extends Component {
                 </Header>
               </Grid.Column>
               <Grid.Column id="visningColumn">
-                <header>
-                  <h1 id="visningdetail">VISNING</h1>
-                  <h2>Torsdag, 11 april 17:30-18:30</h2>
-                </header>
-                <Divider/>
                 {/* <Map latitude={this.props.latitude} longitude={this.props.longitude}/> */}
-          
                 <Map latitude={this.props.latitude} longitude={this.props.longitude}/>
 
               </Grid.Column>

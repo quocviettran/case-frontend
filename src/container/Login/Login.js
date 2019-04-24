@@ -147,10 +147,9 @@ class Login extends Component{
         const login = (
             <div className='login-form'>
               <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
-              <Grid.Row columns={2}>
+              <Grid.Row columns={2} id="loginFix">
               
               
-
               <Grid.Column id="left-container" style={{ maxWidth: 350}}>
 
                 <div id ="left-div">

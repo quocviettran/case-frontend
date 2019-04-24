@@ -47,7 +47,6 @@ class App extends Component {
       
       <BrowserRouter>
         
-        <Container>
           <Navbar role = {this.state.role}/> 
           <div className="content">
             <Route
@@ -102,7 +101,7 @@ class App extends Component {
             />
                    
           </div>
-          </Container>
+        
       </BrowserRouter>
       </React.Fragment>
     );

@@ -21,3 +21,12 @@
     justify-content: space-around;
     margin: 30px 0 0;
 }
+
+.form-control {
+    margin: 1px; 
+  }
+  
+  .control-error {
+    margin: 1px;  
+    border: 1px solid red;
+  }

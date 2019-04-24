@@ -12,14 +12,29 @@ import PropertyDetailContainer from "./container/PropertyDetail/PropertyDetailCo
 import PropertyList from '../src/container/PropertyList/PropertyList';
 
 
+/*const User = Authorization(['user', 'guest', '1'])
+const Agent = Authorization(['user', 'agent', 'guest', '2'])*/
+
 class App extends Component {
-  state = {
-    role:0
+
+    state = {
+      username: "",
+      password: "",
+      role: 0
+    }
+
+    
+  handler = () => {
+    this.setState({
+      role: 1
+    })
   }
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+
+
   render() {
-    //const { activeItem } = this.state;
+    const { activeItem } = this.state;
     return (
+
       <React.Fragment>
       
       <BrowserRouter>
@@ -31,7 +46,7 @@ class App extends Component {
               exact
               path="/"
               render={props => (
-                <LandingPage {...props} handleChanged={this.handleChanged} />
+                <LandingPage {...props} handler = {this.handler} />
               )}
             />
             <Route
@@ -61,41 +76,7 @@ class App extends Component {
               render={props => (
                 <UserPage {...props} handleChanged={this.handleChanged} />
               )}
-            />
-
-        {/*      <Route exact path="/signIn" render={(props) => <Login {...props} handleChanged={this.handleChanged} />} />
-      {<Route exact path="/register" render={(props) => <Register {...props}  />} /> }
-
-            <Route
-              exact
-              path="/propertydetail/"
-              render={props => (
-                <PropertyDetailContainer {...props} handleChanged={this.handleChanged} />
-              )}
-            />
-            <Route
-              exact
-              path="/propertydetail/:property_id"
-              render={props => (
-                <PropertyDetailContainer {...props} handleChanged={this.handleChanged} />
-              )}
-            />
-
-            <Route 
-              exact
-              path="/propertylist"
-              render={props => (
-                <PropertyList {...props} handleChanged={this.handleChanged} />
-              )}
-            />
-
-
-            {/* <Route exact path="/signIn" render={(props) => <Login {...props} handleChanged={this.handleChanged} />} />
-      <Route exact path="/register" render={(props) => <Register {...props}  />} /> }
-      { <Route exact path="/restaurants" render={(props) => <Restaurants {...props} handleChanged={this.handleChanged} />} />
-      <Route exact path="/userDashboard" render={(props) => <UserDashBoard {...props} getData={this.getData} />} />
-      <Route exact path="/ownerDashboard" render={(props) => <OwnerDashboard {...props}  getData={this.getData}/>} />
-      <Route exact path="/createRestaurants" render={(props) => <CreateRestaurants {...props}  getData={this.getData}/>} /> */}
+            />        
           </div>
           </Container>
       </BrowserRouter>

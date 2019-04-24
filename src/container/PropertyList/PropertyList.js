@@ -16,7 +16,7 @@ class PropertyList extends React.Component {
             this.setState({
                 allProperties: data,      
             })
-            console.log("Mounted")
+            console.log(this.props)
         }).catch(err => {
             throw err;
         })

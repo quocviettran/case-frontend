@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, Header, Image, Button, Transition, Divider, Segment, Responsive } from "semantic-ui-react";
+import { Grid, Header, Button, Transition, Divider} from "semantic-ui-react";
 import Map from '../Map/Map'
 import './PropertyDetailBuyer.css'
 

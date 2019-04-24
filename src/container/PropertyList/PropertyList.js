@@ -35,7 +35,7 @@ class PropertyList extends React.Component {
           <React.Fragment>
             <Container>
                 <List>
-                    <Card.Group>
+                    <Card.Group centered>
                         {cards}
                     </Card.Group>
                 </List>

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import { Button, Grid, Header, Segment, Form, Message } from 'semantic-ui-react'
+import { Button, Grid, Header, Segment, Form, Message } from 'semantic-ui-react';
+import axios from 'axios';
 
 class Login extends Component{
 
@@ -8,7 +9,8 @@ class Login extends Component{
         super(props);
         this.state = {
                 username: "",
-                password: ""
+                password: "",
+                data: []
         }
     }
 
@@ -26,6 +28,11 @@ class Login extends Component{
             [name] : value
         });
     }
+
+
+  login(){
+    fetch("https://properties-db.herokuapp.com/api/auth/signin", )
+  }
 
     render(){
         const login = (

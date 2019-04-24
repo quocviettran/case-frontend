@@ -6,7 +6,9 @@ import {Link} from 'react-router-dom';
 
 
 class Navbar extends Component{
-    state = {}
+    state = {
+      
+    }
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
     render() {
       const { activeItem } = this.state
@@ -41,7 +43,7 @@ class Navbar extends Component{
   
       if (parseInt(this.state.role) === 1) {
         nav = (
-          <Menu>
+          <Menu fixed="top" color="teal" inverted id="menu">
             <Menu.Item
               as={Link}
               to="/"
@@ -77,7 +79,7 @@ class Navbar extends Component{
         );
       } else if (parseInt(this.state.role) === 2) {
         nav = (
-          <Menu>
+          <Menu fixed="top" color="teal" inverted id="menu">
             <Menu.Item
               name="Home"
               as={Link}

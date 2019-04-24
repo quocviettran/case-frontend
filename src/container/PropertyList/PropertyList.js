@@ -15,11 +15,10 @@ class PropertyList extends React.Component {
             this.setState({
                 allProperties: data,      
             })
-            console.log("Mounted")
+            console.log(data)
         }).catch(err => {
             throw err;
         })
-        console.log(this.state.allProperties.longitude);
     }
 
     render() {  

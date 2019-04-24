@@ -89,10 +89,10 @@ class Navbar extends Component{
         </Menu.Item>
 
 
-        <Menu.Item name='OwnerDashboard'
+        <Menu.Item name='User Page'
           as={Link} 
-          to='/OwnerDashboard' 
-          active={activeItem === 'OwnerDashboard'} 
+          to='/user' 
+          active={activeItem === 'User'} 
           onClick={this.handleItemClick}>
         </Menu.Item>
 

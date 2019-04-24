@@ -31,12 +31,12 @@ export default class propertyDetail extends Component {
           <Grid id="detailGrid" stackable textAlign="center">
             <Grid.Row columns={2}>
               <Grid.Column id="detailColumn">
-                <Header id="maindetail">
-                  <h4>ADRESSE: {this.props.property_name}</h4>
-                  <h4>BOLIGTYPE: {this.props.property_type_name}</h4>
-                  <h4>AREAL: {this.props.area}</h4>
-                  <h4>ETASJE: {this.props.floor}</h4>
-                  <h4>ROM: {this.props.rooms}</h4>
+                <Header id="maindetail" >
+                  <h2>ADRESSE: {this.props.property_name}</h2>
+                  <h2>BOLIGTYPE: {this.props.property_type_name}</h2>
+                  <h2>AREAL: {this.props.area}</h2>
+                  <h2>ETASJE: {this.props.floor}</h2>
+                  <h2>ROM: {this.props.rooms}</h2>
                 </Header>
               </Grid.Column>
               <Grid.Column id="visningColumn">
@@ -58,7 +58,7 @@ export default class propertyDetail extends Component {
               <Button
                 content={visible ? "Show More" : "Hide"}
                 onClick={this.toggleVisibility}
-                class="ui blue button"
+                className="ui blue button"
                 color="blue"
               />
             </Grid.Row>

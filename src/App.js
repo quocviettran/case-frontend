@@ -22,7 +22,7 @@ class App extends Component {
     this.state = {
       username: "",
       password: "",
-      role: 0
+      role: 2
     }
   }
 
@@ -89,14 +89,14 @@ class App extends Component {
               exact
               path="/propertydetail/"
               render={props => (
-                <PropertyDetailContainer {...props} handleChanged={this.handleChanged} />
+                <PropertyDetailContainer role = {this.state.role} {...props} handleChanged={this.handleChanged} />
               )}
             />
             <Route
               exact
               path="/propertydetail/:property_id"
               render={props => (
-                <PropertyDetailContainer {...props} handleChanged={this.handleChanged} />
+                <PropertyDetailContainer role = {this.state.role} {...props} handleChanged={this.handleChanged} />
               )}
             />
                    

@@ -34,7 +34,7 @@ export default class propertyDetailBuyer extends Component {
             <Grid.Row columns={2}>
               <Grid.Column id="detailColumn">
                 <Header id="maindetail">
-                  <h4>ADRESSE: {this.props.property_name}</h4>
+                  <h4>ADRESSE: {this.props.property_name}, {this.props.zip} {this.props.municipality} </h4>
                   <h4>By: {this.props.city}</h4>
                   <h4>Value: {this.props.value} kr</h4>
                   <h4>BOLIGTYPE: {this.props.property_type_name}</h4>
@@ -44,7 +44,7 @@ export default class propertyDetailBuyer extends Component {
                   <h4>STATUS: {this.props.property_status_name}</h4>
 
                   <h4>BYGGEDATO: {this.props.built_at}</h4>
-                  <h4>SIST RENOVERT: {this.props.renovation_date_from}</h4>
+                  <h4>SIST RENOVERT: {this.props.last_renovation}</h4>
                 </Header>
               </Grid.Column>
               <Grid.Column id="visningColumn">
@@ -63,7 +63,7 @@ export default class propertyDetailBuyer extends Component {
               <Button
                 content={visible ? "Show More" : "Hide"}
                 onClick={this.toggleVisibility}
-                class="ui blue button"
+                className="ui blue button"
                 color="blue"
               />
             </Grid.Row>

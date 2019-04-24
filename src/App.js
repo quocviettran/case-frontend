@@ -1,8 +1,8 @@
 
 import React, { Component } from "react";
 import "./App.css";
-import { BrowserRouter, Route, Link } from "react-router-dom";
-import { Menu , Container} from "semantic-ui-react";
+import { BrowserRouter, Route } from "react-router-dom";
+import { Container} from "semantic-ui-react";
 import Navbar from "./components/Navbar/Navbar";
 import LandingPage from "./container/LandingPage/LandingPage";
 import Register from "./container/Register/Register";
@@ -97,7 +97,7 @@ class App extends Component {
               exact
               path="/propertydetail/:property_id"
               render={props => (
-                <PropertyDetailContainer {...props} handleChanged={this.handleChanged} />
+                <PropertyDetailContainer role = {this.state.role} {...props} handleChanged={this.handleChanged} />
               )}
             />
                    

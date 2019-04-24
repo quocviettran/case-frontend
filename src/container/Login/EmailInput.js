@@ -1,6 +1,5 @@
 import React from 'react';
-import {Input, Form} from 'semantic-ui-react';
-import { Button, Grid, Header, Image, Message, Segment, Label } from 'semantic-ui-react';
+import {Input} from 'semantic-ui-react';
 
 const EmailInput = props => {
 

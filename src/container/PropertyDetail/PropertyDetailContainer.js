@@ -7,9 +7,13 @@ import Map from '../../components/Map/Map';
 
 class PropertyDetailContainer extends Component {
 
-  state = {
-    allProperties: {}
-};
+  constructor(props){
+    super(props)
+    this.state = {
+      allProperties: {}
+    }
+  }
+
 
 componentDidMount() {
     const id = this.props.match.params.property_id;

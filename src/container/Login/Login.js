@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {Input, Form} from 'semantic-ui-react';
-import { Button, Grid, Header, Image, Message, Segment, Label } from 'semantic-ui-react';
+import {Form} from 'semantic-ui-react';
+import { Button, Grid, Header, Segment} from 'semantic-ui-react';
 import './Login.css';
 import { Link } from "react-router-dom";
 import validate from './LoginRules';

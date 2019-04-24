@@ -1,15 +1,18 @@
 import React , {Component} from 'react';
-import {Container} from 'semantic-ui-react';
 import Login from '../Login/Login';
 
 class LandingPage extends Component{
 
+    constructor(props){
+        super(props)
+        this.state={}
+    }
+
     render(){
+        console.log(this.props)
         return(
             <React.Fragment>
-                <Container>
-                    <Login/>
-                </Container>
+                <Login role = {this.props.role} handler = {this.props.handler}/>
             </React.Fragment>
         );
     }

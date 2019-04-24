@@ -3,6 +3,7 @@ import {Card, List, Container} from 'semantic-ui-react'
 
 import PropertiesCard from '../../components/PropertiesCard/PropertiesCard'
 
+
 class PropertyList extends React.Component {
 
     state = {
@@ -15,7 +16,7 @@ class PropertyList extends React.Component {
             this.setState({
                 allProperties: data,      
             })
-            console.log("Mounted")
+            console.log(this.props)
         }).catch(err => {
             throw err;
         })

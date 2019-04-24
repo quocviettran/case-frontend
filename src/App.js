@@ -12,6 +12,7 @@ import PropertyDetailContainer from "./container/PropertyDetail/PropertyDetailCo
 import PropertyList from '../src/container/PropertyList/PropertyList';
 
 
+
 /*const User = Authorization(['user', 'guest', '1'])
 const Agent = Authorization(['user', 'agent', 'guest', '2'])*/
 
@@ -90,7 +91,7 @@ class App extends Component {
               exact
               path="/propertydetail/"
               render={props => (
-                <PropertyDetailContainer {...props} handleChanged={this.handleChanged} />
+                <PropertyDetailContainer role = {this.state.role} {...props} handleChanged={this.handleChanged} />
               )}
             />
             <Route

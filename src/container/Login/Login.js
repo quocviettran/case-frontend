@@ -59,7 +59,7 @@ class Login extends Component{
           sessionStorage.setItem('id', data.account.id);
           sessionStorage.setItem('role', data.account.roletypeid);
           this.setState({role: data.account.roletypeid, data});
-          this.props.handler(data.id ,data.account.roletypeid, data.token, data);
+          this.props.handler(sessionStorage.getItem("role"));
           if(data.account.roletypeid === 1) {
             this.props.history.replace('/propertylist');
           }

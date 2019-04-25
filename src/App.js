@@ -26,7 +26,7 @@ class App extends Component {
   }
 
 
-  handler = (id ,roletypeid, token, data) => {
+  handler = (roletypeid) => {
     this.setState({
       role: roletypeid
     })
@@ -100,7 +100,7 @@ class App extends Component {
                 exact
                 path="/propertydetail/:property_id"
                 render={props => (
-                  <PropertyDetailBuyerContainer role = {this.state.role} {...props} handleChanged={this.handleChanged} />
+                  <PropertyDetailAgentContainer role = {this.state.role} {...props} handleChanged={this.handleChanged} />
                 )}
               />
               ):
@@ -109,7 +109,7 @@ class App extends Component {
                 exact
                 path="/propertydetail/:property_id"
                 render={props => (
-                  <PropertyDetailAgentContainer role = {this.state.role} {...props} handleChanged={this.handleChanged} />
+                  <PropertyDetailBuyerContainer role = {this.state.role} {...props} handleChanged={this.handleChanged} />
                 )}
               />
               )}

@@ -52,6 +52,9 @@ propertyDetailRole = () => {
       valuation_comments={this.state.allProperties.valuations !== undefined?
         this.state.allProperties.valuations[0].valuation_comments: null}
 
+      propertyImages={this.state.allProperties.propertyImages !== undefined?
+      this.state.allProperties.propertyImages: null}
+      
       last_renovation={this.state.allProperties.renovations !== undefined?
         this.state.allProperties.renovations[0].date_from: null}
     
@@ -82,6 +85,9 @@ propertyDetailRole = () => {
       
       renovations={this.state.allProperties.renovations !== undefined?
         this.state.allProperties.renovations: null}
+      
+      propertyImages={this.state.allProperties.propertyImages !== undefined?
+        this.state.allProperties.propertyImages: null}
 
       ownership_log={this.state.allProperties.ownershipLogs !== undefined ?
         this.state.allProperties.ownershipLogs: null}

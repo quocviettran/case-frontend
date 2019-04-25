@@ -39,17 +39,31 @@ export default class propertyDetailAgent extends Component {
     return renovationList;
   }
 
+  images =()=>{
+    let imageList=[];
+    if(this.props.propertyImages !== null){
+      for(let i = 0; i<this.props.propertyImages.length; i++){
+        imageList[i] = this.props.propertyImages[i].url;
+      }
+      
+      return imageList;
+    }
+    
+    return null;
+  }
+
   render() {
     const { visible,visibleEier,visibleEierInfo } = this.state;
     const eierListe = this.historyOfOwner();
     const renovationList= this.renovationHistory();
-    console.log(renovationList)
+    const imageList = this.images();
+    
     return (
       <React.Fragment>
         <div id="bodyDiv">
           <Image
             id="headerImg"
-            src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260g"
+            src={imageList !== null ? imageList[0] : null}
           />
           <Grid id="headerGrid" stackable textAlign="center">
             <Grid.Row>
@@ -89,12 +103,9 @@ export default class propertyDetailAgent extends Component {
                     content={this.state.visibleEier ? 'VIS EIER HISTORIKK' : 'SKJUL'}
                     onClick = {this.toggleVisibilityEier}
                   />
+               
                 
-                
-
-                
-                
-
+            
               </Grid.Column>
               <Grid.Column id="visningColumn">
                 <header>
@@ -120,6 +131,7 @@ export default class propertyDetailAgent extends Component {
               />
             </Grid.Row>
           </Grid>
+          
         </div>
       </React.Fragment>
     );

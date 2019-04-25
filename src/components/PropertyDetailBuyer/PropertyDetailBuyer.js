@@ -9,16 +9,31 @@ export default class propertyDetailBuyer extends Component {
 
   toggleVisibility = () => this.setState({ visible: !this.state.visible });
   
+  images =()=>{
+    let imageList=[];
+    if(this.props.propertyImages !== null){
+      for(let i = 0; i<this.props.propertyImages.length; i++){
+        imageList[i] = this.props.propertyImages[i].url;
+      }
+      
+      return imageList;
+    }
+    
+    return null;
+  }
+
   render() {
     const { visible } = this.state;
-
+    const imageList = this.images();
 
 
     return (
       <React.Fragment>
         <div id="bodyDiv">
-        <Grid id="headerImg" className="section-response" >
-        </Grid>
+        <Image
+            id="headerImg"
+            src={imageList !== null ? imageList[0] : null}
+          />
           <Grid id="headerGrid" stackable textAlign="center">
             <Grid.Row>
               <Header className="item centered" id="headerInfo">

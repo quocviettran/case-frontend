@@ -1,53 +1,72 @@
 import React, { Component } from "react";
+import PropertyDetail from "../../components/PropertyDetailGuest/PropertyDetailGuest";
+import PropertyDetailBuyer from "../../components/PropertyDetailBuyer/PropertyDetailBuyer";
 import PropertyDetailAgent from "../../components/PropertyDetailAgent/PropertyDetailAgent";
+import Map from '../../components/Map/Map';
+import PropertyDetailGuest from "../../components/PropertyDetailGuest/PropertyDetailGuest";
 
-
-class PropertyDetailContainer extends Component {
-constructor(props){
-  super(props)
-  this.state = {
-    property: []
-  };
-
-}
-  
-
-componentDidMount() {
-    const id = this.props.match.params.property_id;
-    fetch(`https://properties-db.herokuapp.com/propertyagent/${id}`)
-    .then(res => res.json())
-    .then(data => {
-        this.setState({
-            property: data
-        })
-    }).catch(err => {
-        throw err;
-    }) 
-}
-
-
+class PropertyDetailAgentContainer extends Component {
+    constructor(props){
+      super(props)
+      this.state = {
+        allProperties: {}
+      };
+    }
+      
+    componentDidMount() {
+        const id = this.props.match.params.property_id;
+        fetch(`https://properties-db.herokuapp.com/propertyagent/${id}`)
+        .then(res => res.json())
+        .then(data => {
+            this.setState({
+                allProperties: data
+            })
+        }).catch(err => {
+            throw err;
+        }) 
+    }
+    
   render() {
-    console.log(this.state.property)
     return (
       <React.Fragment>
         <PropertyDetailAgent
-            property={this.state.property} 
+          key={this.state.allProperties.property_id}
+        property={this.state.allProperties}
+        property_name={this.state.allProperties.line_1}    
+        property_type_name={this.state.allProperties.propertyType !== undefined ?
+        this.state.allProperties.propertyType.property_type_name : null}
+        city={this.state.allProperties.city}
+        municipality={this.state.allProperties.municipality}  
+        value={this.state.allProperties.value} 
 
-            property_status_name= {this.state.property.propertyStatus !== undefined ?
-            this.state.property.propertyStatus.property_status_name: null}
+      propertyImages={this.state.allProperties.propertyImages !== undefined?
+        this.state.allProperties.propertyImages: null}
 
-            property_type_name= {this.state.property.propertyType !== undefined ?
-            this.state.property.propertyType.property_status_type: null}
+      renovations={this.state.allProperties.renovations !== undefined?
+        this.state.allProperties.renovations: null}
 
-            owner_name={this.state.property.ownershipLogs !== undefined ?
-            this.state.property.ownershipLogs[0].propertyOwner.owner_name: null}
+      valuations={this.state.allProperties.valuations !== undefined?
+        this.state.allProperties.valuations: null}
+      
+      property_type_name={this.state.allProperties.propertyType !== undefined?
+        this.state.allProperties.propertyType.property_type_name : null}
+      
+      property_status_name={this.state.allProperties.propertyStatus !== undefined?
+        this.state.allProperties.propertyStatus.property_status_name: null}
+        
+      ownershipLogs={(this.state.allProperties.ownershipLogs !== undefined) && (this.state.allProperties.ownershipLogs !== null)?
+        this.state.allProperties.ownershipLogs: null}
 
-            owner_phone= {this.state.property.propertyOwner !== undefined ?
-            this.state.property.ownershipLogs.propertyOwner.phone: null}
-        />        
+     
+      latitude={this.state.allProperties.latitude}
+      longitude={this.state.allProperties.longitude}     
+        />     
       </React.Fragment>
     );
   }
 }
 
-export default PropertyDetailContainer;
+
+export default PropertyDetailAgentContainer;
+    
+    

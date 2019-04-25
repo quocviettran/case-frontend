@@ -33,7 +33,7 @@ class Login extends Component{
 
     onSubmitSignIn = e => {
       e.preventDefault();
-      fetch('http://properties-db.herokuapp.com/api/auth/signin', {
+      fetch('https://properties-db.herokuapp.com/api/auth/signin', {
           method: 'POST',
           body: JSON.stringify({
             "usernameOrEmail" : this.state.username,
@@ -59,7 +59,7 @@ class Login extends Component{
           sessionStorage.setItem('id', data.account.id);
           sessionStorage.setItem('role', data.account.roletypeid);
           this.setState({role: data.account.roletypeid, data});
-          this.props.handleChanged(data.id ,data.account.roletypeid, data.token, data);
+          this.props.handler(data.id ,data.account.roletypeid, data.token, data);
           if(data.account.roletypeid === 1) {
             this.props.history.replace('/propertylist');
           }
@@ -94,13 +94,12 @@ class Login extends Component{
                   <Header id="checkoutText" as='h2' color='teal'>CONTINUE AS GUEST</Header>
 
                       <Button
-                      text-overflow= "50%"
+                        text-overflow= "50%"
                         color='teal' 
                         fluid size='medium'
                         as={Link}
                         to="/propertylist"
                         name="Proplist" 
-                        onClick = {this.props.handler}
                         >
                         Guest
                       </Button>
@@ -109,7 +108,7 @@ class Login extends Component{
                       <p id="checkoutText">
                         Continue as a guest for easy checkout.
                         You can create an account at the end of the transaction
-                        to save your information for future purchases.
+                        to save your information for future uses.
                       </p>
                   </div>
                   

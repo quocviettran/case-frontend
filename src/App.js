@@ -8,7 +8,9 @@ import LandingPage from "./container/LandingPage/LandingPage";
 import Register from "./container/Register/Register";
 import Login from "./container/Login/Login";
 import UserPage from "./container/UserPage/UserPage";
-import PropertyDetailContainer from "./container/PropertyDetail/PropertyDetailContainer";
+import PropertyDetailGuestContainer from "./container/PropertyDetailGuestContainer/PropertyDetailGuestContainer";
+import PropertyDetailBuyerContainer from "./container/PropertyDetailBuyerContainer/PropertyDetailBuyerContainer";
+import PropertyDetailAgentContainer from "./container/PropertyDetailAgentContainer/PropertyDetailAgentContainer";
 import PropertyList from '../src/container/PropertyList/PropertyList';
 
 
@@ -89,14 +91,14 @@ class App extends Component {
               exact
               path="/propertydetail/"
               render={props => (
-                <PropertyDetailContainer role = {this.state.role} {...props} handleChanged={this.handleChanged} />
+                <PropertyDetailAgentContainer role = {this.state.role} {...props} handleChanged={this.handleChanged} />
               )}
             />
             <Route
               exact
               path="/propertydetail/:property_id"
               render={props => (
-                <PropertyDetailContainer role = {this.state.role} {...props} handleChanged={this.handleChanged} />
+                <PropertyDetailAgentContainer role = {this.state.role} {...props} handleChanged={this.handleChanged} />
               )}
             />
                    

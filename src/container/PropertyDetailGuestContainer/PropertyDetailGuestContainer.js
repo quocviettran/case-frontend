@@ -1,20 +1,19 @@
 import React, { Component } from "react";
-import PropertyDetail from "../../components/PropertyDetail/PropertyDetail";
+import PropertyDetail from "../../components/PropertyDetailGuest/PropertyDetailGuest";
 import PropertyDetailBuyer from "../../components/PropertyDetailBuyer/PropertyDetailBuyer";
 import PropertyDetailAgent from "../../components/PropertyDetailAgent/PropertyDetailAgent";
 import Map from '../../components/Map/Map';
+import PropertyDetailGuest from "../../components/PropertyDetailGuest/PropertyDetailGuest";
 
 
-class PropertyDetailContainer extends Component {
+class PropertyDetailGuestContainer extends Component {
 constructor(props){
   super(props)
   this.state = {
     allProperties: {}
   };
-
 }
   
-
 componentDidMount() {
     const id = this.props.match.params.property_id;
     fetch(`https://properties-db.herokuapp.com/properties/${id}`)
@@ -29,10 +28,11 @@ componentDidMount() {
 }
 
 propertyDetailRole = () => {
-  
-  
+   
   const buyer = 
-    <PropertyDetailBuyer key={this.state.allProperties.property_id}
+    <PropertyDetailBuyer 
+    property={this.state.allProperties}
+    key={this.state.allProperties.property_id}
       property_name={this.state.allProperties.property_name}
       city={this.state.allProperties.city}
       municipality={this.state.allProperties.municipality}
@@ -52,13 +52,12 @@ propertyDetailRole = () => {
       valuation_comments={this.state.allProperties.valuations !== undefined?
         this.state.allProperties.valuations[0].valuation_comments: null}
 
-      propertyImages={this.state.allProperties.propertyImages !== undefined?
-      this.state.allProperties.propertyImages: null}
+      propertyImages={this.state.allProperties.images !== undefined?
+      this.state.allProperties.images: null}
       
       last_renovation={this.state.allProperties.renovations !== undefined?
         this.state.allProperties.renovations[0].date_from: null}
     
-      
       latitude={this.state.allProperties.latitude}
       longitude={this.state.allProperties.longitude}
     />   
@@ -86,8 +85,8 @@ propertyDetailRole = () => {
       renovations={this.state.allProperties.renovations !== undefined?
         this.state.allProperties.renovations: null}
       
-      propertyImages={this.state.allProperties.propertyImages !== undefined?
-        this.state.allProperties.propertyImages: null}
+      propertyImages={this.state.allProperties.images !== undefined?
+        this.state.allProperties.images: null}
 
       ownership_log={this.state.allProperties.ownershipLogs !== undefined ?
         this.state.allProperties.ownershipLogs: null}
@@ -145,12 +144,22 @@ propertyDetailRole = () => {
     const propertyDetail = this.propertyDetailRole();
     return (
       <React.Fragment>
-        
-      {propertyDetail}
-        
+        <PropertyDetailGuest 
+        property={this.state.allProperties}
+        key={this.state.allProperties.property_id}
+        property_name={this.state.allProperties.line_1}    
+        property_type_name={this.state.allProperties.propertyType !== undefined ?
+        this.state.allProperties.propertyType.property_type_name : null}
+
+        images={this.state.allProperties.images !== undefined?
+        this.state.allProperties.images: null}
+    
+        latitude={this.state.allProperties.latitude}
+        longitude={this.state.allProperties.longitude}         
+        />     
       </React.Fragment>
     );
   }
 }
 
-export default PropertyDetailContainer;
+export default PropertyDetailGuestContainer;

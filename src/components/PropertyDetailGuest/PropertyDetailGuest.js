@@ -1,22 +1,49 @@
 import React, { Component } from "react";
-import "./PropertyDetail.css";
-import { Grid, Header, Image, Button, Transition, Divider } from "semantic-ui-react";
+import "./PropertyDetailGuest.css";
+import { Grid, Header, Image, Button, Transition, Divider, List } from "semantic-ui-react";
 import Map from '../Map/Map';
 
-export default class propertyDetail extends Component {
+export default class propertyDetailGuest extends Component {
   
   state = { visible: true };
 
   toggleVisibility = () => this.setState({ visible: !this.state.visible });
 
+  
+  images =()=>{
+    let imageList=[];
+    if(this.props.images !== null){
+      for(let i = 0; i<this.props.images.length; i++){
+        imageList[i] = this.props.images[i].url;
+      }
+      return imageList;
+    }
+    return null;
+  }
+
+  imageShowcase =()=>{
+    let imageList=[];
+    if(this.props.images != null){
+      for(let i =0; i<this.props.images.length; i++){
+        imageList[i]= 
+        <List key={i}>
+          <Image id="imagesdetail" src={this.props.images[i].url} />
+        </List>
+      }
+    }   
+    return imageList;
+  }
+
   render() {
     const { visible } = this.state;
+    const imageList = this.images();
+    const imageShowcase = this.imageShowcase();
     return (
       <React.Fragment>
         <div id="bodyDiv">
-          <Image
+        <Image
             id="headerImg"
-            src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260g"
+            src={imageList !== null ? imageList[0] : null}
           />
           <Grid id="headerGrid" stackable textAlign="center">
             <Grid.Row>
@@ -32,31 +59,22 @@ export default class propertyDetail extends Component {
             <Grid.Row columns={2}>
               <Grid.Column id="detailColumn">
                 <Header id="maindetail" >
-                  <h2>ADRESSE: {this.props.property_name}</h2>
+                  <h2>ADRESSE: {this.props.property.property_name}</h2>
                   <h2>BOLIGTYPE: {this.props.property_type_name}</h2>
-                  <h2>AREAL: {this.props.area}</h2>
-                  <h2>ETASJE: {this.props.floor}</h2>
-                  <h2>ROM: {this.props.rooms}</h2>
                 </Header>
               </Grid.Column>
               <Grid.Column id="visningColumn">
-                <header>
-                  <h1 id="visningdetail">VISNING</h1>
-                  <h2>Torsdag, 11 april 17:30-18:30</h2>
-                </header>
-                <Divider />
                 <Map latitude={this.props.latitude} longitude={this.props.longitude}/>
               </Grid.Column>
             </Grid.Row>
-            <h2 id="infoomeiendomText">Informasjon om eiendom</h2>
             <Grid.Row>
               <Transition visible={!visible} animation="scale" duration={200}>
-                <div id="fullInfoText">
-                 {this.props.valuation_comments}
+                <div>
+                 {imageShowcase}
                 </div>
               </Transition>
               <Button
-                content={visible ? "Show More" : "Hide"}
+                content={visible ? "Alle bilder" : "Lukk"}
                 onClick={this.toggleVisibility}
                 className="ui blue button"
                 color="blue"

@@ -15,9 +15,16 @@ class PropertyDetailAgentContainer extends Component {
       
     componentDidMount() {
         const id = this.props.match.params.property_id;
-        fetch(`https://properties-db.herokuapp.com/propertyagent/${id}`)
+        fetch(`https://properties-db.herokuapp.com/propertyagent/${id}`,{
+          method:"GET" , 
+          headers: {
+            'Authorization':'Bearer ' + sessionStorage.getItem("token"),
+            "Content-Type": "application/json"
+          }
+        })
         .then(res => res.json())
         .then(data => {
+          console.log(data)
             this.setState({
                 allProperties: data
             })

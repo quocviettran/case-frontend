@@ -2,6 +2,7 @@ import React from 'react'
 import {Card, List, Container} from 'semantic-ui-react'
 
 import PropertiesCard from '../../components/PropertiesCard/PropertiesCard'
+import '../PropertyList/PropertyList.css'
 
 class PropertyList extends React.Component {
 
@@ -32,7 +33,7 @@ class PropertyList extends React.Component {
         
         return (
           <React.Fragment>
-            <Container>
+            <Container id="propertycontainer">
                 <List>
                     <Card.Group>
                         {cards}

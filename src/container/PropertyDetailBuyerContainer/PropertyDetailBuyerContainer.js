@@ -16,7 +16,13 @@ class PropertyDetailBuyerContainer extends Component {
 
     componentDidMount() {
         const id = this.props.match.params.property_id;
-        fetch(`https://properties-db.herokuapp.com/propertybuyer/${id}`)
+        fetch(`https://properties-db.herokuapp.com/propertybuyer/${id}`,{
+          method:"GET" , 
+          headers: {
+            "Content-Type": "application/json",
+            "Authorization":sessionStorage.getItem("bearer") + sessionStorage.getItem("token")
+          }
+        })
         .then(res => res.json())
         .then(data => {
             this.setState({

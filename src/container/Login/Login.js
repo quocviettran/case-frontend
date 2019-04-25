@@ -58,6 +58,7 @@ class Login extends Component{
           sessionStorage.setItem('token',data.accessToken);
           sessionStorage.setItem('id', data.account.id);
           sessionStorage.setItem('role', data.account.roletypeid);
+          sessionStorage.setItem('bearer', data.tokenType);
           this.setState({role: data.account.roletypeid, data});
           this.props.handler(sessionStorage.getItem("role"));
           if(data.account.roletypeid === 1) {
@@ -83,7 +84,7 @@ class Login extends Component{
 
           const test = (
             <div className='login-form'>
-              <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
+              <Grid textAlign='center' style={{ height: '100%', padding: '10px' }} verticalAlign='middle'>
               <Grid.Row columns={2} id="loginFix">
               
               

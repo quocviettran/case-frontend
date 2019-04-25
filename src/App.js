@@ -21,7 +21,7 @@ class App extends Component {
   constructor(props){
     super(props)
     this.state = {
-      role: 0
+      role: 1
     }
   }
 
@@ -85,7 +85,7 @@ class App extends Component {
             /> 
 
             <div>
-|             {role == 0 ? (
+             {role == 0 ? (
               <Route
                 exact
                 path="/propertydetail/:property_id"

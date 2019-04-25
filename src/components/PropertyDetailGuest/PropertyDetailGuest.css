@@ -90,6 +90,11 @@
   min-height: 800px;
  }
  
+
+ .ui.menu:first-child {
+  margin:0;
+}
+
  .section-response{
      display: flex;
      min-height: calc(60vh - 58px);

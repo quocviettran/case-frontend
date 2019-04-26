@@ -50,7 +50,7 @@ export default class propertyDetailGuest extends Component {
               <Header className="item centered" id="headerInfo">
                 <h1>{this.props.property_name}</h1>
                 <h5>
-                  På denne siden finner du informasjon om eiendommen
+                  Information about the property
                 </h5>
               </Header>
             </Grid.Row>
@@ -59,8 +59,8 @@ export default class propertyDetailGuest extends Component {
             <Grid.Row columns={2}>
               <Grid.Column id="detailColumn">
                 <Header id="maindetail" >
-                  <h2>ADRESSE: {this.props.property.property_name}</h2>
-                  <h2>BOLIGTYPE: {this.props.property_type_name}</h2>
+                  <h2>Address: {this.props.property.property_name}</h2>
+                  <h2>Property type: {this.props.property_type_name}</h2>
                 </Header>
               </Grid.Column>
               <Grid.Column id="visningColumn">

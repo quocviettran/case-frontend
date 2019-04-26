@@ -26,10 +26,10 @@ export default class propertyDetailAgent extends Component {
       for(let i =0; i<this.props.ownershipLogs.length; i++){
         ownerInfo[i]= 
         <List key={i}>
-          <List.Item>NAVN: {this.props.ownershipLogs[i].propertyOwner.owner_name} {this.props.ownershipLogs[i].propertyOwner.surname}</List.Item>
-          <List.Item>TLF: {this.props.ownershipLogs[i].propertyOwner.phone}</List.Item>
-          <List.Item>EMAIL: {this.props.ownershipLogs[i].propertyOwner.email}</List.Item>
-          <List.Item>EIERTYPE: {this.props.ownershipLogs[i].propertyOwner.ownerType.owner_type_name}</List.Item>
+          <List.Item>Name: {this.props.ownershipLogs[i].propertyOwner.owner_name} {this.props.ownershipLogs[i].propertyOwner.surname}</List.Item>
+          <List.Item>Phone: {this.props.ownershipLogs[i].propertyOwner.phone}</List.Item>
+          <List.Item>E-mail: {this.props.ownershipLogs[i].propertyOwner.email}</List.Item>
+          <List.Item>Owner type: {this.props.ownershipLogs[i].propertyOwner.ownerType.owner_type_name}</List.Item>
         </List>
       }
     }  
@@ -45,9 +45,9 @@ export default class propertyDetailAgent extends Component {
       for(let i =0; i<this.props.renovations.length; i++){
         renovationList[i]= 
         <List key={i}>
-          <List.Item>RENOVERINGS BESKRIVELSE: {this.props.renovations[i].description}</List.Item>
-          <List.Item>RENOVERINGS START: {this.props.renovations[i].date_from}</List.Item>
-          <List.Item>RENOVERINGS SLUTT: {this.props.renovations[i].date_to}</List.Item>
+          <List.Item>Renovation: {this.props.renovations[i].description}</List.Item>
+          <List.Item>Start date: {this.props.renovations[i].date_from}</List.Item>
+          <List.Item>End date: {this.props.renovations[i].date_to}</List.Item>
         </List>
       }
     }  
@@ -100,7 +100,7 @@ export default class propertyDetailAgent extends Component {
                 <h1>{this.props.property_name}</h1>
                 <h4>{this.props.property.city}, {this.props.property.municipality}</h4>
                 <h5>
-                  På denne siden finner du informasjon om eiendommen
+                  On this site, you'll find information about the property
                 </h5>
               </Header>
             </Grid.Row>
@@ -109,17 +109,17 @@ export default class propertyDetailAgent extends Component {
             <Grid.Row columns={2}>
               <Grid.Column id="detailColumn">
                 <Header id="maindetail">
-                  <h4>ADRESSE: {this.props.property_name}, {this.props.property.zip} {this.props.municipality} </h4>
-                  <h4>By: {this.props.city}</h4>
-                  <h4>BOLIGTYPE: {this.props.property_type_name}</h4>
-                  <h4>BYGGEDATO: {this.props.property.built_at}</h4>
-                  <h4>AREAL: {this.props.property.area}</h4>
-                  <h4>ETASJE: {this.props.property.floor}</h4>
-                  <h4>ROM: {this.props.property.rooms}</h4>
-                  <h4>STATUS: {this.props.property_status_name}</h4>
-                  <h4>VALUE: {this.props.value} kr</h4>
+                  <h4>Address: {this.props.property_name}, {this.props.property.zip} {this.props.municipality} </h4>
+                  <h4>City: {this.props.city}</h4>
+                  <h4>Property type: {this.props.property_type_name}</h4>
+                  <h4>Built: {this.props.property.built_at}</h4>
+                  <h4>Area: {this.props.property.area}</h4>
+                  <h4>Floor: {this.props.property.floor}</h4>
+                  <h4>Room: {this.props.property.rooms}</h4>
+                  <h4>Status: {this.props.property_status_name}</h4>
+                  <h4>Value: {this.props.value} kr</h4>
                   {renovationList}
-                  <h4>EIER/TIDLIGERE EIER: {ownerList}</h4>
+                  <h4>Owner: {ownerList}</h4>
                   {ownerInfo}
                 
                 </Header>
@@ -130,7 +130,7 @@ export default class propertyDetailAgent extends Component {
 
               </Grid.Column>
             </Grid.Row>
-            <h2 id="infoomeiendomText">Informasjon om eiendom</h2>
+            <h2 id="infoomeiendomText">Images</h2>
             <Grid.Row>
               <Transition visible={!visible} animation="scale" duration={200}>
                 <div id="fullInfoText">

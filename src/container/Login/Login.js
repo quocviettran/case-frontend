@@ -35,6 +35,7 @@ class Login extends Component{
       .then((res)=> {
           if(res.status === 200){
             this.setState({message: "Login success"});
+            this.props.history.push('/propertylist');
             return res.json();
           }else{
             this.setState({message: "Wrong username or password"});
@@ -48,8 +49,7 @@ class Login extends Component{
           
           this.setState({role: data.account.roletypeid, data});
           this.props.handler(sessionStorage.getItem("role"));
-          this.props.history.push('/propertylist');
-          console.log(this.props)
+          
           
       })
       .catch(err => {

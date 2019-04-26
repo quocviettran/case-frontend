@@ -70,7 +70,7 @@ export default class propertyDetailBuyer extends Component {
                 <h1>{this.props.property_name}</h1>
                 <h4>{this.props.city}, {this.props.municipality}</h4>
                 <h5>
-                  På denne siden finner du informasjon om eiendommen
+                  Information about the property
                 </h5>
               </Header>
             </Grid.Row>
@@ -79,14 +79,14 @@ export default class propertyDetailBuyer extends Component {
             <Grid.Row columns={2}>
               <Grid.Column id="detailColumn">
                 <Header id="maindetail">
-                  <h4>ADRESSE: {this.props.property_name}, {this.props.property.zip} {this.props.municipality} </h4>
-                  <h4>By: {this.props.city}</h4>
-                  <h4>BOLIGTYPE: {this.props.property_type_name}</h4>
-                  <h4>BYGGEDATO: {this.props.property.built_at}</h4>
-                  <h4>AREAL: {this.props.property.area}</h4>
-                  <h4>ETASJE: {this.props.property.floor}</h4>
-                  <h4>ROM: {this.props.property.rooms}</h4>
-                  <h4>STATUS: {this.props.property_status_name}</h4>
+                  <h4>Address: {this.props.property_name}, {this.props.property.zip} {this.props.municipality} </h4>
+                  <h4>City: {this.props.city}</h4>
+                  <h4>Property type: {this.props.property_type_name}</h4>
+                  <h4>Built: {this.props.property.built_at}</h4>
+                  <h4>Area: {this.props.property.area}</h4>
+                  <h4>Floor: {this.props.property.floor}</h4>
+                  <h4>Room: {this.props.property.rooms}</h4>
+                  <h4>Status: {this.props.property_status_name}</h4>
                   {renovationList}
                 </Header>
               </Grid.Column>
@@ -96,7 +96,7 @@ export default class propertyDetailBuyer extends Component {
 
               </Grid.Column>
             </Grid.Row>
-            <h2 id="infoomeiendomText">Informasjon om eiendom</h2>
+            <h2 id="infoomeiendomText">Images</h2>
             <Grid.Row>
               <Transition visible={!visible} animation="scale" duration={200}>
                 <div id="fullInfoText">

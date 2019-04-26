@@ -4,7 +4,6 @@ import {Link} from 'react-router-dom';
 import {Menu} from 'semantic-ui-react';
 import "./Navbar.css";
 
-
 class Navbar extends Component{
   constructor(props){
     super(props)

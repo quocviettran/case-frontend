@@ -8,6 +8,7 @@ class Register extends Component{
     constructor(props){
         super(props);
         this.state = {
+                username:undefined,
                 firstname: undefined,
                 surname:undefined,
                 username:undefined,

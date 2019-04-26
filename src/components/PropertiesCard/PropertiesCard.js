@@ -9,7 +9,7 @@ const PropertiesCard = (props) => {
   return (
   <Card color="teal">
     <Card.Content>
-    <Image id="headerImgCard"  />
+    <Image id="headerImgCard" src={props.property.propertyImages[0].url} />
       <Card.Header>{props.property.property_name}</Card.Header>
       <Card.Description>
         {props.property.city}

@@ -42,16 +42,17 @@ class Login extends Component{
           sessionStorage.setItem('token',data.accessToken);
           sessionStorage.setItem('id', data.account.id);
           sessionStorage.setItem('role', data.account.roletypeid);
+          
           this.setState({role: data.account.roletypeid, data});
-          this.props.handler();
+          this.props.handler(sessionStorage.getItem("role"));
           if(data.account.roletypeid === 1) {
-            this.props.history.push('/propertylist');
+            this.props.history.replace('/propertylist');
           }
           else if(data.account.roletypeid === 2) {
-              this.props.history.push('/propertylist');
+              this.props.history.replace('/propertylist');
           }
           else{
-            this.props.history.push('/');
+            this.props.history.replace('/');
           }
       })
       .catch(err => {
@@ -64,7 +65,7 @@ class Login extends Component{
 
           const test = (
             <div className='login-form'>
-              <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
+              <Grid textAlign='center' style={{ height: '100%', padding: '10px' }} verticalAlign='middle'>
               <Grid.Row columns={2} id="loginFix">
               
               
@@ -90,7 +91,7 @@ class Login extends Component{
                       <p id="checkoutText">
                         Continue as a guest for easy checkout.
                         You can create an account at the end of the transaction
-                        to save your information for future purchases.
+                        to save your information for future uses.
                       </p>
                   </div>
                   

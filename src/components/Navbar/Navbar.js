@@ -84,7 +84,7 @@ class Navbar extends Component{
           name='Log Out'
           position = 'right'
           active={activeItem === 'Log out'}
-          onClick={this.props.handleLogOut}>
+          onClick={this.handleLogOut}>
         </Menu.Item>
 
     </Menu>
@@ -116,7 +116,7 @@ class Navbar extends Component{
           to='/LogIn'
           name='Log Out'
           active={activeItem === 'Log out'}
-          onClick={this.props.handleLogOut}>
+          onClick={this.handleLogOut}>
         </Menu.Item>
         
       </Menu>

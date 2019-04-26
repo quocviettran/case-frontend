@@ -18,6 +18,11 @@ class Navbar extends Component{
     })
   }
 
+  handleLogOut = () => {
+    sessionStorage.clear();
+    this.props.history.push("/");
+  }
+
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
   
     render() {

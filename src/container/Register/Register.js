@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Form,Select, Header} from 'semantic-ui-react';
+import {Form,Select, Header, Container} from 'semantic-ui-react';
 import axios from 'axios';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -10,6 +10,7 @@ class Register extends Component{
         this.state = {
                 firstname: undefined,
                 surname:undefined,
+                username:undefined,
                 password: undefined,
                 email:undefined,
                 phone:undefined,
@@ -64,7 +65,7 @@ class Register extends Component{
     }
 
      registerUser = (e) =>{
-         
+         e.preventDefault();
          
          if(this.state.terms === true){
             const user = JSON.stringify({
@@ -72,13 +73,14 @@ class Register extends Component{
                 surname: this.state.surname,
                 phone : this.state.phone,
                 email: this.state.email,
-                date_of_birth: this.state.year+'-'+this.state.month+'-'+this.state.day,
+                dateOfBirth: this.state.year+'-'+this.state.month+'-'+this.state.day,
+                username: this.state.username,
                 password: this.state.password,
                 accountTypeId: this.state.role
             })
             console.log(user);
             axios.post(
-                "https://properties-db.herokuapp.com/api/account/create",
+                "https://properties-db.herokuapp.com/api/auth/signup",
                 user,
                 {
                     headers:{
@@ -86,6 +88,8 @@ class Register extends Component{
                     }
                 }
             );
+            alert("Succesfully created user"); 
+            this.props.history.push('/');
                 
          }else{
             alert("Terms and Conditions is not checked");
@@ -102,6 +106,13 @@ class Register extends Component{
     createMonths(months){
         for(let i=1; i<=12; i++){
             months[i-1]={key:i,text:i,value:i};
+        }
+        for(let i = 0; i<12; i++){
+            if(months[i].value <10){
+                months[i].value = '0'+months[i].value;
+                months[i].text = '0'+months[i].text;
+            }
+            
         }
     }
     createDays(days,chosenMonth,chosenYear){
@@ -123,6 +134,13 @@ class Register extends Component{
         else
             for(let i = 1; i<=31;i++)
                 days[i-1] = {key:i,text:i,value:i};
+
+        for(let i=0; i<days.length; i++){
+            if(days[i].value < 10){
+                days[i].value = '0'+days[i].value;
+                days[i].text = '0'+days[i].text;
+            }
+        }
     }
 
     
@@ -146,12 +164,14 @@ class Register extends Component{
 
         return(
             <React.Fragment>
+                <Container>
                 <Form>
                     <Header id="checkoutText" as='h2' color='teal'>Register your account</Header>
                     <Form.Field>
+                        <Form.Input fluid label="Username" placeholder="Username" name="username" onChange={this.handleChange} />
+                        <Form.Input fluid label="Password" placeholder="Password" name="password" onChange={this.handleChange} />
                         <Form.Input fluid label="Firstname" placeholder="Firstname" name="firstname" onChange={this.handleChange} />
                         <Form.Input fluid label="Surname" placeholder="Surname" name="surname" onChange={this.handleChange} />
-                        <Form.Input fluid label="Password" placeholder="Password" name="password" onChange={this.handleChange} />
                         <Form.Input fluid label="E-mail" placeholder="E-mail" name="email" onChange={this.handleChange} />
                         <Form.Input fluid label="Phone" placeholder="Phone number" name="phone" onChange={this.handleChange} maxLength='8' />
                         <Form.Select fluid label="Role" placeholder="Select your role" onChange={this.handleChangeRole} options={roleOptions}/>
@@ -162,7 +182,8 @@ class Register extends Component{
                     </Form.Field>                   
                     <Form.Checkbox label= 'I agree to the Terms and Conditions' onChange={this.handleCheckTerms}/>
                     <Form.Button onClick={this.registerUser}>Create account</Form.Button>
-                </Form>    
+                </Form>  
+                </Container>  
             </React.Fragment> 
         )}    
 }

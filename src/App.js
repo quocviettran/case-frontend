@@ -17,20 +17,18 @@ const Agent = Authorization(['user', 'agent', 'guest', '2'])*/
 
 class App extends Component {
 
-  constructor(props){
-    super(props)
-    this.state = {
+  
+    state = {
       username: "",
       password: "",
-      role: 2
+      role: 0
     }
-  }
+  
 
 
   handler = (role) => {
     this.setState({
-      role: 1,
-      state: this.state
+      role: sessionStorage.getItem("role")
     })
   }
 
@@ -67,7 +65,7 @@ class App extends Component {
               exact
               path="/signIn"
               render={props => (
-                <Login {...props} handleChanged={this.handleChanged} />
+                <Login {...props} handler={this.handler} handleChanged={this.handleChanged} />
               )}
             />
             <Route
@@ -81,7 +79,7 @@ class App extends Component {
               exact
               path="/user"
               render={props => (
-                <UserPage {...props} handleChanged={this.handleChanged} />
+                <UserPage {...props} role = {this.state.role} handleChanged={this.handleChanged} />
               )}
             /> 
 

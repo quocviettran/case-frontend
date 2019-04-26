@@ -19,6 +19,11 @@ class Navbar extends Component{
     })
   }
 
+  handleLogOut = () => {
+    sessionStorage.clear();
+    this.props.history.push("/");
+  }
+
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
     
     render() {
@@ -41,6 +46,15 @@ class Navbar extends Component{
       active={activeItem === 'Register'}
       onClick={this.handleItemClick}
     />
+
+<Menu.Item
+          as={Link}
+          to='/LogIn'
+          name='Log In'
+          position = 'right'
+          active={activeItem === 'Log in'}
+          onClick={this.handleItemClick}>
+        </Menu.Item>
     
     </Menu>);
 
@@ -50,7 +64,7 @@ class Navbar extends Component{
       <Menu color="teal" inverted id="menu">
         <Menu.Item
           as={Link}
-          to='/' 
+          to='/propertylist' 
           name='Home' 
           active={activeItem === 'Home'} 
           onClick={this.handleItemClick}>
@@ -59,14 +73,14 @@ class Navbar extends Component{
         <Menu.Item
           as={Link} 
           to='/user' 
-          name='Edit user'
+          name='User page'
           active={activeItem === 'User'} 
           onClick={this.handleItemClick}>
         </Menu.Item>
 
         <Menu.Item
           as={Link}
-          to='/signIn'
+          to='/LogIn'
           name='Log Out'
           position = 'right'
           active={activeItem === 'Log out'}
@@ -84,22 +98,22 @@ class Navbar extends Component{
 
         <Menu.Item name='Home'
           as={Link} 
-          to='/'  
+          to='/propertylist'  
           active={activeItem === 'Home'} 
           onClick={this.handleItemClick}>
         </Menu.Item>
 
 
-        <Menu.Item name='OwnerDashboard'
+        <Menu.Item name='User Page'
           as={Link} 
-          to='/OwnerDashboard' 
-          active={activeItem === 'OwnerDashboard'} 
+          to='/user' 
+          active={activeItem === 'User'} 
           onClick={this.handleItemClick}>
         </Menu.Item>
 
         <Menu.Item
           as={Link} 
-          to='/signIn'
+          to='/LogIn'
           name='Log Out'
           active={activeItem === 'Log out'}
           onClick={this.props.handleLogOut}>

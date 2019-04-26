@@ -5,9 +5,6 @@
   background: #003434;
 }
 
-#headerImg {
-  min-height: 575px;
-}
 
 #HeaderGrid {
   height: 100%;
@@ -40,8 +37,21 @@
   color: #ffffff;
 }
 
+#visningdetail {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#visningColumn {
+  background: #ffffff;
+  padding-left: 0;
+  padding-right: 0;
+
+
+}
+
 #mapid {
-  height: 300px;
+  height: 350px;
 }
 
 #secoundRow {
@@ -68,13 +78,39 @@
   background: 06c2db;
 }
 
-#detailsImages {
-  margin-left: auto;
-  margin-right: auto;
-  padding-bottom: 15px;
-  width: 50%
+#imagesdetail {
+  min-height: 200px;
+  max-height: 400px;
+
+  min-width: 400px;
+  max-width: 800px;
 }
 
-h1{
-  color: white;
+#headerImg{
+  min-height: 800px;
+ }
+ 
+
+ .ui.menu:first-child {
+  margin:0;
 }
+
+ .section-response{
+     display: flex;
+     min-height: calc(60vh - 58px);
+     position: relative;
+     background-size: cover;
+     background-repeat: no-repeat;
+     background-position: 50% 50%;
+     color: #fff;
+     min-height: 400px;
+ }
+ 
+ @media screen and (max-width: 480px){
+     #headerImg{
+         min-height: 300px;
+         height: 300px;
+     }
+ }
+
+

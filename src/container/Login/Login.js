@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+<<<<<<< HEAD
 import {Form} from 'semantic-ui-react';
 import { Button, Grid, Header, Segment} from 'semantic-ui-react';
 import './Login.css';
@@ -124,12 +125,34 @@ class Login extends Component{
       })
     }
     
+=======
+import {Link} from 'react-router-dom';
+import { Button, Grid, Header, Segment, Form, Message } from 'semantic-ui-react';
+
+class Login extends Component{
+
+  constructor(props){
+    super(props);
+    this.state = {
+        username: "",
+        password: "",
+        role: "",
+        message: "",
+        data: []
+    }
+}
+    handleGuest=()=>{
+      sessionStorage.setItem('role',0);
+      this.forceUpdate();
+    }
+
+>>>>>>> 25dbc0d3a81cfcf7106c96b59e196eed8c86a4ee
     onSubmitSignIn = e => {
       e.preventDefault();
-      fetch('https://properties-db.herokuapp.com/owner/', {
+      fetch('https://properties-db.herokuapp.com/api/auth/signin', {
           method: 'POST',
           body: JSON.stringify({
-            "username" : this.state.username,
+            "usernameOrEmail" : this.state.username,
             "password" : this.state.password
           }),
           headers: {
@@ -139,18 +162,31 @@ class Login extends Component{
       })
       .then((res)=> {
           if(res.status === 200){
-            this.setState({message: "Login successful "});
+            this.setState({message: "Login success"});
             return res.json();
           }else{
             this.setState({message: "Wrong username or password"});
             return;
           }
-      }).catch(err => {
+      })
+      .then(data =>{
+          sessionStorage.setItem('token',data.accessToken);
+          sessionStorage.setItem('id', data.account.id);
+          sessionStorage.setItem('role', data.account.roletypeid);
+          
+          this.setState({role: data.account.roletypeid, data});
+          this.props.handler(sessionStorage.getItem("role"));
+          this.props.history.push('/propertylist');
+          console.log(this.props)
+          
+      })
+      .catch(err => {
           console.log(err);
       });
   }
 
 
+<<<<<<< HEAD
   login(){
     fetch("https://properties-db.herokuapp.com/api/auth/signin",
       {
@@ -168,48 +204,51 @@ class Login extends Component{
       this.setProps(this.props.role=1)
     }
     
+=======
+>>>>>>> 25dbc0d3a81cfcf7106c96b59e196eed8c86a4ee
     render(){
-      
-        const login = (
-            <div className='login-form'>
-              <Grid textAlign='center' style={{ height: '100%' }} verticalAlign='middle'>
-              <Grid.Row columns={2}>
-              
-              
 
+          const test = (
+            <div className='login-form'>
+              <Grid textAlign='center' style={{ height: '100%', padding: '10px' }} verticalAlign='middle'>
+              <Grid.Row columns={2} id="loginFix">
+              
+              
               <Grid.Column id="left-container" style={{ maxWidth: 350}}>
 
                 <div id ="left-div">
 
                   <Header id="checkoutText" as='h2' color='teal'>CONTINUE AS GUEST</Header>
 
-                      <Button 
+                      <Button
+                      text-overflow= "50%"
                         color='teal' 
                         fluid size='medium'
                         as={Link}
                         to="/propertylist"
                         name="Proplist" 
-                        onClick = {this.props.handler}
-                        style={{ maxWidth: 200}}>
-                        Checkout
+                        onClick = {this.handleGuest}
+                        >
+                        Guest
                       </Button>
                       <br></br>
 
                       <p id="checkoutText">
                         Continue as a guest for easy checkout.
                         You can create an account at the end of the transaction
-                        to save your information for future purchases.
+                        to save your information for future uses.
                       </p>
                   </div>
                   
                 </Grid.Column>
 
                 <Grid.Column style={{ maxWidth: 350}} id="right-container">
-                  <Header as='h2' color='teal' textAlign='left'>
+                  <Header as='h2' color='teal' textAlign='center'>
                     SIGN IN
                   </Header>
-                    <Form size='large'>
+                  <Form size='large' onSubmit={this.onSubmitSignIn}>
                     <Segment stacked>
+<<<<<<< HEAD
 
                         <EmailInput 
                            name = "email"
@@ -234,9 +273,35 @@ class Login extends Component{
                         onClick = {this.login}
                         disabled={!this.state.formIsValid}
                         >
+=======
+                      <Form.Input
+                        fluid icon='user'
+                        iconPosition='left'
+                        placeholder='E-mail address'
+                        name='username'
+                        value={this.state.userName}
+                        onChange={(event) =>
+                        this.setState({username: event.target.value})} />
+                     
+                      <Form.Input
+                        fluid
+                        icon='lock'
+                        iconPosition='left'
+                        placeholder='password'
+                        type='password'
+                        name='password'
+                        value={this.state.password}
+                        onChange={(event) =>
+                        this.setState({password: event.target.value})}
+                      />
+                      <Button color='teal' fluid size='large' onClick={this.onSubmitSignIn}>
+>>>>>>> 25dbc0d3a81cfcf7106c96b59e196eed8c86a4ee
                         Login
                       </Button>
                     </Segment>
+                    <p>{this.state.message}</p>
+
+                    
                   </Form>
                 </Grid.Column>
                 </Grid.Row>
@@ -244,13 +309,11 @@ class Login extends Component{
             </div>
           )
     
-
         return(
             <React.Fragment>
-                { login }
+                {test}            
             </React.Fragment>
-        )}
-    
+        )}  
 }
 
 export default Login;

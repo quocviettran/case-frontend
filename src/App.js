@@ -2,13 +2,14 @@
 import React, { Component } from "react";
 import "./App.css";
 import { BrowserRouter, Route } from "react-router-dom";
-import { Container} from "semantic-ui-react";
 import Navbar from "./components/Navbar/Navbar";
 import LandingPage from "./container/LandingPage/LandingPage";
 import Register from "./container/Register/Register";
 import Login from "./container/Login/Login";
 import UserPage from "./container/UserPage/UserPage";
-import PropertyDetailContainer from "./container/PropertyDetail/PropertyDetailContainer";
+import PropertyDetailBuyerContainer from "./container/PropertyDetailBuyerContainer/PropertyDetailBuyerContainer";
+import PropertyDetailAgentContainer from "./container/PropertyDetailAgentContainer/PropertyDetailAgentContainer";
+import PropertyDetailGuestContainer from "./container/PropertyDetailGuestContainer/PropertyDetailGuestContainer"
 import PropertyList from '../src/container/PropertyList/PropertyList';
 
 
@@ -18,21 +19,20 @@ const Agent = Authorization(['user', 'agent', 'guest', '2'])*/
 
 class App extends Component {
 
-  constructor(props){
-    super(props)
-    this.state = {
+  
+    state = {
       username: "",
       password: "",
-      role: 0
+      role: sessionStorage.getItem("role") ? sessionStorage.getItem("role") : 0
     }
-  }
+  
 
 
-  handler = (role) => {
+  handler = (roletypeid) => {
     this.setState({
-      role: 1,
-      state: this.state
+      role: roletypeid
     })
+    this.forceUpdate()
   }
 
   handleLogOut = () => {
@@ -47,14 +47,14 @@ class App extends Component {
 
   render() {
     const { activeItem } = this.state;
+    const role = this.state.role;
     return (
 
       <React.Fragment>
       
       <BrowserRouter>
         
-        <Container>
-          <Navbar role = {this.state.role} logout = {this.handleLogOut}/> 
+          <Navbar role = {this.state.role}/> 
           <div className="content">
             <Route
               exact
@@ -72,9 +72,9 @@ class App extends Component {
             />
             <Route
               exact
-              path="/signIn"
+              path="/LogIn"
               render={props => (
-                <Login {...props} handleChanged={this.handleChanged} />
+                <Login {...props} handler={this.handler} handleChanged={this.handleChanged} />
               )}
             />
             <Route
@@ -88,27 +88,44 @@ class App extends Component {
               exact
               path="/user"
               render={props => (
-                <UserPage {...props} handleChanged={this.handleChanged} />
+                <UserPage {...props} role = {this.state.role} handleChanged={this.handleChanged} />
               )}
             /> 
 
-            <Route
-              exact
-              path="/propertydetail/"
-              render={props => (
-                <PropertyDetailContainer role = {this.state.role} {...props} handleChanged={this.handleChanged} />
+            <div>
+             {role == 0 ? (
+              <Route
+                exact
+                path="/propertydetail/:property_id"
+                render={props => (
+                  <PropertyDetailGuestContainer role = {this.state.role} {...props} handleChanged={this.handleChanged} />
+                )}
+              />
+              ): 
+              role == 1 ? 
+                (
+                <Route
+                exact
+                path="/propertydetail/:property_id"
+                render={props => (
+                  <PropertyDetailAgentContainer role = {this.state.role} {...props} handleChanged={this.handleChanged} />
+                )}
+              />
+              ):
+                (
+                <Route
+                exact
+                path="/propertydetail/:property_id"
+                render={props => (
+                  <PropertyDetailBuyerContainer role = {this.state.role} {...props} handleChanged={this.handleChanged} />
+                )}
+              />
               )}
-            />
-            <Route
-              exact
-              path="/propertydetail/:property_id"
-              render={props => (
-                <PropertyDetailContainer role = {this.state.role} {...props} handleChanged={this.handleChanged} />
-              )}
-            />
-                   
+
+
+            </div>       
           </div>
-          </Container>
+        
       </BrowserRouter>
       </React.Fragment>
     );

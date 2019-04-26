@@ -24,8 +24,8 @@ class Map extends Component {
                 ]
             });
             // add layer
-            this.layer = leaflet.layerGroup().addTo(this.map);
-            var marker = leaflet.marker([lat, lon]).addTo(this.map); 
+            this.layer = L.layerGroup().addTo(this.map);
+            L.marker([lat, lon]).addTo(this.map); 
         }else{
             //Create dummy
             this.map = leaflet.map('map', {
@@ -41,8 +41,8 @@ class Map extends Component {
                 ]
             });
             // add layer
-            this.layer = leaflet.layerGroup().addTo(this.map);
-            var marker = leaflet.marker([22, 22]).addTo(this.map); 
+            this.layer = L.layerGroup().addTo(this.map);
+            L.marker([22, 22]).addTo(this.map); 
         }
     }
 

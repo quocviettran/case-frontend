@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
-import {Form,Select, Header} from 'semantic-ui-react';
+import {Form,Select, Header, Container} from 'semantic-ui-react';
 import axios from 'axios';
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -12,6 +11,7 @@ class Register extends Component{
                 username:undefined,
                 firstname: undefined,
                 surname:undefined,
+                username:undefined,
                 password: undefined,
                 email:undefined,
                 phone:undefined,
@@ -66,6 +66,8 @@ class Register extends Component{
     }
 
      registerUser = (e) =>{
+         e.preventDefault();
+         
          if(this.state.terms === true){
             const user = JSON.stringify({
                 username: this.state.username,
@@ -74,6 +76,7 @@ class Register extends Component{
                 phone : this.state.phone,
                 email: this.state.email,
                 dateOfBirth: this.state.year+'-'+this.state.month+'-'+this.state.day,
+                username: this.state.username,
                 password: this.state.password,
                 accountTypeId: this.state.role
             })
@@ -89,7 +92,7 @@ class Register extends Component{
             );
             alert("Succesfully created user"); 
             this.props.history.push('/');
-            
+                
          }else{
             alert("Terms and Conditions is not checked");
          }
@@ -162,10 +165,10 @@ class Register extends Component{
 
         return(
             <React.Fragment>
+                <Container>
                 <Form>
                     <Header id="checkoutText" as='h2' color='teal'>Register your account</Header>
                     <Form.Field>
-
                         <Form.Input fluid label="Username" placeholder="Username" name="username" onChange={this.handleChange} />
                         <Form.Input fluid label="Password" placeholder="Password" name="password" onChange={this.handleChange} />
                         <Form.Input fluid label="Firstname" placeholder="Firstname" name="firstname" onChange={this.handleChange} />
@@ -180,7 +183,8 @@ class Register extends Component{
                     </Form.Field>                   
                     <Form.Checkbox label= 'I agree to the Terms and Conditions' onChange={this.handleCheckTerms}/>
                     <Form.Button onClick={this.registerUser}>Create account</Form.Button>
-                </Form>    
+                </Form>  
+                </Container>  
             </React.Fragment> 
         )}    
 }

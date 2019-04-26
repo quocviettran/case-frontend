@@ -3,7 +3,7 @@ import {Container, Segment, Form, Button} from 'semantic-ui-react';
 import axios from 'axios';
 
 const endpoint = 'https://properties-db.herokuapp.com/api/account/'
-const userid = 1;
+const userid = sessionStorage.getItem("id");
 class UserPage extends Component{
     constructor(props){
         super(props)
@@ -15,6 +15,7 @@ class UserPage extends Component{
             dateOfBirth:"",
             role:"",
             id:undefined,
+            username:undefined,
             password:undefined,
             created_at:undefined,
             new_firstname:undefined,
@@ -25,12 +26,18 @@ class UserPage extends Component{
         }
     }
 
-    componentWillMount(){
+    componentDidMount(){
         this.getUsers();
     }
 
     getUsers = () => {
-        axios.get(endpoint+userid)
+        axios.get(endpoint+userid,{
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                 "Authorization": "Bearer " + sessionStorage.getItem("token")
+            }
+        })
         .then(res => this.setState({
             firstname: res.data.name,
             surname: res.data.surname,
@@ -39,9 +46,10 @@ class UserPage extends Component{
             dateOfBirth: res.data.dateOfBirth,
             role: res.data.accountType.name,
             id: res.data.id,
+            username:res.data.username,
             password: res.data.password,
             created_at: res.data.created_at
-        },console.log(res.data)))   
+        }))
     }
     
     handleOnChange=(e)=>{
@@ -62,17 +70,18 @@ class UserPage extends Component{
     handleEditChange = (e) => {
         e.preventDefault();
         const editedUser ={
-            id: this.state.id,
+            id: Number(userid) ,
             name: this.state.firstname,
             surname: this.state.surname,
             phone: this.state.phone,
             email: this.state.email,
             dateOfBirth: this.state.dateOfBirth,
             active: true,
+            username:this.state.username,
             password: this.state.password,
             created_at: this.state.created_at,
-            accountTypeId: this.state.role === 'agent' ? 1 : 2,
-            accountType: this.state.role === 'agent' ? {account_type_id: 1, name: 'agent'} : {account_type_id: 2, name: 'buyer'}
+            accountTypeId: this.state.role=== 'ROLE_AGENT' ? 1 : 2,
+            accountType: this.state.role === 'ROLE_AGENT' ? {accountTypeId: 1, name: 'ROLE_AGENT'} : {accountTypeId: 2, name: 'ROLE_BUYER'}
             
         }
         
@@ -86,15 +95,16 @@ class UserPage extends Component{
             JSON.stringify(editedUser),
             {
                 headers:{
-                    'Content-Type':'application/json'
+                    'Content-Type':'application/json',
+                    'Authorization': 'Bearer ' + sessionStorage.getItem('token')
                 }
             })
             .then(console.log(editedUser))
-
+        alert('User info was updated')
         this.setState({
             status: !this.state.status
         })
-        
+        this.props.history.push("/")
     }
 
 

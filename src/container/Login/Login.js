@@ -1,131 +1,4 @@
 import React, {Component} from 'react';
-<<<<<<< HEAD
-import {Form} from 'semantic-ui-react';
-import { Button, Grid, Header, Segment} from 'semantic-ui-react';
-import './Login.css';
-import { Link } from "react-router-dom";
-import validate from './LoginRules';
-import EmailInput from './EmailInput';
-import PasswordInput from './PasswordInput';
-
-
-
-const agent = { username: "Mike", password: "123", role:1 }
-const user = { username: "Quoc", password: "123", role:2 }
-
-class Login extends Component{
- 
-
-    constructor(props){
-        super(props);
-        this.state = {
-      
-          data: [],
-      
-          formIsValid: false,
-          role: 0,
-          
-          formControls: {
-
-            email: {
-              value: '',
-              valid: false,
-              touched: false,
-              validationRules: {
-                minLength: 3,
-                isRequired: true 
-              }
-            },
-
-            password: {
-              value: '',
-              valid: false,
-              touched: false,
-              validationRules: {
-                minLength: 3,
-                isRequired: true 
-              }
-          }
-        }
-      }
-    }
-    
-  
-    submitFormHandler  = event => {
-      const name = event.target.name;
-      const value = event.target.value;
-
-      const updatedControls = {
-        ...this.state.formControls
-      };
-
-      const updatedFormElement = {
-        ...updatedControls[name]
-      };
-
-      updatedFormElement.value = value;
-      updatedFormElement.touched = true;
-      updatedFormElement.valid = validate(value, updatedFormElement.validationRules);
-
-
-      updatedControls[name] = updatedFormElement;
-
-      let formIsValid = true;
-      for (let inputIdentifier in updatedControls) {
-        formIsValid = updatedControls[inputIdentifier].valid && formIsValid;
-      }
-
-      this.setState({
-        formControls: updatedControls,
-        formIsValid: formIsValid
-        
-      });
-
-      if (name === "email"){
-       localStorage.setItem('email', value);
-      }
-
-      else if (name === "password"){
-        localStorage.setItem('password', value);
-      }
-    }
-
-    formSubmitHandler = () => {
-
-      if (localStorage.getItem('email') === agent.username && 
-          localStorage.getItem('password') === agent.password) {
-            
-        this.setState({
-          role: 1
-        });  
-        this.props.handler(agent.role);
-      }
-
-
-      else if (localStorage.getItem('email') === user.username && 
-               localStorage.getItem('password') === user.password) {
-        this.setState({
-          role: 2
-        });
-        this.props.handler(user.role);
-      }
-
-      else {
-        console.dir(this.state.role)
-      }
-
-    }
-
-    handleOnChange = (e) => {
-      const name = e.target.name
-      const value = e.target.value
-
-      this.setState({
-        [name]:value
-      })
-    }
-    
-=======
 import {Link} from 'react-router-dom';
 import { Button, Grid, Header, Segment, Form, Message } from 'semantic-ui-react';
 
@@ -146,7 +19,6 @@ class Login extends Component{
       this.forceUpdate();
     }
 
->>>>>>> 25dbc0d3a81cfcf7106c96b59e196eed8c86a4ee
     onSubmitSignIn = e => {
       e.preventDefault();
       fetch('https://properties-db.herokuapp.com/api/auth/signin', {
@@ -186,26 +58,6 @@ class Login extends Component{
   }
 
 
-<<<<<<< HEAD
-  login(){
-    fetch("https://properties-db.herokuapp.com/api/auth/signin",
-      {
-        method:'post',
-        headers: {'Content-Type': 'application/json'},
-        body:{
-          "usernameOrEmail:":this.state.formControls.email.value,
-          "password" : this.state.formControls.password.value
-      }
-    })
-    .then(response => console.log(response))
-  }
-
-    changeRole = () =>{
-      this.setProps(this.props.role=1)
-    }
-    
-=======
->>>>>>> 25dbc0d3a81cfcf7106c96b59e196eed8c86a4ee
     render(){
 
           const test = (
@@ -248,32 +100,6 @@ class Login extends Component{
                   </Header>
                   <Form size='large' onSubmit={this.onSubmitSignIn}>
                     <Segment stacked>
-<<<<<<< HEAD
-
-                        <EmailInput 
-                           name = "email"
-                           value={this.state.formControls.email.value} 
-                           onChange={this.submitFormHandler}
-                           touched={this.state.formControls.email.touched}
-                           valid={this.state.formControls.email.valid}
-                        />
-
-                        <PasswordInput 
-                           name = "password"
-                           value={this.state.formControls.password.value} 
-                           onChange={this.submitFormHandler}
-                           touched={this.state.formControls.password.touched}
-                           valid={this.state.formControls.password.valid}
-                        />
-
-
-                      <Button 
-                        color='teal' 
-                        fluid size='large' 
-                        onClick = {this.login}
-                        disabled={!this.state.formIsValid}
-                        >
-=======
                       <Form.Input
                         fluid icon='user'
                         iconPosition='left'
@@ -295,7 +121,6 @@ class Login extends Component{
                         this.setState({password: event.target.value})}
                       />
                       <Button color='teal' fluid size='large' onClick={this.onSubmitSignIn}>
->>>>>>> 25dbc0d3a81cfcf7106c96b59e196eed8c86a4ee
                         Login
                       </Button>
                     </Segment>

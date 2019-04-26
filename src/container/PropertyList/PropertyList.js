@@ -32,13 +32,6 @@ class PropertyList extends React.Component {
         
         return (
           <React.Fragment>
-<<<<<<< HEAD
-                <List>
-                    <Card.Group centered>
-                        {cards}
-                    </Card.Group>
-                </List>
-=======
             <Container id="propertycontainer">
                 <List>
                     <Card.Group>
@@ -46,7 +39,6 @@ class PropertyList extends React.Component {
                     </Card.Group>
                 </List>
             </Container>
->>>>>>> 25dbc0d3a81cfcf7106c96b59e196eed8c86a4ee
           </React.Fragment>
         );
       }

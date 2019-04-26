@@ -1,9 +1,5 @@
 import React from 'react';
-<<<<<<< HEAD
 import {Input} from 'semantic-ui-react';
-=======
-import {Input, Form} from 'semantic-ui-react';
->>>>>>> 25dbc0d3a81cfcf7106c96b59e196eed8c86a4ee
 
 const PasswordInput = props => {
 

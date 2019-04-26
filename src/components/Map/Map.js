@@ -11,11 +11,11 @@ class Map extends Component {
         let lat = parseFloat(this.props.latitude)
         let lon = parseFloat(this.props.longitude)
         if(this.props.longitude !== undefined){
-            this.map = leaflet.map('map', {
+            this.map = L.map('map', {
                 center: [lat, lon],
                 zoom: 10,
                 layers: [
-                    leaflet.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+                    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
                         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
                         maxZoom: 20,
                         id: 'mapbox.streets',
@@ -28,11 +28,11 @@ class Map extends Component {
             L.marker([lat, lon]).addTo(this.map); 
         }else{
             //Create dummy
-            this.map = leaflet.map('map', {
+            this.map = L.map('map', {
                 center: [22, 22],
                 zoom: 10,
                 layers: [
-                    leaflet.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+                    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
                         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
                         maxZoom: 20,
                         id: 'mapbox.streets',

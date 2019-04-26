@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import leaflet from 'leaflet'; 
+import L from 'leaflet'; 
 import './Map.css'
 class Map extends Component {
 

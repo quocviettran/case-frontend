@@ -1,18 +1,25 @@
-import React from 'react';
-import L from 'leaflet';  
-
-class Map extends React.Component {
+import React,{Component} from 'react';
+import L from 'leaflet'; 
+import './Map.css'
+class Map extends Component {
 
     componentDidMount() {
+        this.initMap();
+    }
+
+    initMap(){
         let lat = parseFloat(this.props.latitude)
         let lon = parseFloat(this.props.longitude)
         if(this.props.longitude !== undefined){
             this.map = L.map('map', {
                 center: [lat, lon],
-                zoom: 12,
+                zoom: 10,
                 layers: [
-                    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+                        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+                        maxZoom: 20,
+                        id: 'mapbox.streets',
+                        accessToken: 'pk.eyJ1IjoiYmFydGVrNzA4IiwiYSI6ImNqdHBrcGRyMzA1NjQ0ZHIwbHJsNnZvcm8ifQ.RjE2NlmMcunebCNLBiPlug'
                     }),
                 ]
             });
@@ -23,10 +30,13 @@ class Map extends React.Component {
             //Create dummy
             this.map = L.map('map', {
                 center: [22, 22],
-                zoom: 12,
+                zoom: 10,
                 layers: [
-                    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-                        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+                    L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+                        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
+                        maxZoom: 20,
+                        id: 'mapbox.streets',
+                        accessToken: 'pk.eyJ1IjoiYmFydGVrNzA4IiwiYSI6ImNqdHBrcGRyMzA1NjQ0ZHIwbHJsNnZvcm8ifQ.RjE2NlmMcunebCNLBiPlug'
                     }),
                 ]
             });
@@ -35,9 +45,11 @@ class Map extends React.Component {
             L.marker([22, 22]).addTo(this.map); 
         }
     }
+
     render() {
-        return <div id="map" style={{height:"600px"}}></div>
+        return <div id="map"></div>
     }
 }
 
 export default Map;
+

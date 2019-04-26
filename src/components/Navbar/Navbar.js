@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import {Menu} from 'semantic-ui-react';
 import "./Navbar.css";
 
+
 class Navbar extends Component{
   constructor(props){
     super(props)
@@ -20,11 +21,12 @@ class Navbar extends Component{
 
   handleLogOut = () => {
     sessionStorage.clear();
+    console.log(sessionStorage)
     this.props.history.push("/");
   }
 
     handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-  
+    
     render() {
       const { activeItem } = this.state;
 
@@ -83,7 +85,7 @@ class Navbar extends Component{
           name='Log Out'
           position = 'right'
           active={activeItem === 'Log out'}
-          onClick={this.handleLogOut}>
+          onClick={this.props.handleLogOut}>
         </Menu.Item>
 
     </Menu>
@@ -115,7 +117,7 @@ class Navbar extends Component{
           to='/LogIn'
           name='Log Out'
           active={activeItem === 'Log out'}
-          onClick={this.handleLogOut}>
+          onClick={this.props.handleLogOut}>
         </Menu.Item>
         
       </Menu>

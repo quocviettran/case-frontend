@@ -70,6 +70,7 @@ class Register extends Component{
          
          if(this.state.terms === true){
             const user = JSON.stringify({
+                username: this.state.username,
                 name: this.state.firstname,
                 surname: this.state.surname,
                 phone : this.state.phone,
@@ -94,7 +95,6 @@ class Register extends Component{
                 
          }else{
             alert("Terms and Conditions is not checked");
-
          }
         
     }

@@ -13,6 +13,7 @@ import PropertyDetailGuestContainer from "./container/PropertyDetailGuestContain
 import PropertyList from '../src/container/PropertyList/PropertyList';
 
 
+
 /*const User = Authorization(['user', 'guest', '1'])
 const Agent = Authorization(['user', 'agent', 'guest', '2'])*/
 
@@ -32,6 +33,11 @@ class App extends Component {
       role: roletypeid
     })
     this.forceUpdate()
+  }
+
+  handleLogOut = () => {
+    this.setState({role: undefined})
+    
   }
 
   componentDidUpdate(){

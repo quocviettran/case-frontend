@@ -1,7 +1,7 @@
 
 import React, { Component } from "react";
 import "./App.css";
-import { BrowserRouter, Route, Link } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import LandingPage from "./container/LandingPage/LandingPage";
 import Register from "./container/Register/Register";
@@ -66,7 +66,7 @@ class App extends Component {
             />
             <Route
               exact
-              path="/signIn"
+              path="/LogIn"
               render={props => (
                 <Login {...props} handler={this.handler} handleChanged={this.handleChanged} />
               )}

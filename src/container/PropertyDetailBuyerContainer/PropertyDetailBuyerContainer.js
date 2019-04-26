@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import PropertyDetail from "../../components/PropertyDetailGuest/PropertyDetailGuest";
 import PropertyDetailBuyer from "../../components/PropertyDetailBuyer/PropertyDetailBuyer";
-import PropertyDetailAgent from "../../components/PropertyDetailAgent/PropertyDetailAgent";
-import Map from '../../components/Map/Map';
-import PropertyDetailGuest from "../../components/PropertyDetailGuest/PropertyDetailGuest";
+
 
 
 class PropertyDetailBuyerContainer extends Component {
@@ -40,8 +37,7 @@ class PropertyDetailBuyerContainer extends Component {
         key={this.state.allProperties.property_id}
         property={this.state.allProperties}
         property_name={this.state.allProperties.line_1}    
-        property_type_name={this.state.allProperties.propertyType !== undefined ?
-        this.state.allProperties.propertyType.property_type_name : null}
+        
         city={this.state.allProperties.city}
         municipality={this.state.allProperties.municipality}  
         value={this.state.allProperties.value} 

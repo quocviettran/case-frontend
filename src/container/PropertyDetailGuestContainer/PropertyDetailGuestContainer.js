@@ -1,8 +1,4 @@
 import React, { Component } from "react";
-import PropertyDetail from "../../components/PropertyDetailGuest/PropertyDetailGuest";
-import PropertyDetailBuyer from "../../components/PropertyDetailBuyer/PropertyDetailBuyer";
-import PropertyDetailAgent from "../../components/PropertyDetailAgent/PropertyDetailAgent";
-import Map from '../../components/Map/Map';
 import PropertyDetailGuest from "../../components/PropertyDetailGuest/PropertyDetailGuest";
 
 
@@ -27,7 +23,7 @@ componentDidMount() {
     }) 
 }
 
-propertyDetailRole = () => {
+/*propertyDetailRole = () => {
    
   const buyer = 
     <PropertyDetailBuyer 
@@ -110,6 +106,7 @@ propertyDetailRole = () => {
     *  Map
     * Short address of property
     */
+   /*
   const guest = 
     <PropertyDetail key={this.state.allProperties.property_id}
     property_name={this.state.allProperties.property_name}
@@ -138,10 +135,10 @@ propertyDetailRole = () => {
     else{
       return guest;
     }
-}
+}*/
 
   render() {
-    const propertyDetail = this.propertyDetailRole();
+    //const propertyDetail = this.propertyDetailRole();
     return (
       <React.Fragment>
         <PropertyDetailGuest 

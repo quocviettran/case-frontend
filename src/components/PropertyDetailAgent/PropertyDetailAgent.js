@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import L from 'leaflet';
-import { Grid, Header, Image, Button, Transition, Divider,List } from "semantic-ui-react";
+import { Grid, Header, Image, Button, Transition, List } from "semantic-ui-react";
 import Map from '../Map/Map';
 
 export default class propertyDetailAgent extends Component {

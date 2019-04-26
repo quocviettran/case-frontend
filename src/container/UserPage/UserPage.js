@@ -3,7 +3,7 @@ import {Container, Segment, Form, Button} from 'semantic-ui-react';
 import axios from 'axios';
 
 const endpoint = 'https://properties-db.herokuapp.com/api/account/'
-const userid = sessionStorage.getItem("role");
+const userid = sessionStorage.getItem("id");
 class UserPage extends Component{
     constructor(props){
         super(props)
@@ -26,7 +26,7 @@ class UserPage extends Component{
         }
     }
 
-    componentWillMount(){
+    componentDidMount(){
         this.getUsers();
     }
 
@@ -49,7 +49,7 @@ class UserPage extends Component{
             username:res.data.username,
             password: res.data.password,
             created_at: res.data.created_at
-        },console.log(res.data)))
+        }))
     }
     
     handleOnChange=(e)=>{
@@ -95,15 +95,16 @@ class UserPage extends Component{
             JSON.stringify(editedUser),
             {
                 headers:{
-                    'Content-Type':'application/json'
+                    'Content-Type':'application/json',
+                    'Authorization': 'Bearer ' + sessionStorage.getItem('token')
                 }
             })
             .then(console.log(editedUser))
-
+        alert('User info was updated')
         this.setState({
             status: !this.state.status
         })
-        
+        this.props.history.push("/")
     }
 
 

@@ -14,7 +14,10 @@ class Login extends Component{
         data: []
     }
 }
-
+    handleGuest=()=>{
+      sessionStorage.setItem('role',0);
+      this.forceUpdate();
+    }
 
     onSubmitSignIn = e => {
       e.preventDefault();
@@ -45,15 +48,9 @@ class Login extends Component{
           
           this.setState({role: data.account.roletypeid, data});
           this.props.handler(sessionStorage.getItem("role"));
-          if(data.account.roletypeid === 1) {
-            this.props.history.replace('/propertylist');
-          }
-          else if(data.account.roletypeid === 2) {
-              this.props.history.replace('/propertylist');
-          }
-          else{
-            this.props.history.replace('/');
-          }
+          this.props.history.push('/propertylist');
+          console.log(this.props)
+          
       })
       .catch(err => {
           console.log(err);
@@ -82,7 +79,7 @@ class Login extends Component{
                         as={Link}
                         to="/propertylist"
                         name="Proplist" 
-                        onClick = {this.props.handler}
+                        onClick = {this.handleGuest}
                         >
                         Guest
                       </Button>

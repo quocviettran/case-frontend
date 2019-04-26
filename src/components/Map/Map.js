@@ -18,7 +18,7 @@ class Map extends React.Component {
             });
             // add layer
             this.layer = L.layerGroup().addTo(this.map);
-            var marker = L.marker([lat, lon]).addTo(this.map); 
+            L.marker([lat, lon]).addTo(this.map); 
         }else{
             //Create dummy
             this.map = L.map('map', {
@@ -32,7 +32,7 @@ class Map extends React.Component {
             });
             // add layer
             this.layer = L.layerGroup().addTo(this.map);
-            var marker = L.marker([22, 22]).addTo(this.map); 
+            L.marker([22, 22]).addTo(this.map); 
         }
     }
     render() {

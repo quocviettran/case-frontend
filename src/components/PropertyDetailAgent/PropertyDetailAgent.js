@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Grid, Header, Image, Button, Transition, List } from "semantic-ui-react";
 import Map from '../Map/Map';
+var QRCode = require('qrcode.react');
 
 export default class propertyDetailAgent extends Component {
   
@@ -104,9 +105,7 @@ export default class propertyDetailAgent extends Component {
                   <h3>{this.props.property.city}, {this.props.property.municipality}</h3>
                   <h2>{this.props.property.zip}</h2>
                 </div>
-                  <h3 style={{'padding-top':'2%'}}>
-                    On this site, you'll find information about the property
-                  </h3>
+                
               </Header>
             </Grid.Row>
           </Grid>
@@ -124,6 +123,7 @@ export default class propertyDetailAgent extends Component {
                               {this.props.property.zip},
                               {this.props.municipality}
                           </p>
+                          
 
                         <h4>CITY</h4>
                           <p>
@@ -177,7 +177,8 @@ export default class propertyDetailAgent extends Component {
 
                             {ownerInfo}
 
-                         
+                            <QRCode value="http://facebook.github.io/react/" />
+
                           </Header>
                         </Grid.Column>
                      

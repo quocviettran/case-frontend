@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Grid, Header, Image, Button, Transition, List } from "semantic-ui-react";
-import Map from '../Map/Map'
-import './PropertyDetailBuyer.css'
+import Map from '../Map/Map';
+import './PropertyDetailBuyer.css';
+var QRCode = require('qrcode.react');
+
 
 export default class propertyDetailBuyer extends Component {
   
@@ -138,6 +140,8 @@ export default class propertyDetailBuyer extends Component {
                             </Header>
                         </Grid.Column>
                         <Grid.Column style={{textAlign:'center'}}>
+                          <QRCode value="http://facebook.github.io/react/" />
+
                           
                         </Grid.Column>
                      

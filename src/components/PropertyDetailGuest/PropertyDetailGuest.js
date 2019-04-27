@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import "./PropertyDetailGuest.css";
 import { Grid, Header, Image, Button, Transition, List, Container } from "semantic-ui-react";
 import Map from '../Map/Map';
+var QRCode = require('qrcode.react');
+
 
 export default class propertyDetailGuest extends Component {
   
@@ -47,13 +49,20 @@ export default class propertyDetailGuest extends Component {
           />
           <Grid id="headerGrid" stackable textAlign="center">
             <Grid.Row style={{'padding-bottom': '0px'}}>
-              <Header className="item centered" id="headerInfo">
+              <Header className="item centered" id="headerInfo" style={{textAlign:'center'}}>
                 <div style={{float: 'left', 'padding-left':'20%'}}>
                   <h1 style={{color: 'white'}}>{this.props.property_name}</h1>
+                  <br></br>
+                  <br></br>
                   <dt>PROPERTY TYPE</dt>
                   <h3 style={{margin:'0%'}}> {this.props.property_type_name}</h3>
                 </div>
                 <h2>{this.props.city}</h2>
+                <div style={{'padding-bottom':'2.5%', width:'90%'}}>
+                   <QRCode value="http://facebook.github.io/react/" />
+                </div>
+                
+
               </Header>
             </Grid.Row>
           </Grid>
@@ -62,6 +71,7 @@ export default class propertyDetailGuest extends Component {
           
             <Grid.Row style={{padding: '0px'}}>
               <div style={{height: '500px',
+                           
                            width: '100%'}}>
 
                 <Map latitude={this.props.latitude} longitude={this.props.longitude}/>  

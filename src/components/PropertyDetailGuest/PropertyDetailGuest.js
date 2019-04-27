@@ -50,7 +50,8 @@ export default class propertyDetailGuest extends Component {
               <Header className="item centered" id="headerInfo">
                 <div style={{float: 'left', 'padding-left':'20%'}}>
                   <h1 style={{color: 'white'}}>{this.props.property_name}</h1>
-                  <h2>Property type: {this.props.property_type_name}</h2>
+                  <dt>PROPERTY TYPE</dt>
+                  <h3 style={{margin:'0%'}}> {this.props.property_type_name}</h3>
                 </div>
                 <h2>{this.props.city}</h2>
               </Header>

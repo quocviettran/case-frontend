@@ -4,11 +4,12 @@ import Map from '../Map/Map';
 
 export default class propertyDetailAgent extends Component {
   
-  state = { visible: true, visibleEier: true, visibleEierInfo: true};
+  state = { visible: true, visibleEier: true, visibleEierInfo: true, visibleValuation: true};
 
   toggleVisibility = () => this.setState({ visible: !this.state.visible });
   toggleVisibilityEier = () => this.setState({ visibleEier: !this.state.visibleEier });
   toggleVisibilityEierInfo = () => this.setState({ visibleEierInfo: !this.state.visibleEierInfo });
+  toggleVisibilityValuation = () => this.setState({visibleValuation: !this.state.visibleValuation})
 
   historyOfOwner=()=>{
     let listOfOwners=[];
@@ -26,10 +27,10 @@ export default class propertyDetailAgent extends Component {
       for(let i =0; i<this.props.ownershipLogs.length; i++){
         ownerInfo[i]= 
         <List key={i}>
-          <List.Item>Name: {this.props.ownershipLogs[i].propertyOwner.owner_name} {this.props.ownershipLogs[i].propertyOwner.surname}</List.Item>
-          <List.Item>Phone: {this.props.ownershipLogs[i].propertyOwner.phone}</List.Item>
-          <List.Item>E-mail: {this.props.ownershipLogs[i].propertyOwner.email}</List.Item>
-          <List.Item>Owner type: {this.props.ownershipLogs[i].propertyOwner.ownerType.owner_type_name}</List.Item>
+          <h4>CURRENT OWNER</h4> <p>{this.props.ownershipLogs[i].propertyOwner.owner_name} {this.props.ownershipLogs[i].propertyOwner.surname}</p>
+          <h4>PHONE</h4> <p>{this.props.ownershipLogs[i].propertyOwner.phone}</p>
+          <h4>E-Mail</h4> <p>{this.props.ownershipLogs[i].propertyOwner.email}</p>
+          <h4>OWNER TYPE</h4> <p>{this.props.ownershipLogs[i].propertyOwner.ownerType.owner_type_name}</p>
         </List>
       }
     }  
@@ -81,6 +82,7 @@ export default class propertyDetailAgent extends Component {
 
   render() {
     const { visible } = this.state;
+    const { visibleValuation } = this.state;
     const imageList = this.images();
     const imageShowcase = this.imageShowcase();
     const renovationList = this.renovationHistory();
@@ -97,40 +99,117 @@ export default class propertyDetailAgent extends Component {
           <Grid id="headerGrid" stackable textAlign="center">
             <Grid.Row>
               <Header className="item centered" id="headerInfo">
-                <h1>{this.props.property_name}</h1>
-                <h4>{this.props.property.city}, {this.props.property.municipality}</h4>
-                <h5>
-                  On this site, you'll find information about the property
-                </h5>
+                <div style={{float:'left', 'padding-left':'15%'}}>
+                  <h1 style={{color:'white'}}>{this.props.property_name}</h1>
+                  <h3>{this.props.property.city}, {this.props.property.municipality}</h3>
+                  <h2>{this.props.property.zip}</h2>
+                </div>
+                  <h3 style={{'padding-top':'2%'}}>
+                    On this site, you'll find information about the property
+                  </h3>
               </Header>
             </Grid.Row>
           </Grid>
+
           <Grid id="detailGrid" stackable textAlign="center">
             <Grid.Row columns={2}>
+
               <Grid.Column id="detailColumn">
-                <Header id="maindetail">
-                  <h4>Address: {this.props.property_name}, {this.props.property.zip} {this.props.municipality} </h4>
-                  <h4>City: {this.props.city}</h4>
-                  <h4>Property type: {this.props.property_type_name}</h4>
-                  <h4>Built: {this.props.property.built_at}</h4>
-                  <h4>Area: {this.props.property.area}</h4>
-                  <h4>Floor: {this.props.property.floor}</h4>
-                  <h4>Room: {this.props.property.rooms}</h4>
-                  <h4>Status: {this.props.property_status_name}</h4>
-                  <h4>Value: {this.props.value} kr</h4>
-                  {renovationList}
-                  <h4>Owner: {ownerList}</h4>
-                  {ownerInfo}
+                <Grid rows={2} stackable textAlign="center">
+                  <Grid.Row columns={2} style={{'padding-left':'10%'}}>
+                    <Grid.Column style={{textAlign:'center'}}>
+                     <Header id="maindetail">
+                        <h4>ADDRESS</h4>
+                          <p>{this.props.property_name}, 
+                              {this.props.property.zip},
+                              {this.props.municipality}
+                          </p>
+
+                        <h4>CITY</h4>
+                          <p>
+                            {this.props.city}
+                          </p>
+
+                        <h4>PROPERTY TYPE</h4>
+                          <p>
+                            {this.props.property_type_name}
+                          </p>
+
+
+                        <h4>BUILT</h4>
+                          <p> 
+                              {this.props.property.built_at}
+                          </p>
+
+                        <h4>AREA</h4> 
+                            <p>
+                                {this.props.property.area}m
+                            </p>
+
+                        <h4>FLOOR</h4>
+                            <p>
+                                {this.props.property.floor}
+                            </p>
+
+
+                        <h4>ROOM</h4>
+                            <p>
+                              {this.props.property.rooms}
+                            </p>
+
+                        <h4>STATUS</h4> 
+                            <p>
+                                {this.props.property_status_name}
+                            </p>
+
+                        <h4>VALUE</h4> 
+                            <p>
+                                {this.props.value} kr
+                            </p>
+                            </Header>
+                        </Grid.Column>
+                        <Grid.Column style={{textAlign:'center'}}>
+                          <Header id="maindetail">
+                            <h4>OWNERS</h4> 
+                              <p>
+                                {ownerList}
+                              </p>
+
+                            {ownerInfo}
+
+                         
+                          </Header>
+                        </Grid.Column>
+                     
                 
-                </Header>
+                  
+                </Grid.Row>
+                <Grid.Row>
+
+                  <Transition visibleValuation={!visibleValuation} animation="scale" duration={200}>
+                    <div id="fullInfoText">
+                      {renovationList}
+                    </div>
+                  </Transition>
+                  <Button
+                    content={visibleValuation ? "Renovations" : "Hide"}
+                    onClick={this.toggleVisibilityValuation}
+                    className="ui blue button"
+                    color="blue"
+                  />
+                   
+                </Grid.Row>
+              </Grid>
+
               </Grid.Column>
               <Grid.Column id="visningColumn">
+
                 {/* <Map latitude={this.props.latitude} longitude={this.props.longitude}/> */}
                 <Map latitude={this.props.latitude} longitude={this.props.longitude}/>
 
               </Grid.Column>
             </Grid.Row>
-            <h2 id="infoomeiendomText">Images</h2>
+            <h3 id="infoomeiendomText" style={{color:'white'}}>IMAGES</h3>
             <Grid.Row>
               <Transition visible={!visible} animation="scale" duration={200}>
                 <div id="fullInfoText">

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./PropertyDetailGuest.css";
-import { Grid, Header, Image, Button, Transition, List } from "semantic-ui-react";
+import { Grid, Header, Image, Button, Transition, List, Container } from "semantic-ui-react";
 import Map from '../Map/Map';
 
 export default class propertyDetailGuest extends Component {
@@ -46,41 +46,47 @@ export default class propertyDetailGuest extends Component {
             src={imageList !== null ? imageList[0] : null}
           />
           <Grid id="headerGrid" stackable textAlign="center">
-            <Grid.Row>
+            <Grid.Row style={{'padding-bottom': '0px'}}>
               <Header className="item centered" id="headerInfo">
-                <h1>{this.props.property_name}</h1>
-                <h5>
-                  Information about the property
-                </h5>
+                <div style={{float: 'left', 'padding-left':'20%'}}>
+                  <h1 style={{color: 'white'}}>{this.props.property_name}</h1>
+                  <h2>Property type: {this.props.property_type_name}</h2>
+                </div>
+                <h2>{this.props.city}</h2>
               </Header>
             </Grid.Row>
           </Grid>
+
           <Grid id="detailGrid" stackable textAlign="center">
-            <Grid.Row columns={2}>
-              <Grid.Column id="detailColumn">
-                <Header id="maindetail" >
-                  <h2>Address: {this.props.property.property_name}</h2>
-                  <h2>Property type: {this.props.property_type_name}</h2>
-                </Header>
-              </Grid.Column>
-              <Grid.Column id="visningColumn">
-                <Map latitude={this.props.latitude} longitude={this.props.longitude}/>
-              </Grid.Column>
+          
+            <Grid.Row style={{padding: '0px'}}>
+              <div style={{height: '500px',
+                           width: '100%'}}>
+
+                <Map latitude={this.props.latitude} longitude={this.props.longitude}/>  
+
+              </div>
+
             </Grid.Row>
             <Grid.Row>
+             
               <Transition visible={!visible} animation="scale" duration={200}>
                 <div>
                  {imageShowcase}
                 </div>
               </Transition>
+
               <Button
-                content={visible ? "Alle bilder" : "Lukk"}
+                content={visible ? "All images" : "close"}
                 onClick={this.toggleVisibility}
                 className="ui blue button"
                 color="blue"
               />
+
             </Grid.Row>
           </Grid>
+
+
         </div>
       </React.Fragment>
     );

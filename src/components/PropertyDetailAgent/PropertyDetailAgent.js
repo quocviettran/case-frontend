@@ -10,7 +10,7 @@ export default class propertyDetailAgent extends Component {
   toggleVisibility = () => this.setState({ visible: !this.state.visible });
   toggleVisibilityEier = () => this.setState({ visibleEier: !this.state.visibleEier });
   toggleVisibilityEierInfo = () => this.setState({ visibleEierInfo: !this.state.visibleEierInfo });
-  toggleVisibilityValuation = () => this.setState({visibleValuation: !this.state.visibleValuation})
+  toggleVisibilityValuation = () => this.setState({visibleValuation: !this.state.visibleValuation })
 
   historyOfOwner=()=>{
     let listOfOwners=[];
@@ -22,20 +22,36 @@ export default class propertyDetailAgent extends Component {
     return listOfOwners;
   }
 
+  
+
   ownerInfo =()=>{
     let ownerInfo=[];
     if(this.props.ownershipLogs != null){
       for(let i =0; i<this.props.ownershipLogs.length; i++){
         ownerInfo[i]= 
         <List key={i}>
-          <h4>CURRENT OWNER</h4> <p>{this.props.ownershipLogs[i].propertyOwner.owner_name} {this.props.ownershipLogs[i].propertyOwner.surname}</p>
-          <h4>PHONE</h4> <p>{this.props.ownershipLogs[i].propertyOwner.phone}</p>
-          <h4>E-Mail</h4> <p>{this.props.ownershipLogs[i].propertyOwner.email}</p>
-          <h4>OWNER TYPE</h4> <p>{this.props.ownershipLogs[i].propertyOwner.ownerType.owner_type_name}</p>
+          <h4>OWNER</h4> <p>{this.props.ownershipLogs[i].propertyOwner.owner_name} {this.props.ownershipLogs[i].propertyOwner.surname}</p>
+          <h4>PHONE</h4> <p>{this.props.ownershipLogs[i].propertyOwner.phone}</p>         
         </List>
       }
     }  
     return ownerInfo;
+  }
+
+  currentOwner =()=>{
+    let ownerInfo=[];
+    if(this.props.ownershipLogs != null){
+      for(let i =0; i<this.props.ownershipLogs.length; i++){
+        ownerInfo[i]= 
+        <List key={i}>
+          <h4>NAME</h4> <p>{this.props.ownershipLogs[i].propertyOwner.owner_name} {this.props.ownershipLogs[i].propertyOwner.surname}</p>
+          <h4>PHONE</h4> <p>{this.props.ownershipLogs[i].propertyOwner.phone}</p>
+          <h4>E-MAIL</h4> <p>{this.props.ownershipLogs[i].propertyOwner.email}</p>
+          <h4>OWNER TYPE</h4> <p>{this.props.ownershipLogs[i].propertyOwner.ownerType.owner_type_name}</p>
+        </List>
+      }
+    }  
+    return ownerInfo[0];
   }
  
 
@@ -47,9 +63,9 @@ export default class propertyDetailAgent extends Component {
       for(let i =0; i<this.props.renovations.length; i++){
         renovationList[i]= 
         <List key={i}>
-          <List.Item>Renovation: {this.props.renovations[i].description}</List.Item>
-          <List.Item>Start date: {this.props.renovations[i].date_from}</List.Item>
-          <List.Item>End date: {this.props.renovations[i].date_to}</List.Item>
+          <List.Item>RENOVATION: {this.props.renovations[i].description}</List.Item>
+          <List.Item>START DATE: {this.props.renovations[i].date_from}</List.Item>
+          <List.Item>END DATE: {this.props.renovations[i].date_to}</List.Item>
         </List>
       }
     }  
@@ -83,12 +99,14 @@ export default class propertyDetailAgent extends Component {
 
   render() {
     const { visible } = this.state;
+    const { visibleEierInfo } = this.state;
     const { visibleValuation } = this.state;
     const imageList = this.images();
     const imageShowcase = this.imageShowcase();
     const renovationList = this.renovationHistory();
     const ownerList = this.historyOfOwner();
     const ownerInfo = this.ownerInfo();
+    const currentOwner = this.currentOwner();
   
     return (
       <React.Fragment>
@@ -115,7 +133,7 @@ export default class propertyDetailAgent extends Component {
 
               <Grid.Column id="detailColumn">
                 <Grid rows={2} stackable textAlign="center">
-                  <Grid.Row columns={2} style={{'padding-left':'10%'}}>
+                  <Grid.Row columns={2} style={{'padding-left':'1.5%'}}>
                     <Grid.Column style={{textAlign:'center'}}>
                      <Header id="maindetail">
                         <h4>ADDRESS</h4>
@@ -170,34 +188,54 @@ export default class propertyDetailAgent extends Component {
                         </Grid.Column>
                         <Grid.Column style={{textAlign:'center'}}>
                           <Header id="maindetail">
-                            <h4>OWNERS</h4> 
+
+                            <h3>CURRENT OWNER</h3> 
                               <p>
-                                {ownerList}
+                              {currentOwner}
                               </p>
 
-                            {ownerInfo}
-
-                            <QRCode value="http://facebook.github.io/react/" />
 
                           </Header>
+                          <QRCode value="http://facebook.github.io/react/" />
+
                         </Grid.Column>
                      
                 
                   
                 </Grid.Row>
-                <Grid.Row>
 
-                  <Transition visibleValuation={!visibleValuation} animation="scale" duration={200}>
-                    <div id="fullInfoText">
-                      {renovationList}
-                    </div>
-                  </Transition>
-                  <Button
-                    content={visibleValuation ? "Renovations" : "Hide"}
-                    onClick={this.toggleVisibilityValuation}
-                    className="ui blue button"
-                    color="blue"
-                  />
+              
+                <Grid.Row columns={2}>
+                  <Grid.Column>
+                    <Transition visible={!visibleValuation} animation="scale" duration={200}>
+                      <div id="fullInfoText">
+                        {renovationList}
+                      </div>
+                    </Transition>
+                    <Button
+                      style={{}}
+                      content={visibleValuation ? "Renovations" : "Hide"}
+                      onClick={this.toggleVisibilityValuation}
+                      className="ui blue button"
+                      color="blue"
+                    />
+                  </Grid.Column>
+
+                  <Grid.Column>
+
+                    <Transition visible={!visibleEierInfo} animation="drop" duration={200}>
+                      <div id="fullInfoText">
+                        {ownerInfo}
+                      </div>
+                    </Transition>
+                    <Button 
+                      style={{}}
+                      content={visibleEierInfo ? "Owner history" : "Hide"}
+                      onClick={this.toggleVisibilityEierInfo}
+                      className="ui blue button"
+                      color="blue"
+                    />
+                  </Grid.Column>
                    
                 </Grid.Row>
               </Grid>
@@ -214,16 +252,18 @@ export default class propertyDetailAgent extends Component {
             <Grid.Row>
               <Transition visible={!visible} animation="scale" duration={200}>
                 <div id="fullInfoText">
-                 {this.props.valuation_comments}
                  {imageShowcase}
                 </div>
               </Transition>
+
               <Button
                 content={visible ? "Show More" : "Hide"}
                 onClick={this.toggleVisibility}
-                className="ui blue button"
-                color="blue"
+                className="ui green button"
+                color="green"
+                
               />
+              
             </Grid.Row>
           </Grid>
         </div>

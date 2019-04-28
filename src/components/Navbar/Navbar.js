@@ -115,6 +115,7 @@ class Navbar extends Component{
           as={Link} 
           to='/LogIn'
           name='Log Out'
+          position = 'right'
           active={activeItem === 'Log out'}
           onClick={this.handleLogOut}>
         </Menu.Item>

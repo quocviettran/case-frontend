@@ -206,24 +206,6 @@ export default class propertyDetailAgent extends Component {
                 
                   
                 </Grid.Row>
-
-              
-                <Grid.Row>
-             
-                    <Transition visible={!visibleValuation} animation="scale" duration={200}>
-                      <div id="fullInfoText">
-                        {renovationList}
-                      </div>
-                    </Transition>
-                    <Button
-                      style={{}}
-                      content={visibleValuation ? "Renovations" : "Hide"}
-                      onClick={this.toggleVisibilityValuation}
-                      className="ui blue button"
-                      color="blue"
-                    />
-                                  
-                </Grid.Row>
               </Grid>
 
               </Grid.Column>

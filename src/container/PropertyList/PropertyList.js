@@ -33,7 +33,7 @@ class PropertyList extends React.Component {
         return (
           <React.Fragment>
             <Container id="propertycontainer">
-                <List>
+                <List >
                     <Card.Group>
                         {cards}
                     </Card.Group>

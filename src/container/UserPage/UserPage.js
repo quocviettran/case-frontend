@@ -104,7 +104,7 @@ class UserPage extends Component{
         this.setState({
             status: !this.state.status
         })
-        this.props.history.push("/")
+        this.props.history.push("/propertylist")
     }
 
 

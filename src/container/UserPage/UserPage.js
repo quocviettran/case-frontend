@@ -39,6 +39,7 @@ class UserPage extends Component{
             }
         })
         .then(res => this.setState({
+            id: res.data.id,
             firstname: res.data.name,
             surname: res.data.surname,
             phone: res.data.phone,
@@ -70,7 +71,7 @@ class UserPage extends Component{
     handleEditChange = (e) => {
         e.preventDefault();
         const editedUser ={
-            id: Number(this.props.userid) ,
+            id: this.state.id ,
             name: this.state.firstname,
             surname: this.state.surname,
             phone: this.state.phone,

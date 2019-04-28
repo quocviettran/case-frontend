@@ -121,7 +121,7 @@ class Login extends Component{
                         this.setState({password: event.target.value})}
                       />
                       <Button color='teal' fluid size='large'   onClick={this.onSubmitSignIn}>
-                        <Link  to='/propertylist'> Login </Link>
+                        Login 
                       </Button>
                     </Segment>
                     <p>{this.state.message}</p>

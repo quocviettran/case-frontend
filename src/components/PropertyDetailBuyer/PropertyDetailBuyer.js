@@ -1,7 +1,9 @@
 import React, { Component } from "react";
+import styled from 'styled-components';
 import { Grid, Header, Image, Button, Transition, List } from "semantic-ui-react";
 import Map from '../Map/Map';
 var QRCode = require('qrcode.react');
+
 
 export default class propertyDetailAgent extends Component {
   
@@ -119,13 +121,29 @@ export default class propertyDetailAgent extends Component {
     const currentRenovation = this.currentRenovation();
     const currentOwner = this.currentOwner();
   
+
+    const Content = styled.div`
+    background-image: url(${imageList !== null ? imageList[0] : null});
+    display: flex;
+    min-height: calc(60vh - 58px);
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50% 50%;
+    color: #fff;
+    min-height: 400px;
+    height: 800px;
+
+`;
+
     return (
       <React.Fragment>
         <div id="bodyDiv">
-        <Image
+        {/* <Image
             id="headerImg"
             src={imageList !== null ? imageList[0] : null}
-          />
+          /> */}
+          <Content></Content>
           <Grid id="headerGrid" stackable textAlign="center">
             <Grid.Row>
               <Header className="item centered" id="headerInfo">

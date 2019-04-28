@@ -16,8 +16,8 @@ class PropertyDetailBuyerContainer extends Component {
         fetch(`https://properties-db.herokuapp.com/propertybuyer/${id}`,{
           method:"GET" , 
           headers: {
-            "Content-Type": "application/json",
-            "Authorization":sessionStorage.getItem("bearer") + sessionStorage.getItem("token")
+            'Authorization':'Bearer ' + sessionStorage.getItem("token"),
+            "Content-Type": "application/json"
           }
         })
         .then(res => res.json())

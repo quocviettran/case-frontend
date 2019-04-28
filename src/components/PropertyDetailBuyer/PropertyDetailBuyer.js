@@ -1,17 +1,88 @@
 import React, { Component } from "react";
 import { Grid, Header, Image, Button, Transition, List } from "semantic-ui-react";
 import Map from '../Map/Map';
-import './PropertyDetailBuyer.css';
 var QRCode = require('qrcode.react');
 
-
-export default class propertyDetailBuyer extends Component {
+export default class propertyDetailAgent extends Component {
   
-  state = { visible: true, visibleValuation: true };
+  state = { visible: true, visibleEier: true, visibleEierInfo: true, visibleValuation: true};
 
   toggleVisibility = () => this.setState({ visible: !this.state.visible });
-  toggleVisibilityValuation = () => this.setState({ visibleValuation: !this.state.visibleValuation });
+  toggleVisibilityEier = () => this.setState({ visibleEier: !this.state.visibleEier });
+  toggleVisibilityEierInfo = () => this.setState({ visibleEierInfo: !this.state.visibleEierInfo });
+  toggleVisibilityValuation = () => this.setState({visibleValuation: !this.state.visibleValuation })
+
+  historyOfOwner=()=>{
+    let listOfOwners=[];
+    if(this.props.ownershipLogs != null){
+      for(let i = 0; i<this.props.ownershipLogs.length; i++){
+        listOfOwners[i]=this.props.ownershipLogs[i].propertyOwner.owner_name;
+      }
+    }
+    return listOfOwners;
+  }
+
   
+
+  ownerInfo =()=>{
+    let ownerInfo=[];
+    if(this.props.ownershipLogs != null){
+      for(let i =0; i<this.props.ownershipLogs.length; i++){
+        ownerInfo[i]= 
+        <List key={i}>
+          <h4>OWNER</h4> <p>{this.props.ownershipLogs[i].propertyOwner.owner_name} {this.props.ownershipLogs[i].propertyOwner.surname}</p>
+          <h4>PHONE</h4> <p>{this.props.ownershipLogs[i].propertyOwner.phone}</p>         
+        </List>
+      }
+    }  
+    return ownerInfo;
+  }
+
+  currentOwner =()=>{
+    let ownerInfo=[];
+    if(this.props.ownershipLogs != null){
+      for(let i =0; i<this.props.ownershipLogs.length; i++){
+        ownerInfo[i]= 
+        <List key={i}>
+          <h4>NAME</h4> <p>{this.props.ownershipLogs[i].propertyOwner.owner_name} {this.props.ownershipLogs[i].propertyOwner.surname}</p>
+          <h4>PHONE</h4> <p>{this.props.ownershipLogs[i].propertyOwner.phone}</p>
+          <h4>E-MAIL</h4> <p>{this.props.ownershipLogs[i].propertyOwner.email}</p>
+          <h4>OWNER TYPE</h4> <p>{this.props.ownershipLogs[i].propertyOwner.ownerType.owner_type_name}</p>
+        </List>
+      }
+    }  
+    return ownerInfo[0];
+  }
+
+  currentRenovation =()=>{
+    let renovationList=[];
+    if(this.props.renovations != null){
+      for(let i =0; i<this.props.renovations.length; i++){
+        renovationList[i]= 
+        <List key={i}>
+          <h4>LATEST RENOVATION</h4> <p>{this.props.renovations[i].date_to}</p>
+        </List>
+      }
+    }  
+    return renovationList[0];
+  }
+ 
+  renovationHistory =()=>{
+    let renovationList=[];
+    if(this.props.renovations != null){
+      for(let i =0; i<this.props.renovations.length; i++){
+        renovationList[i]= 
+        <List key={i}>
+          <List.Item>RENOVATION: {this.props.renovations[i].description}</List.Item>
+          <List.Item>START DATE: {this.props.renovations[i].date_from}</List.Item>
+          <List.Item>END DATE: {this.props.renovations[i].date_to}</List.Item>
+        </List>
+      }
+    }  
+    return renovationList;
+  }
+ 
+
   images =()=>{
     let imageList=[];
     if(this.props.propertyImages !== null){
@@ -19,7 +90,7 @@ export default class propertyDetailBuyer extends Component {
         imageList[i] = this.props.propertyImages[i].url;
       }
       return imageList;
-    } 
+    }
     return null;
   }
 
@@ -29,38 +100,25 @@ export default class propertyDetailBuyer extends Component {
       for(let i =0; i<this.props.propertyImages.length; i++){
         imageList[i]= 
         <List key={i}>
-          <Image id="imagesdetail" src={this.props.propertyImages[i].url} />
+          <Image src={this.props.propertyImages[i].url} />
         </List>
       }
     }   
     return imageList;
   }
 
-  
-  renovationHistory =()=>{
-    let renovationList=[];
-    if(this.props.renovations != null){
-      for(let i =0; i<this.props.renovations.length; i++){
-        console.log(this.props.renovations);
-        renovationList[i]= 
-        <List key={i}>
-          <List.Item>RENOVERINGS BESKRIVELSE: {this.props.renovations[i].description}</List.Item>
-          <List.Item>RENOVERINGS START: {this.props.renovations[i].date_from}</List.Item>
-          <List.Item>RENOVERINGS SLUTT: {this.props.renovations[i].date_to}</List.Item>
-        </List>
-      }
-    }
-    
-    return renovationList;
-  }
-
-
   render() {
     const { visible } = this.state;
+    const { visibleEierInfo } = this.state;
     const { visibleValuation } = this.state;
     const imageList = this.images();
     const imageShowcase = this.imageShowcase();
     const renovationList = this.renovationHistory();
+    const ownerList = this.historyOfOwner();
+    const ownerInfo = this.ownerInfo();
+    const currentRenovation = this.currentRenovation();
+    const currentOwner = this.currentOwner();
+  
     return (
       <React.Fragment>
         <div id="bodyDiv">
@@ -76,18 +134,17 @@ export default class propertyDetailBuyer extends Component {
                   <h3>{this.props.property.city}, {this.props.property.municipality}</h3>
                   <h2>{this.props.property.zip}</h2>
                 </div>
-                  <h3 style={{'padding-top':'2%'}}>
-                    On this site, you'll find information about the property
-                  </h3>
+                
               </Header>
             </Grid.Row>
           </Grid>
 
           <Grid id="detailGrid" stackable textAlign="center">
             <Grid.Row columns={2}>
-            <Grid.Column id="detailColumn">
+
+              <Grid.Column id="detailColumn">
                 <Grid rows={2} stackable textAlign="center">
-                  <Grid.Row columns={2} style={{'padding-left':'10%'}}>
+                  <Grid.Row columns={2} style={{'padding-left':'1.5%'}}>
                     <Grid.Column style={{textAlign:'center'}}>
                      <Header id="maindetail">
                         <h4>ADDRESS</h4>
@@ -95,6 +152,7 @@ export default class propertyDetailBuyer extends Component {
                               {this.props.property.zip},
                               {this.props.municipality}
                           </p>
+                          
 
                         <h4>CITY</h4>
                           <p>
@@ -111,6 +169,13 @@ export default class propertyDetailBuyer extends Component {
                           <p> 
                               {this.props.property.built_at}
                           </p>
+
+                          {currentRenovation}
+
+                            </Header>
+                        </Grid.Column>
+                          <Grid.Column style={{textAlign:'center'}}>
+                            <Header id="maindetail">
 
                         <h4>AREA</h4> 
                             <p>
@@ -132,36 +197,32 @@ export default class propertyDetailBuyer extends Component {
                             <p>
                                 {this.props.property_status_name}
                             </p>
-
-                        <h4>VALUE</h4> 
-                            <p>
-                                {this.props.value} kr
-                            </p>
-                            </Header>
-                        </Grid.Column>
-                        <Grid.Column style={{textAlign:'center'}}>
+                      
                           <QRCode value="http://facebook.github.io/react/" />
 
-                          
+                          </Header>
                         </Grid.Column>
                      
                 
                   
                 </Grid.Row>
-                <Grid.Row>
 
-                  <Transition visibleValuation={!visibleValuation} animation="scale" duration={200}>
-                    <div id="fullInfoText">
-                      {renovationList}
-                    </div>
-                  </Transition>
-                  <Button
-                    content={visibleValuation ? "Renovations" : "Hide"}
-                    onClick={this.toggleVisibilityValuation}
-                    className="ui blue button"
-                    color="blue"
-                  />
-                   
+              
+                <Grid.Row>
+             
+                    <Transition visible={!visibleValuation} animation="scale" duration={200}>
+                      <div id="fullInfoText">
+                        {renovationList}
+                      </div>
+                    </Transition>
+                    <Button
+                      style={{}}
+                      content={visibleValuation ? "Renovations" : "Hide"}
+                      onClick={this.toggleVisibilityValuation}
+                      className="ui blue button"
+                      color="blue"
+                    />
+                                  
                 </Grid.Row>
               </Grid>
 
@@ -177,16 +238,18 @@ export default class propertyDetailBuyer extends Component {
             <Grid.Row>
               <Transition visible={!visible} animation="scale" duration={200}>
                 <div id="fullInfoText">
-                 {this.props.valuation_comments}
                  {imageShowcase}
                 </div>
               </Transition>
+
               <Button
                 content={visible ? "Show More" : "Hide"}
                 onClick={this.toggleVisibility}
-                className="ui blue button"
-                color="blue"
+                className="ui green button"
+                color="green"
+                
               />
+              
             </Grid.Row>
           </Grid>
         </div>

@@ -13,10 +13,6 @@ import PropertyDetailGuestContainer from "./container/PropertyDetailGuestContain
 import PropertyList from '../src/container/PropertyList/PropertyList';
 
 
-
-/*const User = Authorization(['user', 'guest', '1'])
-const Agent = Authorization(['user', 'agent', 'guest', '2'])*/
-
 class App extends Component {
 
   
@@ -38,10 +34,6 @@ class App extends Component {
   handleLogOut = () => {
     this.setState({role: undefined})
     
-  }
-
-  componentDidUpdate(){
-    console.log(this.state.role)
   }
 
 
@@ -72,9 +64,9 @@ class App extends Component {
             />
             <Route
               exact
-              path="/LogIn"
+              path="/login"
               render={props => (
-                <Login {...props} handler={this.handler} handleChanged={this.handleChanged} />
+                <Login {...props} handler ={this.handler}/>
               )}
             />
             <Route

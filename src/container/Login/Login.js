@@ -55,7 +55,7 @@ class Login extends Component{
       .catch(err => {
           console.log(err);
       });
-  }
+    }
 
 
     render(){
@@ -120,8 +120,8 @@ class Login extends Component{
                         onChange={(event) =>
                         this.setState({password: event.target.value})}
                       />
-                      <Button color='teal' fluid size='large' onClick={this.onSubmitSignIn}>
-                        Login
+                      <Button color='teal' fluid size='large'   onClick={this.onSubmitSignIn}>
+                        <Link  to='/propertylist'> Login </Link>
                       </Button>
                     </Segment>
                     <p>{this.state.message}</p>

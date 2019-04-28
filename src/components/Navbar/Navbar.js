@@ -49,7 +49,7 @@ class Navbar extends Component{
 
 <Menu.Item
           as={Link}
-          to='/LogIn'
+          to='/login'
           name='Log In'
           position = 'right'
           active={activeItem === 'Log in'}
@@ -80,7 +80,7 @@ class Navbar extends Component{
 
         <Menu.Item
           as={Link}
-          to='/LogIn'
+          to='/login'
           name='Log Out'
           position = 'right'
           active={activeItem === 'Log out'}
@@ -113,7 +113,7 @@ class Navbar extends Component{
 
         <Menu.Item
           as={Link} 
-          to='/LogIn'
+          to='/login'
           name='Log Out'
           position = 'right'
           active={activeItem === 'Log out'}

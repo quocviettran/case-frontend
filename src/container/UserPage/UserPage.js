@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {Container, Segment, Form, Button} from 'semantic-ui-react';
 import axios from 'axios';
 
-const endpoint = 'https://properties-db.herokuapp.com/api/account/'
-const userid = sessionStorage.getItem("id");
+const endpoint = 'https://properties-db.herokuapp.com/api/auth/me'
+//const userid = sessionStorage.getItem("id");
 class UserPage extends Component{
     constructor(props){
         super(props)
@@ -31,7 +31,7 @@ class UserPage extends Component{
     }
 
     getUsers = () => {
-        axios.get(endpoint+userid,{
+        axios.get(endpoint,{
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -70,7 +70,7 @@ class UserPage extends Component{
     handleEditChange = (e) => {
         e.preventDefault();
         const editedUser ={
-            id: Number(userid) ,
+            id: Number(this.props.userid) ,
             name: this.state.firstname,
             surname: this.state.surname,
             phone: this.state.phone,

@@ -1,7 +1,7 @@
 
 import React, { Component } from "react";
 import "./App.css";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route,Redirect } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import LandingPage from "./container/LandingPage/LandingPage";
 import Register from "./container/Register/Register";
@@ -51,9 +51,8 @@ class App extends Component {
             <Route
               exact
               path="/"
-              render={props => (
-                <LandingPage {...props} role= {this.state.role} handler = {this.handler} />
-              )}
+              render = {() => (<Redirect to="/login" from="/"/>)
+            }
             />
             <Route
               exact

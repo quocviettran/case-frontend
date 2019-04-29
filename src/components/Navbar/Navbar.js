@@ -33,7 +33,7 @@ class Navbar extends Component{
 
     <Menu.Item
       as={Link}
-      to='/' 
+      to='/login' 
       name='Home' 
       active={activeItem === 'Home'} 
       onClick={this.handleItemClick}

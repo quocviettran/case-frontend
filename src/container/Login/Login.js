@@ -24,14 +24,14 @@ class Login extends Component{
       fetch('https://properties-db.herokuapp.com/api/auth/signin', {
           method: 'POST',
           body: JSON.stringify({
-            "usernameOrEmail" : this.state.username,
+            "usernameOrEmail" : this.state.username.toLocaleLowerCase(),
             "password" : this.state.password
           }),
           headers: {
               'Accept': 'application/json',
               'Content-Type': 'application/json'
           }
-      })
+      }).then(console.log(this.state.username.toLocaleLowerCase()))
       .then((res)=> {
           if(res.status === 200){
             this.setState({message: "Login success"});
@@ -44,7 +44,6 @@ class Login extends Component{
       })
       .then(data =>{
           sessionStorage.setItem('token',data.accessToken);
-          sessionStorage.setItem('id', data.account.id);
           sessionStorage.setItem('role', data.account.roletypeid);
           
           this.setState({role: data.account.roletypeid, data});

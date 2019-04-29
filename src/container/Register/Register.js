@@ -13,7 +13,7 @@ class Register extends Component{
                 surname:undefined,
                 username:undefined,
                 password: undefined,
-                email:undefined,
+                email:"",
                 phone:undefined,
                 day: undefined,
                 month: undefined,
@@ -74,7 +74,7 @@ class Register extends Component{
                 name: this.state.firstname,
                 surname: this.state.surname,
                 phone : this.state.phone,
-                email: this.state.email,
+                email: this.state.email.toLocaleLowerCase,
                 dateOfBirth: this.state.year+'-'+this.state.month+'-'+this.state.day,
                 username: this.state.username,
                 password: this.state.password,
@@ -91,7 +91,7 @@ class Register extends Component{
                 }
             );
             alert("Succesfully created user"); 
-            this.props.history.push('/');
+            this.props.history.push('/login');
                 
          }else{
             alert("Terms and Conditions is not checked");
@@ -170,7 +170,7 @@ class Register extends Component{
                     <Header id="checkoutText" as='h2' color='teal'>Register your account</Header>
                     <Form.Field>
                         <Form.Input fluid label="Username" placeholder="Username" name="username" onChange={this.handleChange} />
-                        <Form.Input fluid label="Password" placeholder="Password" name="password" onChange={this.handleChange} />
+                        <Form.Input fluid label="Password" type="password" placeholder="Password" name="password" onChange={this.handleChange} />
                         <Form.Input fluid label="Firstname" placeholder="Firstname" name="firstname" onChange={this.handleChange} />
                         <Form.Input fluid label="Surname" placeholder="Surname" name="surname" onChange={this.handleChange} />
                         <Form.Input fluid label="E-mail" placeholder="E-mail" name="email" onChange={this.handleChange} />

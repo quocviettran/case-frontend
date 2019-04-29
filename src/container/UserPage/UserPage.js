@@ -90,7 +90,7 @@ class UserPage extends Component{
         this.state.new_firstname === undefined ? editedUser.name = this.state.firstname : editedUser.name = this.state.new_firstname;
         this.state.new_surname === undefined ? editedUser.surname = this.state.surname : editedUser.surname = this.state.new_surname;
         this.state.new_phone === undefined ? editedUser.phone = this.state.phone : editedUser.phone = this.state.new_phone;
-        this.state.new_email === undefined ? editedUser.email = this.state.email : editedUser.email = this.state.new_email;
+        
         
         axios.post('https://properties-db.herokuapp.com/api/account/update',
             JSON.stringify(editedUser),
@@ -134,7 +134,6 @@ class UserPage extends Component{
         <Form>
             <Form.Input label="First name" placeholder={String(firstname)} name="new_firstname" onChange={this.inputHandleChange}></Form.Input>
             <Form.Input label="Sur name" placeholder={String(lastname)} name="new_surname" onChange={this.inputHandleChange}></Form.Input>
-            <Form.Input label="Email" placeholder={String(email)} name="new_email" onChange={this.inputHandleChange}></Form.Input>
             <Form.Input label="Phone" placeholder={String(phone)} name ="new_phone" onChange={this.inputHandleChange}></Form.Input>
             <Button onClick={this.handleOnChange}> Undo changes </Button>
             <Button onClick={this.handleEditChange} >Apply</Button>

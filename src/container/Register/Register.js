@@ -74,7 +74,7 @@ class Register extends Component{
                 name: this.state.firstname,
                 surname: this.state.surname,
                 phone : this.state.phone,
-                email: this.state.email.toLocaleLowerCase,
+                email: this.state.email.toLocaleLowerCase(),
                 dateOfBirth: this.state.year+'-'+this.state.month+'-'+this.state.day,
                 username: this.state.username,
                 password: this.state.password,
